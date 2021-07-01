@@ -1,0 +1,243 @@
+---
+metadata:
+  title: |
+    How to handle a data subject rights request
+  short title: |
+    DSRR - Access
+  description: |
+    A process flow for responding to DSARs
+  authors:
+    - name: Peter
+      organization: Fora Legal
+  revision_date: 2020-12-21
+---
+question: |
+  Demo: How to handle a Data Subject Rights Request (DSRR)
+subquestion: |
+  One of the key objectives of the new European General Data
+  Protection Regulation (GDPR) is to ensure the privacy and
+  protection of the personal data of data subjects. To help data
+  subjects in being assured of the protection and privacy of their
+  personal data, GDPR empowers data subjects with certain rights. 
+  
+  Through these rights, data subjects can make a specific request
+  and be assured that personal data is not being misused for 
+  anything other than the legitimate purpose for which it was
+  originally provided. Let us understand the different GDPR data
+  subject rights and requests that a data subject can make as a
+  customer, as an employee, and as personnel of a supplier.
+  
+field: splash_screen
+---
+objects:
+  - user_global: Individual
+  - user: Individual
+  - endpoint: DADict
+---
+mandatory: True
+code: |
+  splash_screen
+  while True:
+    del endpoint[user.goal]
+    del user
+---
+question: |
+  What kind of rights request did you receive?
+field: user.goal
+choices:
+  - Data Subject Access Request (DSAR): dsar
+  - Information Request: info
+  - Rectification Request: rect
+  - Erasure Request: erasure
+  - Restriction of Processing Request: restrict
+  - Portability Request: port
+  - Objection to Processing Activities: object
+  - Objection to Automatic Decisionmaking: auto
+---
+code: |
+  user.name.first = user_global.name.first
+  user.name.last = user_global.name.last
+---
+code: |
+  user.age_category = user_global.age_category
+---
+question: |
+  What is your name?
+fields:
+  - First name: user_global.name.first
+  - Last name: user_global.name.last
+---
+question: |
+  How old are you, ${ user }?
+field: user_global.age_category
+choices:
+  - "Spring chicken"
+  - "The music I like isn't cool anymore"
+  - "Wiser than most"
+---
+question: |
+  DSAR results
+subquestion: |
+  Your favorite fruit is
+  ${ user.favorite_fruit }.
+field: endpoint['dsar']
+continue button label: Try again
+---
+question: |
+  Information Request results
+subquestion: |
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of vegetables.
+  % endif
+  
+  Your favorite vegetable is
+  ${ user.favorite_vegetable }.
+field: endpoint['info']
+continue button label: Try again
+---
+question: |
+  Rectification Request results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['rect']
+continue button label: Try again
+---
+question: |
+  Erasure Request results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['erasure']
+continue button label: Try again
+---
+question: |
+  Portability Request results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['port']
+continue button label: Try again
+---
+question: |
+  Objection to Processing Activities results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['restrict']
+continue button label: Try again
+---
+question: |
+  Objection to Processing Activities results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['object']
+continue button label: Try again
+---
+question: |
+  Automated Decisionmaking results
+subquestion: |
+  % if user.knows_legumes:
+  ${ user } definitely knows what a legume is.
+  % else:
+  You don't know what a legume is.
+  % endif
+  
+  % if user.age_category == 'Spring chicken':
+  You are still growing, ${ user }, so you should eat lots of legumes.
+  % endif
+  
+  Your favorite legume is
+  ${ user.favorite_legume }.
+field: endpoint['auto']
+continue button label: Try again
+---
+question: |
+  Does your organisation decide...
+fields:
+  yesno: user.favorite_fruit
+---
+question: |
+  What is your favorite vegetable?
+fields:
+  Favorite vegetable: user.favorite_vegetable
+---
+question: |
+  What is your favorite legume?
+fields:
+  Favorite legume: user.favorite_legume
+---
+question: |
+  Which of these are legumes?
+fields:
+  - no label: user.legume_picks
+    datatype: checkboxes
+    choices:
+      - Peas
+      - Lentils
+      - Mango
+      - String beans
+      - Potato
+      - Peanut
+---
+code: |
+  if user.legume_picks['Peas'] \
+     and user.legume_picks['Lentils'] \
+     and user.legume_picks['String beans'] \
+     and user.legume_picks['Peanut'] \
+     and not user.legume_picks['Mango'] \
+     and not user.legume_picks['Potato']:
+    user.knows_legumes = True
+  else:
+    user.knows_legumes = False

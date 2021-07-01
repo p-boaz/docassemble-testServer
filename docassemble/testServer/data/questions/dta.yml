@@ -1,0 +1,663 @@
+metadata:
+  title: |
+    Data Transfer Assessment
+  short title: |
+    DTA
+  description: |
+    Data Transfer Assessment
+  authors:
+    - name: Peter
+      organization: Fora Legal
+---
+sections:
+  - intro: Introduction
+  - one: Section 1
+    subsections:
+      - countries: 1.1 Countries
+      - exporter: 1.2 Data exporter
+      - importer: 1.3 Data importer
+      - onward: 1.4 Onward transfers
+      - nature_of_data: 1.5 Nature of personal data
+      - data_subjects: 1.6 Data subjects
+      - purposes: 1.7 Purposes of processing
+      - limitation: 1.8 Limitation of processing
+      - proposed_transfer: 1.9 Proposed Transfer Mechanism
+  - two: Section 2
+    subsections:
+      - data_privacy: 2.1 Regulation of data privacy
+      - pub_auth: 2.2 Regulation of public authority access to private data
+      - reg_sup: 2.3 Regulatory supervision
+      - redress: 2.4 Rights of redress
+      - treaties: 2.5 International treaties
+  - three: Section 3 
+    subsections:
+      - contractual: 3.1 Contractual
+      - self_or_co: 3.2 Self/co-regulatory
+      - measures: 3.3 Technical, organisational or policy / process measures
+  - four: Section 4
+    subsections: 
+      - severity: 4.1 Severity of harm
+      - likelihood: 4.2 Likelihood of harm
+  - conclusion: Conclusion
+progressive: True
+---
+event: intro
+code: |
+  force_ask('sees_nav_bar')
+---
+event: one
+code: |
+  force_ask('intro_to_one')
+---
+event: countries
+code: |
+  force_ask('exporting_country', 'importing_country')
+---
+event: exporter
+code: |
+  force_ask('exporter_name', 'exporter_sector', 'exporter_role')
+---
+event: importer
+code: |
+  force_ask('importer_name', 'importer_sector', 'importer_role','counterparty_name', 'importer_counterpary_relationship')
+---
+event: onward
+code: |
+  force_ask('onward_transfers', 'number_of_transfers', 'transfer_details')
+---
+event: nature_of_data
+code: |
+  force_ask('data_categories')
+---
+event: data_subjects
+code: |
+  force_ask('data_subject_categories')
+---
+event: purposes
+code: |
+  force_ask('importer_purpose')
+---
+event: limitation
+code: |
+  force_ask('limitation_of_access')
+---
+event: proposed_transfer
+code: |
+  force_ask('transfer_mech')
+---
+event: two
+code: |
+  force_ask('intro_to_two')
+---
+event: data_privacy
+code: |
+  force_ask('data_privacy_assessment')
+---
+event: pub_auth
+code: |
+  force_ask('pub_auth_assessment')
+---
+event: reg_sup
+code: |
+  force_ask('reg_sup_assessment')
+---
+event: redress
+code: |
+  force_ask('redress_assessment')
+---
+event: treaties
+code: |
+  force_ask('treaties_assessment')
+---
+event: three
+code: |
+  force_ask('intro_to_three')
+---
+event: contractual
+code: |
+  force_ask('contractual_assessment')
+---
+event: self_or_co
+code: |
+  force_ask('self_or_co_assessment')
+---
+event: measures
+code: |
+  force_ask('measures_assessment')
+---
+event: four
+code: |
+  force_ask('intro_to_four')
+---
+event: severity
+code: |
+  force_ask('severity_assessment')
+---
+event: likelihood
+code: |
+  force_ask('likelihood_assessment')
+---
+features:
+  navigation: True
+  question help button: True
+---
+event: countries
+section: countries
+question: |
+  Review Exporting and Importing Country information
+review:
+  - Edit: exporting_country
+    button: |
+      Exporting Country: ${ country_name(exporting_country) }
+  - Edit: importing_country
+    button: |
+      Importing Country: ${ country_name(importing_country) }
+---
+event: exporter
+section: exporter
+question: |
+  Review exporter information
+review:
+  - Edit: exporter_name
+    button: |
+      Name: ${ exporter_name }
+  - Edit: exporter_sector
+    button: |
+      Sector: ${ exporter_sector }
+  - Edit: exporter_role
+    button: |
+      Role: ${ exporter_role }
+---
+event: importer
+section: importer
+question: |
+  Review importer information
+review:
+  - Edit: importer_name
+    button: |
+      Name: ${ importer_name }
+  - Edit: importer_sector
+    button: |
+      Sector: ${ importer_sector }
+  - Edit: importer_role
+    button: |
+      Role: ${ importer_role }
+  - Edit: party_relationship
+    button: |
+      Rel. of Parties: ${ party_relationship }
+  - Edit: k_relationship
+    button: |
+      Contractual Relationship: ${ k_relationship }
+---
+event: onwward
+section: onward
+question: |
+  Onward Transfer Information
+review:
+  - Edit: onward_transfers
+    button: |
+      Transfers: ${ onward_transfers }
+  - Edit: number_of_transfers
+    button: |
+      Number: ${ number_of_transfers }
+---
+initial: True
+code: |
+  if returning_user(minutes=0.5):
+    welcome_back
+---
+mandatory: true
+section: intro
+question: |
+  Welcome to the interview
+subquestion: |
+  If you are not on a
+  smartphone-sized device,
+  you should see a navigation
+  bar to the left.
+field: sees_nav_bar
+---
+mandatory: True
+section: one
+question: |
+  Section 1: Identify key elements of the proposed data transfer
+subquestion: |
+  At this stage we will confirm the key elements of the data
+  transfer, which will feed into later stages in the methodology
+field: intro_to_one
+---
+code: |
+  countries = objects_from_file("countries_list.yml")
+---
+mandatory: true
+section: countries
+question: |
+  1.1 Countries - jurisdictions involved in the processing
+subquestion: |
+  Please select the countries in which the data
+  exporter and importer are located, and, where
+  relevant, indicate the specific Region/State
+fields:    
+  - Exporting Country: exporting_country
+    datatype: object
+    choices: countries
+
+  - Importing Country: importing_country
+    datatype: object
+    choices: countries
+---
+mandatory: true
+section: exporter
+question: |
+  1.2 Information on data exporter
+fields:   
+  - What is the full name of the data exporter?: exporter_name
+  - In which sector the data exporter operates?: exporter_sector
+    choices:
+      - software
+      - logistics
+      - etc.
+  - In what privacy role is the data exporter acting?: exporter_role
+    choices:
+      - data controller 
+      - data processor
+      - sub-processor
+      - other
+help:
+  label: Help
+  heading: What is a name?
+  content: |
+    A name is a fleshy edible
+    part of a plant that has
+    seeds.
+---
+mandatory: true
+section: importer
+question: |
+  1.3 Information on data importer
+fields: 
+  - What is the full name of the data importer?: importer_name
+  - In which sector the data importer operates?: importer_sector
+    choices:
+      - software
+      - logistics
+      - etc.
+  - In what privacy role is the data importer acting?: importer_role
+    choices:
+      - data controller 
+      - data processor
+      - sub-processor
+  - What is the relationship between the data exporter and data importer?: party_relationship
+    choices:
+      - affiliate of data exporter
+      - cloud vendor
+      - something else
+  - Is there a contractual relationship directly between the Data Exporter and Importer?: k_relationship
+    datatype: yesnoradio
+
+  - If there is no direct contractual relationship, what is the full name of the contractual counterparty?: counterparty_name
+    show if:
+      variable: k_relationship
+      is: False
+    
+  - What is the relationship between the data importer and the contractual counterparty?: importer_counterparty_relationship
+    show if:
+      variable: k_relationship
+      is: False
+---
+mandatory: True
+section: onward
+question: |
+  1.4 Information on onward transfer
+subquestion: |
+  Please answer the questions below filling the corresponding cells with the required information
+fields: 
+  - Will the data importer perform any onward transfers (i.e. to third parties / other countries)?: onward_transfers
+    datatype: yesnoradio
+
+  - Please select the number of third parties to which onward transfer will be performed.: number_of_transfers
+    datatype: integer
+    show if:
+      variable: onward_transfers
+      is: True
+  
+  - Please indicate any details on the onward data transfer anticipated by the Data Importer.: transfer_details
+    datatype: area
+    show if:
+      variable: onward_transfers
+      is: True
+  - Name of third party: third_party_name
+    show if:
+      variable: onward_transfers
+      is: True
+  - Country: third_party_country
+    code: countries_list()
+    show if:
+      variable: onward_transfers
+      is: True
+  - Type of activity sub-processed: sub_proc_activity
+    show if:
+      variable: onward_transfers
+      is: True
+  - Role: third_party_role
+    show if:
+      variable: onward_transfers
+      is: True
+---
+mandatory: True
+section: nature_of_data
+question: |
+  1.5 Nature of personal data
+subquestion: |
+  Please answer the questions below filling the corresponding cells with the required information
+fields: 
+  - Please select the categories of data which are involved in the processing: data_categories
+    datatype: checkboxes
+    choices:
+      - Identification data (name, address, telephone, ...)
+      - Family & household (spouse, children, …)
+      - Electronic location data (GPS position,…)
+      - Housing characteristics (house type, …)
+      - Racial or ethnic data
+      - Physical health
+      - Criminal offences and sentences
+      - Psychological data (personality, character, …)
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
+      - Education and training
+      - Consumption habits
+      - Financial characteristics (bank account, credit card details, …)
+      - Religious or philosophical convictions 
+      - National register number / social security identification number
+      - Genetic data 
+      - Biometric identification data (fingerprints, iris scans, …)
+      - Personal characteristics (age, gender, civil status,
+      - Pictures & video (e.g. in directories, on websites, …)
+      - Lifestyle data (hobbies, …)
+      - Mental health 
+      - Political opinions
+      - Sound recordings (call (centre) recordings
+      - Physical data (height, weight, …)
+      - Leisure activities and interests
+      - Profession and job
+      - Data concerning sexual life
+      - Trade union membership
+      - Memberships (sports clubs, …)
+      - Other
+  - Please provide more details: other_data_details
+    js show if: |
+      val("data_categories['Other']")
+---
+mandatory: True
+section: data_subjects
+question: |
+  1.6 Nature of data subjects
+subquestion: |
+  Please select the categories of data subjects whise personal data are involved in the processing
+fields: 
+  - Data subjects: data_subject_categories
+    datatype: checkboxes
+    choices:
+      - client
+      - prospect
+      - minor
+      - employee
+      - provider
+      - Other
+  - Please provide more details: other_data_subject_details
+    js show if: |
+      val("data_subject_categories['Other']")
+---
+mandatory: True
+section: purposes
+question: |
+  1.7 Purposes of the intended processing
+subquestion: |
+  For which purposes does the data importer intend to process the data?
+fields: 
+  - no label: importer_purpose
+---
+mandatory: True
+section: limitation
+question: |
+  1.8 Limitation of access to data
+subquestion: |
+  Please describe how the limitation of access to data will be fulfilled (e.g. what are the intended security protections).
+fields: 
+  - no label: limitation_of_access
+---
+mandatory: True
+section: proposed_transfer
+question: |
+  1.9 Envisaged transfer mechanism
+subquestion: |
+  What is the proposed legal basis for transferring the data under Article 46 / 47 GDPR?
+fields: 
+  - Transfer mechanism: transfer_mech
+    datatype: checkboxes
+    choices:
+      - standard contracts (SCCs) 
+      - ad hoc contractual clauses
+      - codes of conduct
+      - binding corporate rules (BCRs)
+      - certification mechanisms
+      - another GDPR Article 49 derogation
+  - Art. 49 Derogation: derogation
+    js show if: |
+      val("transfer_mech['another GDPR Article 49 derogation']")
+    choices:
+      - the data subject has explicitly consented to the proposed transfer, after having been informed of the possible risks of such transfers for the data subject due to the absence of an adequacy decision and appropriate safeguards;
+      - the transfer is necessary for the performance of a contract between the data subject and the controller or the implementation of pre-contractual measures taken at the data subject request;
+      - the transfer is necessary for the conclusion or performance of a contract concluded in the interest of the data subject between the controller and another natural or legal person;
+      - the transfer is necessary for important reasons of public interest;
+      - the transfer is necessary for the establishment, exercise or defence of legal claims;
+      - the transfer is necessary in order to protect the vital interests of the data subject or of other persons, where the data subject is physically or legally incapable of giving consent;
+      - the transfer is made from a register which according to Union or Member State law is intended to provide information to the public and which is open to consultation either by the public in general or by any person who can demonstrate a legitimate interest, but only to the extent that the conditions laid down in Union or Member State law for consultation are fulfilled inthe particular case.
+---
+mandatory: True
+section: two
+question: |
+  Section 2: Consider the adequacy of the legal regime in the
+  destination country
+subquestion: |
+  At this stage, the methodology will assess if there is anything in the law or practice of **${ importing_country.name }** that may impinge on the effectiveness of the appropriate safeguards of the transfer tools you are relying on, in the context of your specific transfer.
+  
+  We will also assess whether those protections are essentially equivalent to those offered within the EU and consistent with the restrictions set out in the GDPR and guarantees provided for in the relevant transfer terms (SCCs).
+  
+  This assessment will follow the principles set out in Article
+  45(2) GDPR (the test for adequacy of a third country) and include
+  consideration of the following key factors as applicable to the
+  specific transfer 
+  
+  * the nature and type of data being transferred
+  * sectors in which the recipient operates as there may be sector
+  specific variances to this component
+field: intro_to_two
+---
+mandatory: true
+section: data_privacy
+question: |
+  2.1 Regulation of data privacy
+subquestion: |
+  Here, we look at the extent to which local data privacy laws offer legal safeguards to the data processing of personal data equivalent to the protections offered in the EU. This includes an analysis of the local privacy and data protection law framework, including constitutional rights to privacy and how those laws apply both to the data importer but also third parties (e.g. law enforcement) who may seek to secure access to the data following transfer.
+  
+  In this context, note the EU / UK has a developed law that specifically recognises legal rights to protection of “personal data” consistent with the principles of data protection set out in OECD Convention 108+.
+
+  % if importing_country.level_of_protection == 'Member country of the EU or the EEA':
+  ${ importing_country } belongs to the European Economic Area.
+  
+  % elif importing_country.level_of_protection == 'Adequate country':
+  ${ importing_country } ensures an adequate level of data protection recognized by EU. Data transfers to **${ importing_country }** do not require the use of transfer tools.
+
+  % elif importing_country.level_of_protection == 'Country partially adequate':
+  **${ importing_country }** is partially recognized as ensuring an adequate level of data protection by EU for certain specific processing. 
+
+  % elif importing_country.level_of_protection == 'Independent authority and law (s)':
+  **${ importing_country }** doesn't ensure an adequate level of data protection recognized by EU.
+  
+  * Data transfers to **${ importing_country }** require the use of transfer tools. 
+  * **${ importing_country }** has a data protection law and an independant data protection authority accredited at the international conference of data protection and privacy commissionners.
+
+  % elif importing_country.level_of_protection == 'With legislation':
+  **${ importing_country }** has general legislation on personal data protection or specific provisions, but it doesn't ensure an adequate level of data protection recognized by EU. Data transfers to **${ importing_country }** require the use of transfer tools.
+
+  % elif importing_country.level_of_protection == 'No law':
+  **${ importing_country }** doesn't have a data protection law. Therefore, it doesn't ensure an adequate level of data protection recognized by EU. Data transfers to **${ importing_country }** require the use of transfer tools.
+  
+  %endif
+  
+  % if importing_country.edpb_member == 'No':
+  ${ importing_country } is not a member of EDPB.
+  % else:
+  ${ importing_country } `is` a member of EDPB.
+  Find out about their data protection authority at `${ importing_country.sa_website }`.
+  
+  % endif
+  
+field: data_privacy_assessment
+---
+mandatory: True
+section: pub_auth
+question: |
+  2.2 Regulation of public authority access to private data
+subquestion: |
+  The extent to which the level of access legally permitted and / or actually conducted by public authorities to personal data (e.g. to secure disclosure of, or conduct surveillance on, private information for national security purposes or other reasons) is subject to safeguards equivalent to that within the EU. This will consider specifically whether the right of public authorities to access data is:
+  
+  1. underpinned by a clear legal basis (conducted ‘in accordance with law’),
+  2. carried out in pursuit of legitimate aims which are necessary in a democratic society (‘proportionate’) and
+  3. subject to adequate judicial oversight
+  
+  The assessment will consider both pervasive surveillance activity (across the destination country as a whole) and as may be specifically relevant to the circumstances of this transfer identified in Step 1 (i.e. rules that only apply to certain types of data or categories of data importer - e.g. sectoral laws applicable to a cloud-based vendor).
+field: pub_auth_assessment
+---
+mandatory: True
+section: reg_sup
+question: |
+  2.3 Regulatory supervision
+subquestion: |
+  The extent to which courts, regulators and/or supervisory authorities enforce the rule of law and/or rights guaranteed in relation to the protection of data in an independent and effective manner, with evidence of meaningful resources and enforcement activity
+field: reg_sup_assessment
+---
+mandatory: True
+section: redress
+question: |
+  2.4 Rights of redress
+subquestion: |
+  The extent to which individuals can easily and effectively enforce rights and seek redress by raising complaints, claims and / or appeal and enforce decisions in relation to both data protection infringements and public disclosure / surveillance activity through judicial and/or administrative processes (eg help from local data protection authorities) that support each of access to protect personal rights. This section will also consider whether data subjects can secure self help remedies e.g. right to secure access to or require erasure of personal data files.
+field: redress_assessment
+---
+mandatory: True
+section: treaties
+question: |
+  2.5 International treaties
+subquestion: |
+  The extent to which the country has concluded international treaties and related commitments on handling personal data to support the safeguarding of data this will include consideration both of the existence of: 
+  
+  1. international treaties that relate to the protection of data generally consistent with principles enshrined in EU law, and
+  2. any specific arrangements concluded to provide safeguards in relation to country to country transfers (e.g. UK-U.S. Bilateral Data Access Agreement which brings into effect the 'quashing' provisions of 18 USC § 2703(h)(2))
+field: treaties_assessment
+---
+mandatory: True
+section: three
+question: |
+  Section 3: Consider supplemental measures that may available to
+  safeguard the data
+subquestion: |
+  At this stage we will assess any protections adopted by the
+  parties or otherwise relevant to the circumstances in which the
+  transfer is made which may provide additional safeguards to the
+  personal data / mitigate the risks posed in Step 2. This stage
+  will consider three criteria:
+field: intro_to_three
+---
+mandatory: true
+section: contractual
+question: |
+  3.1 Contractual
+subquestion: |
+  Whether the parties have agreed additional contractual commitments which enhance (or in any way undermine) the guarantees offered in the SCCs and/or mitigate the risk posed by shortfalls within the destination country legal regime examples may include:
+  
+   1. a process to be applied when there is a subpoena / legal process requiring the importer to challenge or demand individual review of an order to extent possible;
+   2. an obligation to inform the exporter of the subpoena / legal process in a manner whereby the exporter can suspend the transfer / withdraw the data before a disclosure is made (to the extent not prohibited by an anti- tipping off law);
+   3. an obligation to routinely report to the exporter that there have been no disclosure requests made by authorities in the preceding period (‘warrant canary’);
+   4. requiring or requesting the requesting authority – to the extent permissible by law – to use an MLAT process; similarly where there are unhelpful contractual provisions, this would have a negative effect on the score
+field: contractual_assessment
+---
+mandatory: True
+section: self_or_co
+question: |
+  3.2 Self/co-regulatory
+subquestion: |
+  Whether the importer is committed to adhering to any self-regulatory or voluntary schemes which provide additional protective measures for data subjects – examples may include (i) sector specific professional codes of conduct, or (ii) continuing commitments to schemes such as the Privacy Shield framework even after the Schrems II judgement – as referenced on the Department of Commerce website, this may still be a relevant factor in reducing privacy risk, although not determinative.
+field: self_or_co_assessment
+---
+mandatory: True
+section: measures
+question: |
+  3.3 Technical, organisational or policy / process measures
+subquestion: |
+  The extent to which privacy enhancing controls have been adopted by the parties to mitigate risk, for example by seeking to anonymise or pseudonymise the personal data (e.g. where the sole means of re-identification are held outside the destination country and outside the reach of the laws of the destination country), and / or otherwise preventing the importer from being able to disclose the personal data, such as encryption keys being kept in another jurisdiction (bearing in mind that any form of root / admin access that may circumvent such measures / controls would likely render this variable as ineffective in terms of mitigation); similarly where the measures act to facilitate disclosure (e.g. a policy to disclose without a court order, a policy to permit unfettered access to stored data, etc.) this would have a negative effect on the score
+field: measures_assessment
+---
+mandatory: True
+section: four
+question: |
+  Section 4: Consider the risk of harm to which a data subject may
+  be exposed
+subquestion: |
+  At this stage we will consider the potential risk of harm that
+  may be caused to a data subject as a consequence of their data
+  being transferred to a third country, taking account of any
+  shortfall in the safeguards guaranteed in the EU / UK as
+  identified in Steps 2 and 3 and other real-life variables. This
+  element of the assessment is important to help understand the
+  relative importance of the protections in the context of the
+  particularities of the data transfer and whether (in practice)
+  there is a meaningful undermining of the safeguards provided to
+  the data subject in the EEA / UK.
+  
+  This part of the assessment will consider two factors:
+field: intro_to_four
+---
+mandatory: true
+section: severity
+question: |
+  4.1 Severity of harm
+subquestion: |
+  The potential severity of harm that could occur to the data subject as a result of the identified shortfalls, including the likely distress an individual might suffer due to the loss of privacy in the data, possible sanctions faced as a result of processing, such as capital or corporal punishment, length and severity of custodial sentence, size of financial penalty, imposition of financial sanctions, etc, with a score assigned depending on the perceived severity of the risks.
+  
+field: severity_assessment
+---
+mandatory: true
+section: likelihood
+question: |
+  4.2 Likelihood of harm
+subquestion: |
+  The likelihood / probability of harm arising to the data subject, given the circumstances in which the transfer is made. This will take into consideration relevant factors identified in Step 1, such as the nature of the data / data subject and its interest to law enforcement / security establishment; the likelihood that law enforcement / security establishment would request the personal data from the importer or a processor / sub-processor rather than from the exporter directly; and whether the importer will (to the extent the law permits it) exercise any rights it has to challenge the request.
+  
+field: likelihood_assessment
+---
+mandatory: True
+question: Thank you.
+subquestion: |
+  have a good one
+section: conclusion
+---
+event: welcome_back
+question: |
+  Welcome back!
+subquestion: |
+  You are currently in the
+  **${ nav.get_section(display=True) }**
+  section.
+
+  ${ nav }
+
+  Press "Continue" to pick up
+  where you left off.
+buttons:
+  Continue: continue
+---
+auto terms:
+  adequacy decision: |
+    At any time, the European Parliament and the Council may request the European Commission to maintain, amend or withdraw the adequacy decision on the grounds that its act exceeds the implementing powers provided for in the regulation.
+    The effect of such a decision is that personal data can flow from the EU (and Norway, Liechtenstein and Iceland) to that third country without any further safeguard being necessary. In others words, transfers to the country in question will be assimilated to intra-EU transmissions of data.

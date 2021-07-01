@@ -1,0 +1,55 @@
+objects:
+  - fruits: DAList.using(object_type=Thing)
+---
+question: |
+  Are there any fruits?
+yesno: fruits.there_are_any
+---
+question: |
+  What is the name of the ${ ordinal(i) } fruit?
+fields:
+  - Name: fruits[i].name.text
+---
+question: |
+  Are there any more fruits?
+yesno: fruits.there_is_another
+---
+only sets: fruits.prepopulated
+code: |
+  import random
+  fruits.clear()
+  if random.random() < 0.5:
+    log('Added apple', 'info')
+    fruits.appendObject()
+    fruits[-1].name.text = 'apple'
+  if fruits.number_gathered():
+    fruits.there_is_another = False
+    fruits.gathered = True
+  fruits.prepopulated = True
+---
+table: fruits.table
+rows: fruits
+columns:
+  - Name: row_item.name.text
+edit:
+  - name.text
+---
+question: |
+  Edit the fruit list.
+subquestion: |
+  ${ fruits.table }
+  
+  ${ fruits.add_action() }
+continue button field: fruits.edited
+---
+mandatory: True
+code: |
+  fruits.prepopulated
+  fruits.gather()
+  final_screen
+---
+event: final_screen
+question: |
+  You like ${ fruits }.
+subquestion: |
+  ${ action_button_html(url_action('fruits.edited'), label="Change this") }

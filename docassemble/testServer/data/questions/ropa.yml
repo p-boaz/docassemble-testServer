@@ -1,0 +1,381 @@
+mandatory: True
+question: |
+  All done
+subquestion: |
+  You have recorded the following processing activities for **${ activity }**
+  
+  ${ activity_table }
+  
+  ${ activity.categories_of_data.add_action() }
+
+  You can also [download this information].
+
+  [download this information]: ${ activity_table.export('ROPA.csv', title='ROPA').url_for() }
+  
+  % if there_are_third_countries:
+  
+  ### Some important information about your cross-border data transfers 
+  
+  % for categories_of_data in activity.categories_of_data:
+  Seding `${ categories_of_data }` to `${ categories_of_data.importing_country }`
+  
+   % if categories_of_data.importing_country.level_of_protection == 'Member country of the EU or the EEA':
+  ${ categories_of_data.importing_country } belongs to the European Economic Area.
+  
+  % elif categories_of_data.importing_country.level_of_protection == 'Adequate country':
+  ${ categories_of_data.importing_country } ensures an adequate level of data protection recognized by EU. Data transfers to **${ categories_of_data.importing_country }** do not require the use of transfer tools.
+
+  % elif categories_of_data.importing_country.level_of_protection == 'Country partially adequate':
+  **${ categories_of_data.importing_country }** is partially recognized as ensuring an adequate level of data protection by EU for certain specific processing. 
+
+  % elif categories_of_data.importing_country.level_of_protection == 'Independent authority and law (s)':
+  **${ categories_of_data.importing_country }** doesn't ensure an adequate level of data protection recognized by EU.
+  
+  * Data transfers to **${ categories_of_data.importing_country }** require the use of transfer tools. 
+  * **${ categories_of_data.importing_country }** has a data protection law and an independant data protection authority accredited at the international conference of data protection and privacy commissionners.
+
+  % elif categories_of_data.importing_country.level_of_protection == 'With legislation':
+  **${ categories_of_data.importing_country }** has general legislation on personal data protection or specific provisions, but it doesn't ensure an adequate level of data protection recognized by EU. Data transfers to **${ categories_of_data.importing_country }** require the use of transfer tools.
+
+  % elif categories_of_data.importing_country.level_of_protection == 'No law':
+  **${ categories_of_data.importing_country }** doesn't have a data protection law. Therefore, it doesn't ensure an adequate level of data protection recognized by EU. Data transfers to **${ categories_of_data.importing_country }** require the use of transfer tools.
+  
+  % endif
+  
+  % if categories_of_data.importing_country.edpb_member == 'No':
+  ${ categories_of_data.importing_country } is not a member of EDPB.
+  % else:
+  ${ categories_of_data.importing_country } `is` a member of EDPB.
+  Find out about their data protection authority [here](${ categories_of_data.importing_country.sa_website }).
+  
+  % endif
+
+  % endfor
+
+  % endif
+
+---
+objects:
+  - activity: Person
+  - activity.categories_of_data: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+---
+code: |
+  activity.categories_of_data[i].name.text
+  activity.categories_of_data[i].purpose
+  activity.categories_of_data[i].indiv
+  activity.categories_of_data[i].format
+  activity.categories_of_data[i].importing_country
+  activity.categories_of_data[i].method
+  activity.categories_of_data[i].security
+  activity.categories_of_data[i].lawful_basis
+  activity.categories_of_data[i].location
+  activity.categories_of_data[i].retention
+  activity.categories_of_data[i].complete = True
+---
+table: activity_table
+rows: activity.categories_of_data
+columns:
+  - Category of Data: |
+      row_item.name.text
+  - Purpose of Processing: |
+      row_item.purpose
+  - Individuals: |
+      row_item.indiv
+  - Format: |
+      row_item.format
+  - Method: |
+      row_item.method
+  - Security: |
+      row_item.security
+  - Importing Country: |
+      row_item.importing_country
+  - Lawful Basis: |
+      row_item.lawful_basis
+  - Location: |
+      row_item.location
+  - Retention: |
+      row_item.retention
+edit:
+  - name.text
+  - purpose
+  - indiv
+  - format
+  - method
+  - security
+  - third_countries
+  - lawful_basis
+  - location
+  - retention
+---
+question: |
+  Name of business function processing the data
+subquestion: |
+  A reference to the team within your company that will be using the data
+fields:
+  - Business Function: activity.name.text
+    choices:
+      - Finance
+      - Human Resources
+      - Sales
+      - Marketing
+      - Sales
+      - Engineering
+      - Other
+  - Please Specify: activity.name.text
+    js show if: |
+      val("activity.name.text") == "Other"
+---
+question: |
+  Name and contact details of joint controller
+subquestion: |
+  If your company is deciding the purpose for the collection of personally identifiable information, you are classified by GDPR as the ‘controller’.
+  
+  If your company is processing data on behalf of another organization then you are classified as the ‘processor’.
+  
+  It is most likely that your company acts as both controller and processor, but you may use other third-party processors too.
+  
+  The best approach for the purposes of compliance is to record the contact details of your Data Protection Officer within your company. This person will be the go to point of contact for the data that is being recorded in your data map and there may be multiple or joint controllers across your organization who are responsible for different data categories.
+fields:
+  - Name: activity.owner
+    required: false
+  - E-mail: activity.owner_email
+    datatype: email
+    required: false
+---
+question: |
+  Does **${ activity }** processes personal data?
+yesno: activity.categories_of_data.there_are_any
+---
+question: |
+  What personal data does **${ activity }** process? 
+fields:
+  - no label: activity.categories_of_data[i].name.text
+    datatype: radio
+    choices:
+      - Identification data (name, address, telephone, ...)
+      - Family & household (spouse, children, …)
+      - Electronic location data (GPS position,…)
+      - Housing characteristics (house type, …)
+      - Racial or ethnic data
+      - Physical health
+      - Criminal offences and sentences
+      - Psychological data (personality, character, …)
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
+      - Education and training
+      - Consumption habits
+      - Financial characteristics (bank account, credit card details, …)
+      - Religious or philosophical convictions 
+      - National register number / social security identification number
+      - Genetic data 
+      - Biometric identification data (fingerprints, iris scans, …)
+      - Personal characteristics (age, gender, civil status,
+      - Pictures & video (e.g. in directories, on websites, …)
+      - Lifestyle data (hobbies, …)
+      - Mental health 
+      - Political opinions
+      - Sound recordings (call (centre) recordings
+      - Physical data (height, weight, …)
+      - Leisure activities and interests
+      - Profession and job
+      - Data concerning sexual life
+      - Trade union membership
+      - Memberships (sports clubs, …)
+      - Other
+  - Please Specify: activity.categories_of_data[i].name.text
+    js show if: |
+      val("activity.categories_of_data[i].name.text") == "Other"
+---
+question: |
+  Does ${ activity } process any additional personal data?
+yesno: activity.categories_of_data.there_is_another
+---
+question: |
+  Whose **${ activity.categories_of_data[i].name.text }** does **${ activity }** process?
+fields:
+  - Categories of Individuals: activity.categories_of_data[i].indiv
+    choices:
+      - Employees
+      - Successful Candidates
+      - Unsuccessful Candidates
+      - Existing Customers
+      - Potential Customers
+      - Other
+  - Please Specify: activity.categories_of_data[i].indiv
+    js show if: |
+      val("activity.categories_of_data[i].indiv") == "Other"
+---
+question: |
+  What is the purpose of processing **${ activity.categories_of_data[i].name.text }**?
+subquestion: |
+  A justification for collecting the data in the first place, what is being done with the data or the legal basis for processing it.
+fields:
+  - Purpose: activity.categories_of_data[i].purpose
+    choices:
+      - Payroll 
+      - Personnel File
+      - Recruitment
+      - Direct Marketing
+      - Other
+  - Please Specify: activity.categories_of_data[i].purpose
+    js show if: |
+      val("activity.categories_of_data[i].purpose") == "Other"
+---
+question: |
+  What entities receive **${ activity.categories_of_data[i].name.text }**?
+subquestion: |
+  This is a reference to the person or organization that will be processing the personally identifiable information e.g. your company’s customer support team, marketing team, financial controller, third party SaaS provider, etc.
+fields:
+  - Categories of Recipients: activity.categories_of_data[i].recipients
+    choices:
+      - Internal department that processes the concerned data
+      - Processor
+      - Recipients in third countries or international organisations
+      - Institutional or commercial partners
+      - Other
+  - Please Specify: activity.categories_of_recipients
+    js show if: |
+      val("activity.categories_of_data[i].recipients") == "Other"
+  - Do you have a Data Processing Agreement with this processor? :               activity.has_DPA
+    datatype: yesnoradio
+    js show if: |
+      val("activity.categories_of_data[i].recipients") == "Processor"
+---
+question: |
+  Link to contract with processor
+subquestion: |
+  If the processor is internal, this can be a link to your employee guidelines on the handling of personal identifiable information. If the processor is external, this should be a link to the agreed contract – known as the Data Processing Agreement (DPA) – with that third party. The DPA contains their obligations in regard to the protection of any personally identifiable information they are processing on your company’s behalf.
+fields:
+  - Link to Contract: activity.link_to_contract
+---
+question: |
+  In what format is the **${ activity.categories_of_data[i].name.text }** data stored?
+
+fields:
+  - Data categories: activity.categories_of_data[i].format
+    datatype: radio
+    choices:
+      - Digital
+      - Hardcopy
+      - Other
+  - Please Specify: activity.categories_of_data[i].format
+    js show if: |
+      val("activity.categories_of_data[i].format") == "Other"
+---
+code: |
+  countries = objects_from_file("countries_list.yml")
+---
+question: |
+  Is **${ activity.categories_of_data[i].name.text }** transfered to any third country?
+fields:
+  - no label: there_are_third_countries
+    datatype: yesnoradio
+    
+  - Exporting Country: activity.categories_of_data[i].exporting_country
+    datatype: object
+    choices: countries
+    show if: there_are_third_countries
+
+  - Importing Country: activity.categories_of_data[i].importing_country
+    datatype: object
+    choices: countries
+    show if: there_are_third_countries
+    
+  - What is the proposed legal basis for transferring the data?: activity.categories_of_data[i].transfer_mech
+    show if: there_are_third_countries
+    choices:
+      - standard contracts (SCCs) 
+      - ad hoc contractual clauses
+      - codes of conduct
+      - binding corporate rules (BCRs)
+      - certification mechanisms
+      - another GDPR Article 49 derogation
+      
+  - Art. 49 Derogation: activity.categories_of_data[i].derogation
+    required: false
+    js show if: |
+      val("activity.categories_of_data[i].transfer_mech['another GDPR Article 49 derogation']")
+    choices:
+      - the data subject has explicitly consented to the proposed transfer, after having been informed of the possible risks of such transfers for the data subject due to the absence of an adequacy decision and appropriate safeguards;
+      - the transfer is necessary for the performance of a contract between the data subject and the controller or the implementation of pre-contractual measures taken at the data subject request;
+      - the transfer is necessary for the conclusion or performance of a contract concluded in the interest of the data subject between the controller and another natural or legal person;
+      - the transfer is necessary for important reasons of public interest;
+      - the transfer is necessary for the establishment, exercise or defence of legal claims;
+      - the transfer is necessary in order to protect the vital interests of the data subject or of other persons, where the data subject is physically or legally incapable of giving consent;
+      - the transfer is made from a register which according to Union or Member State law is intended to provide information to the public and which is open to consultation either by the public in general or by any person who can demonstrate a legitimate interest, but only to the extent that the conditions laid down in Union or Member State law for consultation are fulfilled inthe particular case.
+
+---
+question: |
+  Method of data transfer
+subquestion: |
+  The places where that data are transferred to and from e.g. physical records in-store or in the office, email, internal documentation, internal software, instant messenger, third party software, third party communication, etc.
+fields:
+  - Method of Transfer: activity.categories_of_data[i].method
+    datatype: radio
+    choices:
+      - physical records in-store
+      - physical records in the office
+      - email
+      - internal documentation
+      - internal software
+      - instant messenger
+      - third party software
+      - third party communication
+      - Other
+  - Please Specify: activity.categories_of_data[i].method
+    js show if: |
+      val("activity.categories_of_data[i].method") == "Other"
+---
+question: |
+  Where is the **${ activity.categories_of_data[i].name.text }** data located? 
+subquestion: |
+  The digital locations of data storage e.g. database, email, instant messenger, internal documentation, etc.
+fields:
+  - Location: activity.categories_of_data[i].location
+    choices:
+      - database
+      - email
+      - instant messenger
+      - internal documentation
+      - Other
+  - Please Specify: activity.categories_of_data[i].location
+    js show if: |
+      val("activity.categories_of_data[i].location") == "Other"
+---
+question: |
+  What is the Art. 6 lawful basis for processing **${ activity.categories_of_data[i].name.text }**? 
+fields:
+  - Lawful Basis: activity.categories_of_data[i].lawful_basis
+    choices:
+      - Consent
+      - Contract
+      - Legal obligation
+      - Vital interests
+      - Public task
+      - Legitimate interests
+  - Have you completed a Legitimate Interest Assessment (LIA)?:                 activity.categories_of_data[i].has_LIA
+    datatype: yesnoradio
+    show if:
+      variable: activity.categories_of_data[i].lawful_basis
+      is: Legitimate interests
+---
+question: |
+  Retention schedule	
+subquestion: |
+  The length of time a company stores personally identifiable information for before it is erased. Is your company storing personally identifiable information on a permanent or semi-permanent basis? Ideally, data should be kept for no longer than is necessary for the purposes for which it is being processed in line with GDPR’s recommendation on data minimization.
+fields:
+  - Time period: activity.categories_of_data[i].retention
+---
+question: |
+  General description of technical and organizational security measures
+subquestion: |
+  A description of the measures in place that your company uses to protect PII from unauthorized access e.g. encrypted storage, access controls, password-protected, locked filing cabinets, clear desk policy, etc.
+fields:
+  - Description: activity.categories_of_data[i].security
+---
+question: |
+  Are there any more activities
+  you would like to mention?
+yesno: activity.there_is_another

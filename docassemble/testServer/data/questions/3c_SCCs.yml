@@ -1,0 +1,420 @@
+objects:
+  - user: DAObject
+  - user.module: DAObject
+  - user.exporter: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+  - user.importer: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+  - user.subprocessor: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+---
+code: |
+  user.subprocessor[i].name
+  user.subprocessor[i].country
+  user.subprocessor[i].complete = True
+---
+code: |
+  user.importer[i].name
+  user.importer[i].country
+  user.importer[i].technical_measures
+  user.importer[i].complete = True
+---
+code: |
+  user.exporter[i].name
+  user.exporter[i].country
+  user.exporter[i].within_art3
+  user.exporter[i].has_art27_rep
+  user.exporter[i].complete = True
+---
+modules:
+  - .progressivedisclosure
+---
+features:
+  css: progressivedisclosure.css
+---
+template: option_clause
+subject: |
+  Show optional clause
+content: |
+  ##### OPTION
+  
+  The data importer agrees that data subjects may also lodge a complaint with an independent dispute resolution body  at no cost to the data subject. It shall inform the data subjects, in the manner set out in paragraph (a), of such redress mechanism and that they are not required to use it, or follow a particular sequence in seeking redress.
+---
+template: tech_measures
+subject: |
+  Show examples of possible measures
+content: |
+    #### Examples of possible measures:
+      - Measures of pseudonymisation and encryption of personal data
+      - Measures for ensuring ongoing confidentiality, integrity, availability and resilience of processing systems and services 
+      - Measures for ensuring the ability to restore the availability and access to personal data in a timely manner in the event of a physical or technical incident 
+      - Processes for regularly testing, assessing and evaluating the effectiveness of technical and organisational measures in order to ensure the security of the processing 
+      - Measures for user identification and authorisation 
+      - Measures for the protection of data during transmission 
+      - Measures for the protection of data during storage 
+      - Measures for ensuring physical security of locations at which personal data are processed 
+      - Measures for ensuring events logging 
+      - Measures for ensuring system configuration, including default configuration 
+      - Measures for internal IT and IT security governance and management 
+      - Measures for certification/assurance of processes and products 
+      - Measures for ensuring data minimisation 
+      - Measures for ensuring data quality 
+      - Measures for ensuring limited data retention 
+      - Measures for ensuring accountability 
+      - Measures for allowing data portability and ensuring erasure
+---
+mandatory: true
+question: |
+  Here is your document.
+subquestion: |
+  Does it meet your approval?
+yesno: user_approves
+attachment:
+  name: Your Standard Contractual Clauses (SCCs)
+  filename: third_country_SCCs
+  docx template file: third_country_SCC.docx
+  valid formats:
+    - pdf
+    - docx
+---
+question: |
+  What type of transfer? 
+field: user.module
+choices:
+  code: |
+    [{'mod1': "Controller to Controller"},
+     {'mod2': "Controller to Processor"},
+     {'mod3': "Processor to Processor"},
+     {'mod4': "Processor to Controller"}]
+---
+question: |
+  On the use of sub-processors, select one of the following options:
+field: user.module_option
+choices:
+  code: |
+    [{'option1': "Specific Prior Authorisation",
+      'help': "The data importer shall not subcontract any of its processing activities performed on behalf of the data exporter under these Clauses to a sub-processor without the data exporter’s prior specific written authorisation. The data importer shall submit the request for specific authorisation at least [Specify time period] prior to the engagement of the subprocessor, together with the information necessary to enable the data exporter to decide on the authorisation. The list of sub-processors already authorised by the data exporter can be found in Annex III. The Parties shall keep Annex III up to date."},
+     {'option2': "General Written Authorisation",
+      'help': "The data importer has the data exporter’s general authorisation for the engagement of sub-processor(s) from an agreed list. The data importer shall specifically inform the data exporter in writing of any intended changes to that list through the addition or replacement of subprocessors at least [Specify time period] in advance, thereby giving the data exporter sufficient time to be able to object to such changes prior to the engagement of the sub-processor(s). The data importer shall provide the data exporter with the information necessary to enable the data exporter to exercise its right to object."}]
+---
+question: |
+  Complete the following:
+right: |
+  <div class="da-page-header">
+    <h1 class="h3">Preview</h1>
+  </div>
+  
+  [TARGET time_section_text]
+fields:
+  - Time Period: time_period
+check in: question_time
+---
+template: question_time
+content: |
+  The data importer shall not subcontract any of its processing activities performed on behalf of the data exporter under these Clauses to a sub-processor without the data exporter’s prior specific written authorisation. The data importer shall submit the request for specific authorisation at least ${ action_argument('time_period') or "[BLANK]" } prior to the engagement of the subprocessor, together with the information necessary to enable the data exporter to decide on the authorisation.
+target: time_section_text
+---
+question: |
+  Complete the following:
+right: |
+  <div class="da-page-header">
+    <h1 class="h3">Preview</h1>
+  </div>
+  
+  [TARGET time_section_text_2]
+fields:
+  - Time Period: time_period_2
+check in: question_time_2
+---
+template: question_time_2
+content: |
+  The data importer has the data exporter’s general authorisation for the engagement of sub-processor(s) from an agreed list. The data importer shall specifically inform the data exporter in writing of any intended changes to that list through the addition or replacement of subprocessors at least ${ action_argument('time_period_2') or "[BLANK]" } in advance, thereby giving the data exporter sufficient time to be able to object to such changes prior to the engagement of the sub-processor(s). The data importer shall provide the data exporter with the information necessary to enable the data exporter to exercise its right to object.
+target: time_section_text_2
+---
+question: |
+  Preferred forum state?
+fields: 
+  - Country: eu_forum_state
+    choices:
+      - Austria
+      - Belgium
+      - Bulgaria
+      - Croatia
+      - Cyprus
+      - Czech Republic
+      - Denmark
+      - Estonia
+      - Finland
+      - France
+      - Germany
+      - Greece
+      - Hungary
+      - Ireland
+      - Italy
+      - Latvia
+      - Lithuania
+      - Luxembourg
+      - Malta
+      - Netherlands
+      - Poland
+      - Portugal
+      - Romania 
+      - Slovakia
+      - Slovenia
+      - Spain
+      - Sweden
+---
+question: |
+  Clause 11: Redress
+subquestion: |
+  (a)	The data importer shall inform data subjects in a transparent and easily accessible format, through individual notice or on its website, of a contact point authorised to handle complaints. It shall deal promptly with any complaints it receives from a data subject.
+  
+  ${ prog_disclose(option_clause) }
+fields:
+  - Would you like to include the `optional clause`?: user.idr_preferred
+    datatype: yesnoradio
+---
+question: |
+  Preferred forum state?
+fields: 
+  - Country: any_forum_state
+    datatype: object
+    choices: countries    
+---
+code: |
+  countries = objects_from_file("countries_list.yml")
+---
+question: |
+  Information on data exporter
+fields:   
+  - What is the full name of the data exporter?: user.exporter[i].name
+  - In what privacy role is the data exporter acting?: user.exporter[i].role
+    choices:
+      - Controller
+      - Processor
+  - Country: user.exporter[i].country
+    datatype: object
+    choices: countries
+---
+question: |
+  Who is the Contact Person for ${ user.exporter[i] }?
+fields:  
+  - Name: user.exporter[i].contact_person
+  - Position: user.exporter[i].contact_position
+  - E-mail: user.exporter[i].contact_email
+    datatype: email
+    required: False
+---
+question: |
+  Does the exporter fall within the territorial scope of application of Regulation (EU) 2016/679 in accordance with its Article 3(2)?
+yesno: user.exporter[i].within_art3
+---
+question: |
+  Has the exporter appointed a representative pursuant to Article 27(1) of Regulation (EU) 2016/679 (aka Article 27 rep)?
+yesno: user.exporter[i].has_art27_rep
+---
+question: |
+  Are you ready to add the data exporter?
+yesno: user.exporter.there_are_any
+---
+question: |
+  Do you want to add another data exporter?
+yesno: user.exporter.there_is_another
+---
+question: |
+  Are there any subprocessors?
+yesno: user.subprocessor.there_are_any
+---
+question: |
+  Do you want to add another subprocessor?
+yesno: user.subprocessor.there_is_another
+---
+question: |
+  Information on data importer
+fields: 
+  - What is the full name of the data importer?: user.importer[i].name
+  - In what privacy role is the data importer acting?: user.importer[i].role
+    choices:
+      - Controller 
+      - Processor
+  - Country: user.importer[i].country
+    datatype: object
+    choices: countries
+---
+question: |
+  Who is the Contact Person for ${ user.importer[i] }?
+fields:  
+  - Name: user.importer[i].contact_person
+  - Position: user.importer[i].contact_position
+  - E-mail: user.importer[i].contact_email
+    datatype: email
+    required: False
+---
+question: |
+  Does the EU processor combine the personal data received from the third country controller with personal data collected by the processor in the EU?
+yesno: user.importer[i].combines_data
+---
+question: |
+  Technical and organisational measures
+subquestion: |
+  EXPLANATORY NOTE:
+  
+  The technical and organisational measures must be described in specific (and not generic) terms. See also the general comment on the first page of the Appendix, in particular on the need to clearly indicate which measures apply to each transfer/set of transfers.
+  
+  Description of the technical and organisational measures implemented by the data importer(s) (including any relevant certifications) to ensure an appropriate level of security, taking into account the nature, scope, context and purpose of the processing, and the risks for the rights and freedoms of natural persons.
+  
+  ${ prog_disclose(tech_measures) }
+fields:   
+  - no label: user.importer[i].technical_measures
+    datatype: area
+---
+question: |
+  Are you ready to add the data importer?
+yesno: user.importer.there_are_any
+---
+question: |
+  Do you want to add another data importer?
+yesno: user.importer.there_is_another
+---
+question: |
+  Information on subprocessors
+fields: 
+  - What is the name of the data importer?: user.subprocessor[i].name
+  - Country: user.subprocessor[i].country 
+    datatype: object
+    choices: countries
+---
+question: |
+  Who is the Contact Person for ${ user.subprocessor[i] }?
+fields:  
+  - Name: user.subprocessor[i].contact_person
+  - Position: user.subprocessor[i].contact_position
+  - E-mail: user.subprocessor[i].contact_email
+    datatype: email
+    required: False
+---
+mandatory: True
+section: onward
+question: |
+  Information on onward transfer
+subquestion: |
+  Please answer the questions below filling the corresponding cells with the required information
+fields: 
+  - Will the data importer perform any onward transfers (i.e. to third parties / other countries)?: onward_transfers
+    datatype: yesnoradio
+
+  - Please select the number of third parties to which onward transfer will be performed.: number_of_transfers
+    datatype: integer
+    show if:
+      variable: onward_transfers
+      is: True
+  
+  - Please indicate any details on the onward data transfer anticipated by the Data Importer.: transfer_details
+    datatype: area
+    show if:
+      variable: onward_transfers
+      is: True
+  - Name of third party: third_party_name
+    show if:
+      variable: onward_transfers
+      is: True
+  - Country: third_party_country
+    code: countries_list()
+    show if:
+      variable: onward_transfers
+      is: True
+  - Type of activity sub-processed: sub_proc_activity
+    show if:
+      variable: onward_transfers
+      is: True
+  - Role: third_party_role
+    show if:
+      variable: onward_transfers
+      is: True
+---
+mandatory: True
+section: nature_of_data
+question: |
+  Nature of personal data
+subquestion: |
+  Please answer the questions below filling the corresponding cells with the required information
+fields: 
+  - Please select the categories of data which are involved in the processing: data_categories
+    datatype: checkboxes
+    choices:
+      - Identification data (name, address, telephone, ...)
+      - Family & household (spouse, children, …)
+      - Electronic location data (GPS position,…)
+      - Housing characteristics (house type, …)
+      - Racial or ethnic data
+      - Physical health
+      - Criminal offences and sentences
+      - Psychological data (personality, character, …)
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
+      - Education and training
+      - Consumption habits
+      - Financial characteristics (bank account, credit card details, …)
+      - Religious or philosophical convictions 
+      - National register number / social security identification number
+      - Genetic data 
+      - Biometric identification data (fingerprints, iris scans, …)
+      - Personal characteristics (age, gender, civil status,
+      - Pictures & video (e.g. in directories, on websites, …)
+      - Lifestyle data (hobbies, …)
+      - Mental health 
+      - Political opinions
+      - Sound recordings (call (centre) recordings
+      - Physical data (height, weight, …)
+      - Leisure activities and interests
+      - Profession and job
+      - Data concerning sexual life
+      - Trade union membership
+      - Memberships (sports clubs, …)
+      - Other
+  - Please provide more details: other_data_details
+    js show if: |
+      val("data_categories['Other']")
+---
+mandatory: True
+section: data_subjects
+question: |
+  Nature of data subjects
+subquestion: |
+  Please select the categories of data subjects whise personal data are involved in the processing
+fields: 
+  - Data subjects: data_subject_categories
+    datatype: checkboxes
+    choices:
+      - client
+      - prospect
+      - minor
+      - employee
+      - provider
+      - Other
+  - Please provide more details: other_data_subject_details
+    js show if: |
+      val("data_subject_categories['Other']")
+---
+mandatory: True
+section: purposes
+question: |
+  Purposes of the intended processing
+subquestion: |
+  For which purposes does the data importer intend to process the data?
+fields: 
+  - no label: importer_purpose
+---
+mandatory: True
+section: limitation
+question: |
+  Limitation of access to data
+subquestion: |
+  Please describe how the limitation of access to data will be fulfilled (e.g. what are the intended security protections).
+fields: 
+  - no label: limitation_of_access

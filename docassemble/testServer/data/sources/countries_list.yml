@@ -1,0 +1,2476 @@
+object: Country
+module: ".countries"
+items:
+- zone: Asia
+  code: AF
+  name: Afghanistan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ZA
+  name: South Africa
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.justice.gov.za/inforeg/ "
+  postal_address: The Information Regulator (South Africa) 33 Hoofd Street Forum III,
+    3rd Floor Braampark Braamfontein - Johannesburg
+  gps_coord: ''
+  lat: -26.1893781
+  long: 28.0383578
+- zone: Europe
+  code: AL
+  name: Albania
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.idp.al/index.php/sq/ "
+  postal_address: Office of the Commissioner for the Right to Information and Personal
+    Data Protection Str. Abdi Toptani , Nd. 5 Postal code 1001 Tirana ALBANIA
+  gps_coord: ''
+  lat: 41.327327
+  long: 19.820405
+- zone: Africa
+  code: DZ
+  name: Algeria
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: DE
+  name: Germany
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://www.bfdi.bund.de/ "
+  postal_address: The Federal Commissioner for Data Protection and Freedom of Information
+    Husarenstr. 30 53117 Bonn Germany
+  gps_coord: ''
+  lat: 50.7481858
+  long: 7.0942318
+- zone: Europe
+  code: AD
+  name: Andorra
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.apda.ad/ "
+  postal_address: Andorran Data Protection Agency General Council Building Carrer
+    Doctor Vilanova, 15-17 (floor-5) AD500 Andorra la Vella Principality of Andorra
+  gps_coord: ''
+  lat: 42.506174
+  long: 1.521698
+- zone: Africa
+  code: AO
+  name: Angola
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.apd.ao/ao/ "
+  postal_address: Data Protection Agency (APD) Luanda, Angola
+  gps_coord: ''
+  lat: -8.9175879
+  long: 13.2002839
+- zone: North America
+  code: AG
+  name: Antigua and Barbuda
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: SA
+  name: Saudi Arabia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: AR
+  name: Argentina
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.argentina.gob.ar/aaip/datospersonales "
+  postal_address: National Directorate for the Protection of Personal Data (PDP) Av.
+    Pte. Gral. Julio A. Roca 710, 3rd floor - Autonomous City of Buenos Aires, Buenos
+    Aires Argentina
+  gps_coord: ''
+  lat: -34.6116822
+  long: -58.3764721
+- zone: Asia
+  code: AM
+  name: Armenia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.moj.am "
+  postal_address: Personal Data Protection Agency RA Ministry of Justice 41/A Halabyan,
+    14th floor, Yerevan
+  gps_coord: ''
+  lat: 40.2005111
+  long: 44.4770449
+- zone: Oceania
+  code: AU
+  name: Australia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.oaic.gov.au/ "
+  postal_address: Office of the Australian Information Commissioner GPO Box 5218 Sydney
+    NSW 2001 AUSTRALIA
+  gps_coord: Office of the Australian Information Commissioner Level 3, 175 Pitt Street
+    Sydney NSW 2000
+  lat: -33.868345
+  long: 151.208203
+- zone: Europe
+  code: AT
+  name: Austria
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://www.dsb.gv.at/ "
+  postal_address: Austrian Data Protection Authority Österreichische Datenschutzrechte
+    Barichgasse 40-42 1030 Wien Autriche
+  gps_coord: ''
+  lat: 48.197254
+  long: 16.388194
+- zone: Asia
+  code: AZ
+  name: Azerbaijan
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: BS
+  name: Bahamas
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: BH
+  name: Bahrain
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: BD
+  name: Bangladesh
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: BB
+  name: Barbados
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: BE
+  name: Belgium
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.autoriteprotectiondonnees.be/ "
+  postal_address: Data protection authority Rue de la Presse, 35 1000 Brussels Belgium
+  gps_coord: ''
+  lat: 50.848189
+  long: 4.366755
+- zone: North America
+  code: BZ
+  name: Belize
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: BJ
+  name: Benin
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://apdp.bj/ "
+  postal_address: Authority for the protection of personal data (APDP) Rue 701 Cotonou
+    - Bénin
+  gps_coord: ''
+  lat: 6.378422
+  long: 2.423322
+- zone: South America
+  code: BM
+  name: Bermuda
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: BT
+  name: Bhutan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: BY
+  name: Belarus
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: MM
+  name: Burma
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: BO
+  name: Bolivia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: BA
+  name: Bosnia and Herzegovina
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.azlp.gov.ba/ "
+  postal_address: Agency for Personal Data Protection in Bosnia and Herzegovina Wilson's
+    Promenade No. 10 71000 Sarajevo BOSNIA AND HERZEGOVINA
+  gps_coord: ''
+  lat: 43.879664
+  long: 18.407286
+- zone: Africa
+  code: BW
+  name: Botswana
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: BR
+  name: Brazil
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: BN
+  name: Brunei
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: BG
+  name: Bulgaria
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.cpdp.bg/ "
+  postal_address: Bulgarian Commission for Personal Data Protection 2 Prof. Tsvetan
+    Lazarov Blvd. Sofia 1592 BULGARIA
+  gps_coord: ''
+  lat: 42.671086
+  long: 23.382337
+- zone: Africa
+  code: BF
+  name: Burkina Faso
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.cil.bf/ "
+  postal_address: Commission de l'Informatique et des Libertés Boulevard Mouammar
+    Kadhafi 01 BP 1606 Ouagadougou 01 BURKINA FASO
+  gps_coord: ''
+  lat: 12.354619
+  long: -1.534905
+- zone: Africa
+  code: BI
+  name: Burundi
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: KH
+  name: Cambodia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: CM
+  name: Cameroon
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: CA
+  name: Canada
+  level_of_protection: Country partially adequate
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.priv.gc.ca/en/ "
+  postal_address: Office of the Privacy Commissioner of Canada 30, rue Victoria Gatineau
+    (Québec) K1A 1H3 CANADA
+  gps_coord: 30 rue Victoria Gatineau CANADA
+  lat: 45.438977
+  long: -73.663931
+- zone: Africa
+  code: CV
+  name: Cape Verde
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: ''
+  postal_address: National Commission for the Protection of Personal Data - Avenida
+    China, Rampa Terra Branca Praia, Santiago, Cape Verde
+  gps_coord: ''
+  lat: 15.1377541
+  long: -23.6649211
+- zone: South America
+  code: CL
+  name: Chile
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.consejotransparencia.cl/en/about-us/ "
+  postal_address: Chilean Transparency Council (CPLT) Morande 360, Piso 7 Santiago
+  gps_coord: ''
+  lat: -33.4392187
+  long: -70.6542759
+- zone: Asia
+  code: CN
+  name: China
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: CY
+  name: Cyprus
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dataprotection.gov.cy "
+  postal_address: Office of the Commissioner for Personal Data Protection P.O. Box
+    23378 1682 Nicosia CYPRUS
+  gps_coord: ''
+  lat: 35.149539
+  long: 33.238422
+- zone: South America
+  code: CO
+  name: Colombia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.sic.gov.co/ "
+  postal_address: Superintendency of Industry and Commerce Carrera 13 No. 27 - 00
+    Bogota, Columbia
+  gps_coord: ''
+  lat: 4.6378597
+  long: -74.0655545
+- zone: Africa
+  code: KM
+  name: Comoros
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: CG
+  name: Congo
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: KP
+  name: North Korea
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: KR
+  name: South Korea
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.pipc.go.kr/cmt/main/english.do "
+  postal_address: Personal Information Protection Commission 209 Sejong-ro Jongno-gu
+    Seoul 110-760 COREE
+  gps_coord: Government Complex Seoul
+  lat: 37.4265342
+  long: 126.9875063
+- zone: North America
+  code: CR
+  name: Costa Rica
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.prodhab.go.cr/ "
+  postal_address: Data Protection Agency of Inhabitants (PRODHAB) San Pedro de Montes
+    de Oca, Alameda, Avenida 7 and Calle 49, Edificio Da Vinci
+  gps_coord: ''
+  lat: 9.9206334
+  long: -84.0480337
+- zone: Africa
+  code: CI
+  name: Ivory Coast
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.artci.ci/ "
+  postal_address: Telecommunications / ICT Regulatory Authority of Côte d'Ivoire 18
+    BP 2203 Abidjan 18 Côte d'Ivoire
+  gps_coord: ''
+  lat: 5.3086828
+  long: -3.9758839
+- zone: Europe
+  code: HR
+  name: Croatia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://azop.hr/ "
+  postal_address: Croatian Personal Data Protection Agency Selska cesta 136 HR - 10
+    000 Zagreb CROATIA
+  gps_coord: ''
+  lat: 45.7958813
+  long: 15.9434427
+- zone: North America
+  code: CU
+  name: Cuba
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: DK
+  name: Denmark
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.datatilsynet.dk "
+  postal_address: The Danish Data Protection Agency Datatilsynet Carl Jacobsens Vej
+    35 DK-2500 Valby
+  gps_coord: ''
+  lat: 55.655328
+  long: 12.513372
+- zone: Africa
+  code: DJ
+  name: Djibouti
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: DM
+  name: Dominica
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: EG
+  name: Egypt
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: AE
+  name: United Arab Emirates
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: EC
+  name: Ecuador
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ER
+  name: Eritrea
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: ES
+  name: Spain
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.agpd.es "
+  postal_address: Data Protection Agency C / Jorge Juan, 6 28001-Madrid Espagne
+  gps_coord: ''
+  lat: 40.423867
+  long: -3.686033
+- zone: Europe
+  code: EE
+  name: Estonia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.aki.ee/et "
+  postal_address: Estonian Data Protection Inspectorate Data Protection Inspectorate
+    39 Tatari St. 10134 Tallinn ESTONIE
+  gps_coord: ''
+  lat: 59.427119
+  long: 24.749921
+- zone: North America
+  code: US
+  name: United States
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: https://www.ftc.gov/tips-advice/business-center/privacy-and-security/privacy-shield
+  postal_address: Federal Trade Commission FTC 600 Pennsylvania Avenue, NW Washington,
+    DC 20580 UNITED STATES
+  gps_coord: ''
+  lat: 38.892522
+  long: -77.020765
+- zone: Africa
+  code: ET
+  name: Ethiopia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: FJ
+  name: Fiji
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: FI
+  name: Finland
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.tietosuoja.fi/fi/index.html "
+  postal_address: Office of the Data Protection Ombudsman P.O. Box 800 FIN-00521 HELSINKI
+    FINLANDE
+  gps_coord: ''
+  lat: 60.173324
+  long: 24.941025
+- zone: Europe
+  code: FR
+  name: France
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: National Commission for Informatics and Liberties (CNIL) 3 Place
+    de Fontenoy TSA 80715 75334 PARIS CEDEX 07
+  gps_coord: 3 Place de Fontenoy 75007 PARIS
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: Africa
+  code: GA
+  name: Gabon
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: ''
+  postal_address: National Commission for the Protection of Personal Data (CNPDCP)
+    Kalikak behind the Okoumé Palace Libreville
+  gps_coord: ''
+  lat: 0.416198
+  long: 9.467268
+- zone: Africa
+  code: GM
+  name: Gambia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: GE
+  name: Georgia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://personaldata.ge/en "
+  postal_address: Office of the Personal Data Protection inspector of Georgia 7, Vachnadze
+    Str. 0105, Tbilisi, Georgia
+  gps_coord: ''
+  lat: 41.6964786
+  long: 44.8002508
+- zone: Africa
+  code: GH
+  name: Ghana
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.moc.gov.gh/agencies/data-protection-commission-dpc "
+  postal_address: Data Protection Commission ('Commission') Pawpaw Street - East Legon
+    Accra Ghana
+  gps_coord: ''
+  lat: 5.603717
+  long: -0.186964
+- zone: Europe
+  code: GI
+  name: Gibraltar
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.gra.gi/ "
+  postal_address: Gibraltar Regulatory Authority 2nd floor Eurotowers 4 1 Europort
+    Road GIBRALTAR
+  gps_coord: ''
+  lat: 36.145884
+  long: -5.359997
+- zone: Europe
+  code: GR
+  name: Greece
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.dpa.gr "
+  postal_address: Hellenic Data Protection Authority Kifisias Avenue 1-3 115 23 Athens
+    GRECE
+  gps_coord: ''
+  lat: 37.987051
+  long: 23.761167
+- zone: North America
+  code: GD
+  name: Grenada
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: GL
+  name: Greenland
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: GP
+  name: Guadeloupe
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: CNIL 3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: North America
+  code: GT
+  name: Guatemala
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: GG
+  name: Guernsey
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://odpa.gg/about-us "
+  postal_address: Data Protection Office Guernsey Information Centre North Esplanade,
+    St Peter Port Guernsey, GY1 2LQ, Channel Islands
+  gps_coord: ''
+  lat: 49.447474
+  long: -2.540839
+- zone: Africa
+  code: GN
+  name: Guinea
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: GQ
+  name: Equatorial Guinea
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: GW
+  name: Guinea-Bissau
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: GY
+  name: Guyana
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: GF
+  name: Guyane
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: CNIL 3 Place de Fontenoy - TSA 80715 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: North America
+  code: HT
+  name: Haiti
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: HN
+  name: Honduras
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: HK
+  name: Hong-Kong
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.pcpd.org.hk/ "
+  postal_address: Office of the Privacy Commissioner for Personal Data 12/F, Sunlight
+    Tower 248 Queen's Road East, Wanchai, HONG KONG
+  gps_coord: ''
+  lat: 22.274719
+  long: 114.17359
+- zone: Europe
+  code: HU
+  name: Hungary
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.naih.hu/general-information.html "
+  postal_address: National Authority for Data Protection and Freedom of Information
+    Szilágyi Erzsébet fasor 22 / C. H-1125 Budapest HUNGARY
+  gps_coord: ''
+  lat: 47.515223
+  long: 18.999884
+- zone: Europe
+  code: IM
+  name: Isle of Man
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.inforights.im/ "
+  postal_address: Isle of Man Information Commissioner P.O. Box 69 Douglas Isle of
+    Man IM99 1EQ
+  gps_coord: ''
+  lat: 54.150187
+  long: -4.477972
+- zone: South America
+  code: KY
+  name: Cayman Islands
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: FO
+  name: Faroe Islands
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.dat.fo/ "
+  postal_address: Dátueftirlitið Tinganes Postboks 300 FO-110 Tórshavn
+  gps_coord: ''
+  lat: 62.007864
+  long: -6.790982
+- zone: Asia
+  code: IN
+  name: India
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: ID
+  name: Indonesia
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: IR
+  name: Iran
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: IQ
+  name: Iraq
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: IE
+  name: Ireland
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dataprivacy.ie "
+  postal_address: Office of the Data protection Commissioner Canal House Station Road
+    Portarlington Co. Laois IRLANDE
+  gps_coord: ''
+  lat: 53.151002
+  long: -7.182702
+- zone: Europe
+  code: IS
+  name: Iceland
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.personuvernd.is "
+  postal_address: Privacy Rauðarárstígur 10 105 Reykjavík ICELAND
+  gps_coord: ''
+  lat: 64.143861
+  long: -21.913002
+- zone: Asia
+  code: IL
+  name: Israel
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.gov.il/en/Departments/about/about_ppa "
+  postal_address: ILITA - The Israeli Law, Information and Technology Authority P.O.
+    Box 7360 Tel Aviv, 61072 ISRAEL
+  gps_coord: ''
+  lat: 32.0853
+  long: 34.781768
+- zone: Europe
+  code: IT
+  name: Italy
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.garanteprivacy.it/ "
+  postal_address: Guarantor for the protection of personal data Piazza Venezia 11
+    00187 Rome Italy
+  gps_coord: ''
+  lat: 41.896387
+  long: 12.482868
+- zone: North America
+  code: JM
+  name: Jamaica
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: JP
+  name: Japan
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.ppc.go.jp/en/ "
+  postal_address: Personal Information Protection Commission 1-9-13 Akasaka Minato-ku
+    Tokyo 107-0052 JAPON
+  gps_coord: ''
+  lat: 35.675677
+  long: 139.736086
+- zone: Europe
+  code: JE
+  name: Jersey
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://jerseyoic.org/ "
+  postal_address: Office of the Information Commissioner Brunel House, Old Street
+    St Helier Jersey JE2 3RG
+  gps_coord: ''
+  lat: 49.186476
+  long: -2.109048
+- zone: Asia
+  code: JO
+  name: Jordan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: KZ
+  name: Kazakhstan
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: KE
+  name: Kenya
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: KG
+  name: Kyrgyzstan
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: KI
+  name: Kiribati
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: XK
+  name: Kosovo
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: State Agency for Personal Data Protection Building of NAPDP, Luan
+    Haradinaj Street without No. 10 000 Prishtina Republic of Kosovo
+  gps_coord: ''
+  lat: 42.662503
+  long: 21.15996
+- zone: Asia
+  code: KW
+  name: Kuwait
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: LA
+  name: Laos
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: LS
+  name: Lesotho
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: LV
+  name: Latvia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dvi.gov.lv "
+  postal_address: Data State Inspectorate Blaumana Street 11 / 13-11 Riga, LV-1011
+    LATVIA
+  gps_coord: ''
+  lat: 56.9537324
+  long: 24.1240634
+- zone: Asia
+  code: LB
+  name: Lebanon
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: LR
+  name: Liberia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: LY
+  name: Libya
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: LI
+  name: Liechtenstein
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dss.llv.li/ "
+  postal_address: Data Protection Commissioner of the Principality of Liechtenstein
+    Data Protection Office (DSS) Kirchstrasse 8 Postfach 684 9490 Vaduz LIECHTENSTEIN
+  gps_coord: ''
+  lat: 47.136968
+  long: 9.520471
+- zone: Europe
+  code: LT
+  name: Lithuania
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.ada.lt "
+  postal_address: State Data Protection Inspectorate State Data Protection Inspectorate
+    of the Republic of Lithuania L. Sapiegos str. 17 LT-10312 Vilnius LITHUANIA
+  gps_coord: ''
+  lat: 54.699791
+  long: 25.313999
+- zone: Europe
+  code: LU
+  name: Luxembourg
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.cnpd.lu/ "
+  postal_address: National Commission for Data Protection 15, Boulevard du Jazz L-4370
+    Belvaux
+  gps_coord: ''
+  lat: 49.5033707
+  long: 5.9390073
+- zone: Asia
+  code: MO
+  name: Macao
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: MK
+  name: North Macedonia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://dzlp.mk/en "
+  postal_address: Directorate of Personal Data Protection Gotse Deltchev Blvd 18 Post
+    Office box 417 1000 Skopje
+  gps_coord: Gotse Deltchev Blvd, Skopje 1000, Macedonia (FYROM)
+  lat: 41.9992676
+  long: 21.4463005
+- zone: Africa
+  code: MG
+  name: Madagascar
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: ''
+  postal_address: Malagasy Commission for Informatics and Freedoms (CMIL) being installed
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: MY
+  name: Malaysia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.pdp.gov.my/jpdpv2/contact-us/maklumat-umum/location/?lang=en "
+  postal_address: Personal Data Protection Department (PDPD) / Ministry of Communications
+    and Multimedia Commission (MCMC) Level 6, Ministry of Communications and Multimedia
+    Complex, Lot 4G9, Persiaran Perdana, Precinct 4 Federal Government Administrative
+    Center, 62100 Putrajaya Malaysia
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: MW
+  name: Malawi
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: MV
+  name: Maldives
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ML
+  name: Mali
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.apdp.ml "
+  postal_address: Authority for the Protection of Personal Data (APDP) Avenue Moussa
+    Travélé, Porte 462 BP E 4596 Bamako MALI
+  gps_coord: ''
+  lat: 12.635586
+  long: -8.000745
+- zone: Europe
+  code: MT
+  name: Malta
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dataprotection.gov.mt "
+  postal_address: Office of the Information and Data Protection Commissioner Airways
+    House, Second Floor High Street Sliema SLM 1549 MALTA
+  gps_coord: ''
+  lat: 35.910706
+  long: 14.506182
+- zone: Africa
+  code: MA
+  name: Morocco
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.cndp.ma/ "
+  postal_address: National Commission for the Protection of Personal Data (CNDP) Les
+    Patios building, 3rd floor 6 boulevard Annakhil Hay Riad Rabat Morocco
+  gps_coord: ''
+  lat: 33.95255
+  long: -6.862803
+- zone: Oceania
+  code: MH
+  name: Marshall
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: MQ
+  name: Martinique
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: CNIL 3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: Africa
+  code: MU
+  name: Mauritius
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://dataprotection.govmu.org/Pages/About%20Us/About-the-Office.aspx "
+  postal_address: Data Protection Office 5th Floor Happy World House Corner Sir William
+    Newton & SSR Streets Port Louis Republic of Mauritius
+  gps_coord: ''
+  lat: -20.163669
+  long: 57.505063
+- zone: Africa
+  code: MR
+  name: Mauritania
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: YT
+  name: Mayotte
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: National Commission for Informatics and Liberties (CNIL) 3 Place
+    de Fontenoy TSA 80715 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: North America
+  code: MX
+  name: Mexico
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://inicio.ifai.org.mx/SitePages/ifai.aspx "
+  postal_address: 'IFAI - Federal Institute for Access to Information and Protection
+    of Personal Data Av. Insurgentes Sur # 3211 Col. Insurgentes Cuicuilco Delegación
+    Coyoacán CP 04530, Mexico Federal District'
+  gps_coord: ''
+  lat: 19.304933
+  long: -99.183675
+- zone: Oceania
+  code: FM
+  name: Micronesia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: MD
+  name: Moldova
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.datepersonale.md/en/start/ "
+  postal_address: National Center for Personal Data Protection 48, Serghei Lazo str.,
+    MD-2004 Chisinau MOLDAVIE
+  gps_coord: ''
+  lat: 47.030165
+  long: 28.826321
+- zone: Europe
+  code: MC
+  name: Monaco
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.ccin.mc "
+  postal_address: Commission for the control of nominative information 12, Avenue
+    de Fontvieille 98000 Monaco
+  gps_coord: ''
+  lat: 43.730169
+  long: 7.415075
+- zone: Asia
+  code: MN
+  name: Mongolia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: ME
+  name: Montenegro
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.azlp.me/me/agencija "
+  postal_address: Agency for Protection of Personal Data and Free Access to Information
+    (DPA) Bulevar Svetog Petra Cetinjskog 147 Podgorica
+  gps_coord: ''
+  lat: 42.44336
+  long: 19.246246
+- zone: Africa
+  code: MZ
+  name: Mozambique
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: NA
+  name: Namibia
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: NR
+  name: Nauru
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: NP
+  name: Nepal
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: NI
+  name: Nicaragua
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: NE
+  name: Niger
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: High Authority for the Protection of Personal Data Avenue du Zarmaganda
+    8001 Niamey NIGER
+  gps_coord: ''
+  lat: 13.532049
+  long: 2.10774
+- zone: Africa
+  code: NG
+  name: Nigeria
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: 'NO'
+  name: Norway
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.datatilsynet.no "
+  postal_address: Datatilsynet PO. Box 8177 Dep. NO-0034 Oslo NORWAY
+  gps_coord: ''
+  lat: 60.19755
+  long: 11.100415
+- zone: Oceania
+  code: NZ
+  name: New Zealand
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.privacy.org.nz "
+  postal_address: The Office of the Privacy Commissioner PO Box 10-094, The Terrace,
+    Wellington 6143 NOUVELLE ZELANDE
+  gps_coord: ''
+  lat: -41.279086
+  long: 174.775861
+- zone: Asia
+  code: OM
+  name: Oman
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: UG
+  name: Uganda
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: UZ
+  name: Uzbekistan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: PK
+  name: Pakistan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: PW
+  name: Palau
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: PS
+  name: Palestine
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: PA
+  name: Panama
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: PG
+  name: Papua New Guinea
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: PY
+  name: Paraguay
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: NL
+  name: Netherlands
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://www.autoriteitpersoonsgegevens.nl/ "
+  postal_address: Dutch Data Protection Authority Postbus 93374 2509 AJ DEN HAAG PAYS
+    BAS
+  gps_coord: ''
+  lat: 52.035404
+  long: 4.218407
+- zone: South America
+  code: PE
+  name: Peru
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.gob.pe/minjus "
+  postal_address: General Directorate of Transparency, Access to Public Information
+    and Protection of Personal Data Scipión Llona 350 Miraflores, Lima L-18 PERU
+  gps_coord: ''
+  lat: -12.1078801
+  long: -77.0304598
+- zone: Asia
+  code: PH
+  name: Philippines
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://privacy.gov.ph/ "
+  postal_address: National Privacy Commission 5th Floor Delegation Building, PICC
+    Complex Roxas Blvd, Pasay, Metro Manila, Philippines
+  gps_coord: ''
+  lat: 14.5543967
+  long: 120.9823167
+- zone: Europe
+  code: PL
+  name: Poland
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://uodo.gov.pl/ "
+  postal_address: Office for Personal Data Protection (UODO) ul. Stawki 2 00-193 Warsaw
+    POLAND
+  gps_coord: ''
+  lat: 52.254465
+  long: 20.996581
+- zone: Oceania
+  code: PF
+  name: French Polynesia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: National Commission for Informatics and Liberties (CNIL) 3 Place
+    de Fontenoy TSA 80715 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.8506511
+  long: 2.3073276
+- zone: South America
+  code: PR
+  name: Puerto Rico
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.export.gov/safeharbor "
+  postal_address: Federal Trade Commission FTC 600 Pennsylvania Avenue NW DC 25080
+    Washington ETATS UNIS
+  gps_coord: ''
+  lat: 38.892522
+  long: -77.020765
+- zone: Europe
+  code: PT
+  name: Portugal
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://www.cnpd.pt/ "
+  postal_address: National Data Protection Commission Av. D. Carlos I, 134 - 1.º 1200-651
+    Lisboa Portugal
+  gps_coord: ''
+  lat: 38.710699
+  long: -9.153345
+- zone: Asia
+  code: QA
+  name: Qatar
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: CD
+  name: Dem. Rep. Of Congo
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: CF
+  name: Central African Republic
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: DO
+  name: Dominican Republic
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: CZ
+  name: Czech Republic
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.uoou.cz "
+  postal_address: Office for Personal Data Protection Pplk. Sochora 27 170 00 Praha
+    7 CZECH REPUBLIC
+  gps_coord: ''
+  lat: 50.099698
+  long: 14.432468
+- zone: Africa
+  code: RE
+  name: Réunion
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: CNIL 3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: Europe
+  code: RO
+  name: Romania
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dataprotection.ro "
+  postal_address: The National Supervisory Authority for Personal Data Processing
+    28-30 G-ral Gheorghe Magheru Bld. District 1, post code 010336 Bucurest ROMANIA
+  gps_coord: ''
+  lat: 44.445074
+  long: 26.09776
+- zone: Europe
+  code: GB
+  name: United Kingdom
+  level_of_protection: Adequate country
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://ico.org.uk/ "
+  postal_address: Information Commissioner's Office Wycliffe House Water Lane Wilmslow
+    Cheshire SK9 5AF ROYAUME UNI
+  gps_coord: ''
+  lat: 53.325559
+  long: -2.23601
+- zone: Europe
+  code: RU
+  name: Russia
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://rkn.gov.ru/eng/ "
+  postal_address: Federal Service for Supervision of Communications, Information Technology,
+    and Mass Media (Roskomnadzor) 7, bldg 2 Kitaigorodskiy proezd Moscow, 109074 RUSSIA
+  gps_coord: ''
+  lat: 55.751395
+  long: 37.634514
+- zone: Africa
+  code: RW
+  name: Rwanda
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: EH
+  name: Western Sahara
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: KN
+  name: Saint Kitts and Nevis
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: LC
+  name: Saint Lucia
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: SM
+  name: San Marino
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: VC
+  name: Saint Vincent and the Grenadines
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: SB
+  name: Solomon
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: SV
+  name: Salvador
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: WS
+  name: Samoa
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ST
+  name: Sao Tome and Principe
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SN
+  name: Senegal
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.cdp.sn/ "
+  postal_address: Commission for the Protection of Personal Data 34 Sicap Mermoz VDN
+    Lot B BP 25528 Dakar Senegal
+  gps_coord: ''
+  lat: 14.701317
+  long: -17.469487
+- zone: Europe
+  code: RS
+  name: Serbia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.poverenik.rs/en "
+  postal_address: Commissioner for Information of Public Importance and Personal Data
+    Protection 15, Bulevar kralja Aleksandra str Belgrade 11000
+  gps_coord: ''
+  lat: 44.787967
+  long: 20.516884
+- zone: Africa
+  code: SC
+  name: Seychelles
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SL
+  name: Sierra Leone
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: SG
+  name: Singapore
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.pdpc.gov.sg/ "
+  postal_address: 'Personal Data Protection Commission 10 Pasir Panjang Road #03-01
+    Mapletree Business City Singapore 117438'
+  gps_coord: ''
+  lat: 1.2743120484322774
+  long: 103.79969849709478
+- zone: Europe
+  code: SK
+  name: Slovakia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.dataprotection.gov.sk "
+  postal_address: The Office for Personal Data the Protection Office for Personal
+    Data Protection Hraničná 12 820 07 Bratislava 27 SLOVAK REPUBLIC
+  gps_coord: ''
+  lat: 48.147798
+  long: 17.157839
+- zone: Europe
+  code: SI
+  name: Slovenia
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " https://www.ip-rs.si/ "
+  postal_address: Information Commissioner Deputy Ombudsman Dunajska cesta 22 SI-1000
+    Ljubljana SLOVENIA
+  gps_coord: ''
+  lat: 46.062074
+  long: 14.509361
+- zone: Africa
+  code: SO
+  name: Somalia
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SW
+  name: Somaliland
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SD
+  name: Sudan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SS
+  name: South Sudan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: LK
+  name: Sri Lanka
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: SE
+  name: Sweden
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'Yes'
+  afapdp_member: 'No'
+  sa_website: " http://www.datainspektionen.se "
+  postal_address: Datainspektionen Drottninggatan 29, 5th floor Stockholm SUEDE
+  gps_coord: ''
+  lat: 59.331191
+  long: 18.063958
+- zone: Europe
+  code: CH
+  name: Switzerland
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.leprepose.ch "
+  postal_address: Federal Data Protection and Transparency Officer Feldeggweg 1 3003
+    Berne SWITZERLAND
+  gps_coord: ''
+  lat: 46.94421
+  long: 7.447656
+- zone: South America
+  code: SR
+  name: Suriname
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: SZ
+  name: Swaziland
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: SY
+  name: Syria
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: TJ
+  name: Tajikistan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: TW
+  name: Taiwan
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: The Ministry of Justice 130 Sec 1 Chung Ching South ad TAIWAN -
+    TAIPEI 100 ROC 100
+  gps_coord: ''
+  lat: 25.032969
+  long: 121.565418
+- zone: Africa
+  code: TZ
+  name: Tanzania
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: TD
+  name: Chad
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: TF
+  name: French Southern Territories
+  level_of_protection: Member country of the EU or the EEA
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " https://www.cnil.fr "
+  postal_address: National Commission for Informatics and Liberties 3 Place de Fontenoy
+    TSA 80715 75334 PARIS CEDEX 07
+  gps_coord: ''
+  lat: 48.85065110000001
+  long: 2.307327600000008
+- zone: Asia
+  code: TH
+  name: Thailand
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: Authority for the protection of Personal Data Information Commission
+    Government House Bangkok 10300 THAILAND
+  gps_coord: ''
+  lat: 13.775433
+  long: 100.512738
+- zone: Asia
+  code: TL
+  name: East Timor
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: TG
+  name: Togo
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Oceania
+  code: TO
+  name: Tonga
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: North America
+  code: TT
+  name: Trinidad and Tobago
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: TN
+  name: Tunisia
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'Yes'
+  sa_website: " http://www.inpdp.nat.tn/ "
+  postal_address: National Authority for the Protection of Personal Data 1, Rue Mohamed
+    Moalla Mutuelleville 1002 TUNIS - TUNISIE
+  gps_coord: ''
+  lat: 36.83586
+  long: 10.168117
+- zone: Asia
+  code: TM
+  name: Turkmenistan
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: TR
+  name: Turkey
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " https://www.kvkk.gov.tr/ "
+  postal_address: 'Personal Data Protection Authority Nasuh Akar Mah. Ziyabey Cad.
+    1407. Sok. No: 4 06520 Balgat-Çankaya / Ankara'
+  gps_coord: ''
+  lat: 39.91278
+  long: 32.82265
+- zone: Oceania
+  code: TV
+  name: Tuvalu
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: UA
+  name: Ukraine
+  level_of_protection: Independent authority and law (s)
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: www.ombudsman.gov.ua
+  postal_address: The Ukrainian Parliament Commissioner for Human Rights (the Ombudsman
+    Office) 21/8 Instytutska Str. 01008 Kyiv Ukraine
+  gps_coord: ''
+  lat: 50.447461
+  long: 30.52949
+- zone: South America
+  code: UY
+  name: Uruguay
+  level_of_protection: Adequate country
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: " http://www.datospersonales.gub.uy/ "
+  postal_address: Regulatory and Control Unit of Personal Data (URCDP) Liniers 1324
+    4th Floor Montevideo URUGUAY
+  gps_coord: ''
+  lat: -34.9071916
+  long: -56.2005029
+- zone: Oceania
+  code: VU
+  name: Vanuatu
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Europe
+  code: VA
+  name: Vatican
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: South America
+  code: VE
+  name: Venezuela
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: VN
+  name: Vietnam
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Asia
+  code: YE
+  name: Yemen
+  level_of_protection: No law
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ZM
+  name: Zambia
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''
+- zone: Africa
+  code: ZW
+  name: Zimbabwe
+  level_of_protection: With legislation
+  edpb_member: 'No'
+  afapdp_member: 'No'
+  sa_website: ''
+  postal_address: ''
+  gps_coord: ''
+  lat: ''
+  long: ''

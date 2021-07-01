@@ -1,0 +1,130 @@
+objects:
+  - parent: |
+      DAList.using(
+        object_type=Individual,
+        minimum_number=1,
+        complete_attribute='complete')
+  - parent[i].child: |
+      DAList.using(
+        object_type=Individual,
+        complete_attribute='complete')
+---
+mandatory: True
+code: |
+  multi_user = True
+  if user_logged_in():
+    parent
+    organizer_done
+    parent_table
+  else:
+    must_be_logged_in_page
+---
+code: |
+  parent[i].name.first
+  parent[i].name.last
+  parent[i].email_address
+  parent[i].cell_phone
+  parent[i].child.gather()
+  parent[i].complete = True
+---
+code: |
+  parent[i].child[j].name.first
+  parent[i].child[j].name.last
+  parent[i].child[j].age
+  parent[i].child[j].sports
+  parent[i].child[j].complete = True
+---
+question: |
+  What are the names and contact details of the
+  ${ ordinal(i) }
+  parent?
+fields:
+  - First name: parent[i].name.first
+  - Last name: parent[i].name.last
+  - Email address: parent[i].email_address
+    required: True
+  - Cell Phone address: parent[i].cell_phone
+    required: True
+---
+question: |
+  Is there another parent you would like to add?
+yesno: parent.there_is_another
+---
+question: |
+  Does ${ parent[i] } have children?
+yesno: parent[i].child.there_are_any
+---
+question: |
+  What is the name of
+  ${ parent[i].possessive(ordinal(j) + ' child') }?
+fields:
+  - Child's first name: parent[i].child[j].name.first
+  - Child's last name: parent[i].child[j].name.last
+  - Child's Age: parent[i].child[j].age
+    datatype: number
+  - Child's sports preference: parent[i].child[j].sports
+---
+question: |
+  Does ${ parent[i] } have any
+  children other than ${ parent[i].child }?
+yesno: parent[i].child.there_is_another
+---
+prevent going back: True
+question: |
+  Congratulations! you have invited the following parents.
+  
+  - ${ parent }
+subquestion: |
+  Share this link with the parents or guardians:
+  
+  [${ interview_url() }](${ interview_url() })
+event: final_page_organizer
+---
+code: |
+  organizer_done = True
+  force_ask('final_page_organizer')
+---
+sets: parent_table
+question: |
+  All done
+subquestion: |
+  ${ parent.table }
+  ${ parent.add_action() }
+---
+table: parent.table
+rows: parent
+columns:
+  - Name: |
+      row_item.name.full()
+  - Children: |
+      row_item.child
+edit:
+  - name.first
+  - child.table_shown
+---
+question: |
+  Here are the children of ${ parent[i] }.
+subquestion: |
+  ${ parent[i].child.table }
+  ${ parent[i].child.add_action() }
+field: parent[i].child.table_shown
+---
+table: parent[i].child.table
+rows: parent[i].child
+columns:
+  - Name: |
+      row_item
+  - Age: |
+      row_item.age
+  - Sports: |
+      row_item.sports
+edit:
+  - name.first
+---
+sets: must_be_logged_in_page
+question: Please log in
+subquestion: |
+  Please click "Sign in" to continue.  If you do not have
+  an account, you can register for one.
+buttons:
+  - Sign in: signin

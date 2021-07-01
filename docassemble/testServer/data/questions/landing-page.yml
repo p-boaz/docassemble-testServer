@@ -1,0 +1,53 @@
+metadata:
+  title: Welcome to Fora!
+---
+mandatory: true
+code: |
+  splash_screen
+---
+objects:
+  - client: Individual
+---
+question: |
+  #Your journey toward effortless data protection starts now
+subquestion: |
+  We'll cut right to the chase by laying out a few scenarios to determine where you and your company currently stand. 
+  
+  ###The [beginner] track
+  
+  * "We're not sure if we need to comply with {GDPR}." 
+  
+  ###The [learner] track 
+  
+  * "We know we need to comply with GDPR but we don't know the requirements and we haven't built up a {data protection/privacy program} yet." 
+  
+  ###The [builder] track
+  
+  * "We've taken some steps to comply with GDPR but we still need a lot of help."
+  
+  ###The [perfecter] track 
+  
+  * "Our privacy program is fairly mature but we are interested in becoming top notch."
+
+  You can always go back and change your selection. 
+ 
+  If you'd rather see an example of something more advanced, you can try out our [Data Transfer Assessment] which is available on any Fora plan you choose. Unfortunately, without an account, you will not be able to save your progress.  
+
+  For more information on pricing, or to sign up for an account, please visit our [signup page]. 
+
+  And, of course, please contact us with any questions or comments on our [contact page].
+  
+  [beginner]: http://jinja.pocoo.org/docs
+  [learner]: https://docassemble.org/docs/markup.html#mako
+  [builder]: https://daringfireball.net/projects/markdown/syntax
+  [perfecter]: https://docassemble.org/docs/documents.html
+  [Data Transfer Assessment]: https://docassemble.org/docs/documents.html
+  [signup page]: https://fora.legal/signup
+  [contact page]: https://fora.legal/contact
+terms:
+  GDPR: |
+    The General Data Protection Regulation
+  data protection/privacy program: |
+    A harmless creature who carries a gold
+    sword.
+field: splash_screen

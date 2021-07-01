@@ -1,0 +1,69 @@
+metadata:
+  title: Management (14 criteria)
+  short title: MGMT
+---
+objects:
+  - criteria: DAList
+---
+mandatory: true
+code: |
+  criteria.object_type = Thing
+---
+mandatory: True
+question: |
+  Information about Privacy Maturity
+subquestion: |
+  Here are your results.
+
+  Criteria       |Score
+  ---------------|----------------
+  1.1            | ${ p1_score }
+  1.2            | ${ p2_score }
+
+---
+mandatory: True
+question: |
+  Privacy Policies (1.1.0)
+subquestion: |
+  The entity defines and documents its privacy policies with respect to notice; choice and consent; collection; use, retention and disposal; access; disclosure to third parties; security for privacy; quality; and monitoring and enforcement.
+fields:
+  - no label: p1_score
+    datatype: radio
+    code: |
+      [
+        {'1': "Some aspects of privacy policies exist informally.",
+                 'help': "Apples are good in pies."},
+        {'2': "Privacy policies exist but may not be complete, and are not                   fully documented.",
+          'help': "Oranges are a type of citrus fruit."},
+        {'3': "Policies are defined for: notice, choice and consent;                         collection; use, retention and disposal; access; disclosure;                       security for privacy; quality; and monitoring and enforcement.",
+         'help': "Pears are an acquired taste."},
+        {'4': "Compliance with privacy policies is monitored and the                         results of such monitoring are used to reinforce key privacy                       messages.",
+         'help': "Pears are an acquired taste."},
+        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion.",
+         'help': "Pears are an acquired taste."}
+       ]
+---
+mandatory: True
+question: |
+  Communication to Internal Personnel (1.1.1)
+subquestion: |
+  Privacy policies and the consequences of non- compliance with such policies are communicated, at least annually, to the entity’s internal personnel responsible for collecting, using, retaining and disclosing personal information .
+  
+  Changes in privacy policies are communicated to such personnel shortly after the changes are approved .
+fields:
+  - no label: p2_score
+    datatype: radio
+    code: |
+       [
+        {'1': "Some aspects of privacy policies exist informally.",
+           'help': "Apples are good in pies."},
+        {'2': "Privacy policies exist but may not be complete, and are not                    fully documented.",
+           'help': "Oranges are a type of citrus fruit."},
+        {'3': "Policies are defined for: notice, choice and consent;                          collection; use, retention and disposal; access; disclosure;                      security for privacy; quality; and monitoring and enforcement.",
+         'help': "Pears are an acquired taste."},
+        {'4': "Compliance with privacy policies is monitored and the                           results of such monitoring are used to reinforce key privacy                       messages.",
+            'help': "Pears are an acquired taste."},
+        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion.",
+          'help': "Pears are an acquired taste."}
+       ]
+---

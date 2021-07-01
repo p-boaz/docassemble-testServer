@@ -1,0 +1,150 @@
+objects:
+  - project: |
+      DAList.using(
+        object_type=Person,
+        minimum_number=1,
+        complete_attribute='complete')
+  - project[i].data: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+---
+code: |
+  project[i].name.text
+  project[i].third_party.gather()
+  project[i].data.gather()
+  project[i].complete = True
+---
+code: |
+  project[i].data[j].name.text
+  project[i].data[j].pdtype.gather()
+  project[i].data[j].complete = True
+---
+question: |
+  What is the name of the
+  ${ ordinal(i) }
+  project/processing activity?
+fields:
+  - Name: project[i].name.text
+  - note: Proposed implementation dates
+  - Pilot: project[i].pilot_date
+    datatype: date
+    required: False
+  - Phased: project[i].phased_date
+    datatype: date
+    required: False
+  - Go-Live: project[i].live_date
+    datatype: date
+    required: False
+---
+question: |
+  Is there another project?
+yesno: project.there_is_another
+---
+question: |
+  Does ${ project[i] } process any personal data?
+yesno: project[i].data.there_are_any
+---
+question: |
+  What is the name of
+  ${ project[i].possessive(ordinal(j) + ' personal data category') }?
+fields:
+  - Categories: project[i].data[j].name.text
+    input type: radio
+    choices: 
+      - Employees / contractors
+      - Prospective employees / contractors
+      - Customers / prospective customers
+      - Vulnerable groups 
+      - Other third parties
+---
+question: |
+  Will ${ project[i] } process any personal
+  data other than ${ project[i].data }?
+yesno: project[i].data.there_is_another
+---
+generic object: Person
+objects:
+  - x.third_party: DAList
+---
+generic object: Person
+question: |
+  Will ${ x } collect any data from third parties?
+yesno: x.third_party.there_are_any
+---
+generic object: Person
+question: |
+  What third party will ${ x } collect from?
+fields:
+  - Type: x.third_party[i]
+---
+generic object: Person
+question: |
+  Will ${ x } collect data from any third parties
+  other than ${ x.third_party }?
+yesno: x.third_party.there_is_another
+---
+generic object: Person
+objects:
+  - x.pdtype: DAList
+---
+generic object: Person
+question: |
+  Will ${ x } process personal data?
+yesno: x.pdtype.there_are_any
+---
+generic object: Person
+question: |
+  What type of data will ${ x } collect?
+fields:
+  - Data Types: x.pdtype[i]
+    input type: radio
+    choices:
+      - Name
+      - Email
+      - Phone number
+      - Address
+      - Date of birth/age
+      - Gender
+      - Nationality
+      - Location data
+      - IP address
+      - Race
+      - Ethnic origin
+      - Religious or philosophical beliefs
+      - Political opinions
+      - Trade union membership
+      - Biometric data used to identify an individual
+      - Genetic data
+      - Health data
+      - Genetic data
+      - Health data
+      - Data related to sexual preferences, sex life and/or sexual orientation
+---
+generic object: Person
+question: |
+  Will ${ x } collect any data
+  other than ${ x.pdtype }?
+yesno: x.pdtype.there_is_another
+---
+mandatory: True
+question: |
+  Information retrieved
+subquestion: |
+  You told me about
+  ${ project.quantity_noun('project') },
+  their third parties, their data categories,
+  and their data types.
+  % for p in project:
+  You told me about ${ p }.
+    % if p.third_party.number() > 0:
+  ${ p } will collect data from ${ p.third_party }.
+    % endif
+    % for d in p.data:
+  ${ p } will process data from ${ d }.
+    % if d.pdtype.number() > 0:
+  ${ d } will collect ${ d.pdtype } data.
+    % endif
+    % endfor
+ 
+  % endfor

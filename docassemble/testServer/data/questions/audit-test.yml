@@ -1,0 +1,312 @@
+metadata:
+  title: Management
+---
+objects:
+  - criteria: DADict.using(object_type=DAList.using(minimum_number=1, there_is_another=False, object_type=Thing), keys=('Privacy Policies', 'Communication to Internal Personnel', 'Responsibility and Accountability for Policies', 'Review and Approval', 'Consistency of Privacy Policies and Procedures with Laws and Regulations', 'Personal Information Identification and classification', 'Risk Assessment', 'Consistency of Commitments with Privacy Policies and Procedures', 'Infrastructure and Systems Management', 'Privacy Incident and breach Management', 'Supporting Resources', 'Qualifications of Internal Personnel', 'Privacy Awareness and training', 'Changes in Regulatory and Business Requirements'),there_is_another=False, complete_attribute='complete')
+---
+code: |
+  for score in criteria[i]:
+    score.gather()
+  criteria[i].complete = True
+---
+mandatory: True
+question: |
+  Thank you for your responses. Here is how you scored. 
+subquestion: |
+  
+  ${ criteria_table }
+  
+  You can also [download this information].
+
+  [download this information]: ${ criteria_table.export('mgmt_criteria.csv', title='Management Criteria').url_for() }
+---
+table: criteria_table
+rows: |
+  criteria['Privacy Policies'] + criteria['Communication to Internal Personnel'] + criteria['Responsibility and Accountability for Policies'] + criteria['Review and Approval'] + criteria['Consistency of Privacy Policies and Procedures with Laws and Regulations'] + criteria['Personal Information Identification and classification'] + criteria['Risk Assessment'] + criteria['Consistency of Commitments with Privacy Policies and Procedures'] + criteria['Infrastructure and Systems Management'] + criteria['Privacy Incident and breach Management'] + criteria['Supporting Resources'] + criteria['Qualifications of Internal Personnel'] + criteria['Privacy Awareness and training'] + criteria['Changes in Regulatory and Business Requirements']
+columns:
+  - Name: |
+      row_item.name.text
+  - Score: |
+      row_item.score
+---
+question: |
+  Describe your Privacy Policies
+fields:
+  - no label: criteria['Privacy Policies'][i].name.text
+    default: Privacy Policies
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Privacy Policies'][i].score
+    datatype: radio
+    code: |
+      [
+        {'1': "Some aspects of privacy policies exist informally.",
+                 'help': "Apples are good in pies."},
+        {'2': "Privacy policies exist but may not be complete, and are not                   fully documented.",
+          'help': "Oranges are a type of citrus fruit."},
+        {'3': "Policies are defined for: notice, choice and consent;                         collection; use, retention and disposal; access; disclosure;                       security for privacy; quality; and monitoring and enforcement.",
+         'help': "Pears are an acquired taste."},
+        {'4': "Compliance with privacy policies is monitored and the                         results of such monitoring are used to reinforce key privacy                       messages.",
+         'help': "Pears are an acquired taste."},
+        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion.",
+         'help': "Pears are an acquired taste."}
+       ]
+---
+question: |
+  Describe your Communication to Internal Personnel.
+fields:
+  - no label: criteria['Communication to Internal Personnel'][i].name.text
+    default: Communication to Internal Personnel
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Communication to Internal Personnel'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Some aspects of privacy policies exist informally."},
+        {'2': "Privacy policies exist but may not be complete, and are not                    fully documented."},
+        {'3': "Policies are defined for: notice, choice and consent;                          collection; use, retention and disposal; access; disclosure;                      security for privacy; quality; and monitoring and enforcement."},
+        {'4': "Compliance with privacy policies is monitored and the                           results of such monitoring are used to reinforce key privacy                       messages."},
+        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion."},
+       ]
+---
+question: |
+  Responsibility and Accountability for Policies (1.1.2)
+subquestion: |
+  Responsibility and accountability are assigned to a person or group for developing, documenting, implementing, enforcing, monitoring and updating the entity’s privacy policies  . The names of such person or group and their responsibilities are communicated to the internal personnel. 
+fields:
+  - no label: criteria['Responsibility and Accountability for Policies'][i].name.text
+    default: Responsibility and Accountability for Policies
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Responsibility and Accountability for Policies'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Management is becoming aware of privacy issues but has not yet identified a key sponsor or assigned responsibility.Privacy issues are addressed reactively."},
+        {'2': "Management understands the risks, requirements (including legal, regulatory and industry) and their responsibilities with respect to privacy.There is an understanding that appropriate privacy management is important and needs to be considered. Responsibility for operation of the entity’s privacy program is assigned; however, the approaches are often informal and fragmented with limited authority or resources allocated."},
+        {'3': "Defined roles and responsibilities have been developed and assigned to various individuals / groups within the entity and employees are aware of those assignments. The approach to developing privacy policies and procedures is formalized and documented."},
+        {'4': "Management monitors the assignment of roles and responsibilities to ensure they are being performed, that the appropriate information and materials are developed and that those responsible are communicating effectively. Privacy initiatives have senior management support."},
+        {'5': "The entity (such as a committee of the board of directors) regularly monitors the processes and assignments of those responsible for privacy and analyzes the progress to determine its effectiveness. Where required, changes and improvements are made in a timely and effective fashion."},
+       ]
+---
+question: |
+  Review and Approval (1.2.1)
+subquestion: |
+  Privacy policies and procedures, and changes thereto, are reviewed and approved by management.
+fields:
+  - no label: criteria['Review and Approval'][i].name.text
+    default: Review and Approval
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Review and Approval'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Reviews are informal and not undertaken on a consistent basis."},
+        {'2': "Management undertakes periodic review of privacy policies and procedures; however, little guidance has been developed for such reviews."},
+        {'3': "Management follows a defined process that requires their review and approval of privacy policies and procedures."},
+        {'4': "The entity has supplemented management review and approval with periodic reviews by both internal and external privacy specialists."},
+        {'5': "Management’s review and approval of privacy policies also include periodic assessments of the privacy program to ensure all changes are warranted, made and approved; if necessary, the approval process will be revised."},
+       ]
+---
+question: |
+  Consistency of Privacy Policies and Procedures with Laws and Regulations (1.2.2)
+subquestion: |
+  Policies and procedures are reviewed and compared to the requirements of applicable laws and regulations at least annually and whenever changes to such laws and regulations are made .
+  Privacy policies and procedures are revised to conform with the requirements of applicable laws and regulations. 
+fields:
+  - no label: criteria['Consistency of Privacy Policies and Procedures with Laws and Regulations'][i].name.text
+    default: Consistency of Privacy Policies and Procedures with Laws and Regulations
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Consistency of Privacy Policies and Procedures with Laws and Regulations'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Reviews and comparisons with applicable laws and regulations are performed inconsistently and are incomplete."},
+        {'2': "Privacy policies and procedures have been reviewed to ensure their compliance with applicable laws and regulations; however, documented guidance is not provided."},
+        {'3': "A process has been implemented that requires privacy policies to be periodically reviewed and maintained to reflect changes in privacy legislation and regulations; however, there is no proactive review of legislation."},
+        {'4': "Changes to privacy legislation and regulations are reviewed by management and changes are made to the entity’s privacy policies and procedures as required. Management may subscribe to a privacy service that regularly informs them of such changes."},
+        {'5': "Management assesses the degree to which changes to legislation are reflected in their privacy policies."},
+       ]
+---
+question: |
+  Personal Information Identification and classification (1.2.3)
+subquestion: |
+  The types of personal information and sensitive personal information and the related processes, systems, and third parties involved in the handling of such information are identified . Such information is covered by the entity’s privacy and related security policies and procedures.
+fields:
+  - no label: criteria['Personal Information Identification and classification'][i].name.text
+    default: Personal Information Identification and classification
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Personal Information Identification and classification'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "The identification of personal information is irregular, incomplete, inconsistent, and potentially out of date. Personal information is not adequately addressed in the entity’s privacy and related security policies and procedures. Personal information may not be differentiated from other information."},
+        {'2': "Basic categories of personal information have been identified and covered in the entity’s security and privacy policies; however, the classification may not have been extended to all personal information."},
+        {'3': "All personal information collected, used, stored and disclosed within the entity has been classified and risk rated."},
+        {'4': "All personal information is covered by the entity’s privacy and related security policies and procedures. Procedures exist to monitor compliance. Personal information records are reviewed to ensure appropriate classification."},
+        {'5': "Management maintains a record of all instances and uses of personal information. In addition, processes are in place to ensure changes to business processes and procedures and any supporting computerized systems, where personal information is involved, result in an updating of personal information records. Personal information records are reviewed to ensure appropriate classification."},
+       ]
+---
+question: |
+  Risk Assessment (1.2.4)
+subquestion: |
+  A risk assessment process is used to establish a risk baseline and, at least annually, to identify new or changed risks to personal information and to develop and update responses to such risks.
+fields:
+  - no label: criteria['Risk Assessment'][i].name.text
+    default: Risk Assessment
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Risk Assessment'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Privacy risks may have been identified, but such identification is not the result of any formal process. The privacy risks identified are incomplete and inconsistent. A privacy risk assessment has not likely been completed and privacy risks not formally documented."},
+        {'2': "Employees are aware of and consider various privacy risks. Risk assessments may not be conducted regularly, are not part of a more thorough risk management program and may not cover all areas."},
+        {'3': "Processes have been implemented for risk identification, risk assessment and reporting. A documented framework is used and risk appetite is established."},
+        {'4': "Privacy risks are reviewed annually both internally and externally. Changes to privacy policies and procedures and the privacy program are updated as necessary."},
+        {'5': "The entity has a formal risk management program that includes privacy risks which may be customized by jurisdiction, business unit or function. The program maintains a risk log that is periodically assessed. A formal annual risk management review is undertaken to assess the effectiveness of the program and changes are made where necessary. A risk management plan has been implemented."},
+       ]
+---
+question: |
+  Consistency of Commitments with Privacy Policies and Procedures (1.2.5)
+subquestion: |
+  Internal personnel or advisers review contracts for consistency with privacy policies and procedures and address any inconsistencies.
+fields:
+  - no label: criteria['Consistency of Commitments with Privacy Policies and Procedures'][i].name.text
+    default: Consistency of Commitments with Privacy Policies and Procedures
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Consistency of Commitments with Privacy Policies and Procedures'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Reviews of contracts for privacy considerations are incomplete and inconsistent."},
+        {'2': "Procedures exist to review contracts and other commitments for instances where personal information may be involved; however, such reviews are informal and not consistently used."},
+        {'3': "A log of contracts exists and all contracts are reviewed for privacy considerations and concerns prior to execution."},
+        {'4': "Existing contracts are reviewed upon renewal to ensure continued compliance with the privacy policies and procedures. Changes in the entity’s privacy policies will trigger a review of existing contracts for compliance."},
+        {'5': "Contracts are reviewed on a regular basis and tracked. An automated process has been set up to flag which contracts require immediate review when changes to privacy policies and procedures are implemented."},
+       ]
+---
+question: |
+  Infrastructure and Systems Management (1.2.6)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Infrastructure and Systems Management'][i].name.text
+    default: Infrastructure and Systems Management
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Infrastructure and Systems Management'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Changes to existing processes or the implementation of new business and system processes for privacy issues is not consistently assessed."},
+        {'2': "Privacy impact is considered during changes to business processes and/or supporting application systems; however, these processes are not fully documented and the procedures are informal and inconsistently applied."},
+        {'3': "The entity has implemented formal procedures to assess the privacy impact of new and significantly changed products, services, business processes and infrastructure (sometimes referred to as a privacy impact assessment). The entity uses a documented systems development and change management process for all information systems and related technology employed to collect, use, retain, disclose and destroy personal information."},
+        {'4': "Management monitors and reviews compliance with policies and procedures that require a privacy impact assessment."},
+        {'5': "Through quality reviews and other independent assessments, management is informed of the effectiveness of the process for considering privacy requirements in all new and modified processes and systems. Such information is analyzed and, where necessary, changes made."},
+       ]
+---
+question: |
+  Privacy Incident and breach Management (1.2.7)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Privacy Incident and breach Management'][i].name.text
+    default: Privacy Incident and breach Management
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Privacy Incident and breach Management'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Few procedures exist to identify and manage privacy incidents; however, they are not documented and are applied inconsistently."},
+        {'2': "Procedures have been developed on how to deal with a privacy incident; however, they are not comprehensive and/or inadequate employee training has increased the likelihood of unstructured and inconsistent responses."},
+        {'3': "A documented breach management plan has been implemented that includes: accountability, identification, risk assessment, response, containment, communications (including possible notification to affected individuals and appropriate authorities, if required or deemed necessary), remediation (including post-breach analysis of the breach response) and resumption."},
+        {'4': "A walkthrough of the breach management plan is performed periodically and updates to the program are made as needed."},
+        {'5': "The internal and external privacy environments are monitored for issues affecting breach risk and breach response, evaluated and improvements are made. Management assessments are provided after any privacy breach and analyzed; changes and improvements are made."},
+       ]
+---
+question: |
+  Supporting Resources (1.2.8)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Supporting Resources'][i].name.text
+    default: Supporting Resources
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Supporting Resources'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Resources are only allocated on an “as needed” basis to address privacy issues as they arise."},
+        {'2': "Privacy procedures exist; however, they have been “developed” within small units or groups without support from privacy specialists."},
+        {'3': "Individuals with responsibility and/ or accountability for privacy are empowered with appropriate authority and resources. Such resources are made available throughout the entity."},
+        {'4': "Management ensures that adequately qualified privacy resources are identified and made available throughout the entity to support its various privacy initiatives."},
+        {'5': "Management annually reviews its privacy program and seeks ways to improve the program’s performance, including assessing the adequacy, availability and performance of resources."},
+       ]
+---
+question: |
+  Qualifications of Internal Personnel (1.2.9)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Qualifications of Internal Personnel'][i].name.text
+    default: Qualifications of Internal Personnel
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Qualifications of Internal Personnel'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "The entity has not formally established qualifications for personnel who collect, use, disclose or otherwise handle personal information."},
+        {'2': "The entity has some established qualifications for personnel who collect, disclose, use or otherwise handle personal information, but are not fully documented. Employees receive some training on how to deal with personal information."},
+        {'3': "The entity defines qualifications for personnel who perform or manage the entity’s collection, use and disclosure of personal information. Persons responsible for the protection and security of personal information have received appropriate training and have the necessary knowledge to manage the entity’s collection, use and disclosure of personal information."},
+        {'4': "The entity has formed a nucleus of privacyqualified individuals to provide privacy support to assist with specific issues, including training and job assistance."},
+        {'5': "The entity annually assesses the performance of their privacy program, including the performance and qualifications of their privacy-designated specialists. An analysis is performed of the results and changes or improvements made, as required."},
+       ]
+---
+question: |
+  Privacy Awareness and training (1.2.10)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Privacy Awareness and training'][i].name.text
+    default: Privacy Awareness and training
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Privacy Awareness and training'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Formal privacy training is not provided to employees; however some knowledge of privacy may be obtained from other employees or anecdotal sources."},
+        {'2': "The entity has a privacy awareness program, but training is sporadic and inconsistent."},
+        {'3': "Personnel who handle personal information have received appropriate privacy awareness and training to ensure the entity meets obligations in its privacy notice and applicable laws. Training is scheduled, timely and consistent."},
+        {'4': "An enterprise-wide privacy awareness and training program exists and is monitored by management to ensure compliance with specific training requirements. The entity has determined which employees require privacy training and tracks their participation during such training."},
+        {'5': "A strong privacy culture exists. Compulsory privacy awareness and training is provided. Such training requires employees to complete assignments to validate their understanding. When privacy incidents or breaches occur, remedial training as well as changes to the training curriculum is made in a timely fashion."},
+       ]
+---
+question: |
+  Changes in Regulatory and Business Requirements (1.2.11)
+subquestion: |
+  Please select the option that best fits your organization. 
+fields:
+  - no label: criteria['Changes in Regulatory and Business Requirements'][i].name.text
+    default: Changes in Regulatory and Business Requirements
+    js show if: |
+      val("fruit") == "apple"
+  - no label: criteria['Changes in Regulatory and Business Requirements'][i].score
+    datatype: radio
+    code: |
+       [
+        {'1': "Changes in business and regulatory environments are addressed sporadically in any privacy initiatives the entity may contemplate. Any privacy-related issues or concerns that are identified only occur in an informal manner."},
+        {'2': "The entity is aware that certain changes may impact their privacy initiatives; however, the process is not fully documented."},
+        {'3': "The entity has implemented policies and procedures designed to monitor and act upon changes in the business and/or regulatory environment. The procedures are inclusive and employees receive training in their use as part of an enterprise-wide privacy program."},
+        {'4': "The entity has established a process to monitor the privacy environment and identify items that may impact its privacy program. Changes are considered in terms of the entity’s legal, contracting, business, human resources and technology."},
+        {'5': "The entity has established a process to continually monitor and update any privacy obligations that may arise from changes to legislation, regulations, industry-specific requirements and business practices."},
+       ]

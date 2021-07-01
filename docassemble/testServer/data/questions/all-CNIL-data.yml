@@ -1,0 +1,23 @@
+code: |
+  countries = objects_from_file("countries_list.yml")
+---
+mandatory: True
+question: |
+  Summary of
+  ${ countries.number_as_word() }
+  countries
+subquestion: |
+  % for country in countries:
+  ## The stats on `${ country }` are:
+  
+  * They're in `${ country.zone }` and in terms of data protection law they have
+  `${ country.level_of_protection }`.
+    
+    % if country.edpb_member == 'No':
+    This country is not a member of EDPB.
+    % else:
+    This country `is` a member of EDPB.
+    Find out about their data protection authority at `${ country.sa_website }`.
+    % endif
+    
+  % endfor

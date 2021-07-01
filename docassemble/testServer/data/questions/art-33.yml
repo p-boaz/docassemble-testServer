@@ -1,0 +1,97 @@
+features:
+  go full screen: True
+  centered: False
+---
+metadata:
+  interview_identifier: "Notification of a personal data breach to the DPA (art. 33 GDPR)"
+  title: |
+    Notification of a personal data breach to the DPA (art. 33 GDPR)
+---
+question: |
+  A personal data breach (PDB) can be broadly defined as a security incident that has affected the confidentiality, integrity or availability of personal data. 
+subquestion: |
+  ###`Have you determined whether a PDB has occurred?`
+yesno: pbd_ocurred
+note: |
+  Source: https://ico.org.uk/for-organisations/report-a-breach/personal-data-breach-assessment/
+---
+question: |
+  Making your own assessment, does the breach involve the personal data of living individuals?
+subquestion: |
+  Personal data is information that relates to an identified or identifiable individual.
+yesno: pd_involved
+---
+question: |
+  Following your own assessment, is there likely to be a high risk to individuals’ rights and freedoms?
+subquestion: |
+  You will need to assess both the severity of the potential or actual impact on individuals as a result of a breach and the likelihood of this occurring. If the impact of the breach is more severe, the risk is higher; if the likelihood of the consequences is greater, then again the risk is higher.
+  
+  The Article 29 Working Party says that "This risk exists when the breach may lead to physical, material or non-material damage for the individuals whose data have been breached".
+  
+  To help you assess the severity of a breach we have selected examples taken from various breaches reported to the ICO. These also include helpful advice about next steps to take or things to think about. This link will open in a new browser tab.
+yesno: there_is_high_risk
+---
+question: |
+  How likely is it that the breach will result in a risk to individuals?
+subquestion: |
+  Again, you will need to assess both the severity of the potential or actual impact on individuals as a result of a breach and the likelihood of this occurring. If the impact of the breach is more severe, the risk is higher; if the likelihood of the consequences is greater, then again the risk is higher.
+  
+  The Article 29 Working Party says: "This risk exists when the breach may lead to physical, material or non-material damage for the individuals whose data have been breached".
+  
+  For more information, read the "What breaches do we need to notify the ICO about?" section of our personal data breaches guidance.
+fields:
+  - no label: risk_to_indiv
+    choices:
+      - Unlikely
+      - Likely
+      - Not Sure
+---
+mandatory: True
+question: |
+  Your Results
+subquestion: |
+
+  % if pbd_ocurred and pd_involved and there_is_high_risk:
+  
+  You need to tell the people affected by the breach without delay. You should inform them about any steps you are taking to mitigate the effects of the breach and provide them with advice on what to do to protect themselves.
+  
+  As you’ve made an assessment there is likely to be a high risk then you must also notify the ICO. This must be done within 72 hours of becoming aware of the breach.
+  
+  You may ring our Helpline on 0303 123 1113 for advice on how to manage the breach, mitigate the effect of the breach and to report the breach. Unless you can’t access your system, you should report cyber incidents online.
+  
+  We’re usually open Monday to Friday from 9am until 5pm. If you need to report outside of these hours you should do so online.
+  
+  Alternatively, if you are confident you are managing the effects of the breach and you don’t need advice, you can report details of the breach online.
+
+  % elif pbd_ocurred and pd_involved and risk_to_indiv == 'Likely':
+  
+  As you’ve made an assessment that it is likely there will be a risk then you must notify the ICO. This must be done within 72 hours of becoming aware of the breach.
+  
+  You may ring our Helpline, on 0303 123 1113 for advice on how to manage the breach, mitigate the effect of the breach and to report the breach. Unless you can’t access your system, you should report cyber incidents online.
+  
+  We’re usually open Monday to Friday from 9am until 5pm. If you need to report outside of these hours you should do so online.
+  
+  Alternatively, if you are confident you are managing the effects of the breach and you don’t need advice, you can report details of the breach online.
+  
+  % elif pbd_ocurred and pd_involved and risk_to_indiv == 'Not Sure':
+  
+  To assist you assess the risk to the data subject you should consider if the personal data concerned is contained, for example:
+  
+  - Has any lost data been located?
+  - Was the data sent to a trusted recipient?
+  - Have you asked the recipient to return the data or securely dispose of it?
+  - Have steps been taken to confirm the recipient has returned or securely disposed of the data?
+  - Did the recipient proactively contact you to advise you of the breach?
+  - Was the data encrypted or password protected or now beyond use?
+  
+  Taking into account the above points (which is not exhaustive), do you consider the data to be contained and the risk to data subjects mitigated?
+  
+  % else: 
+  You should keep an internal record of the breach as detailed in Article 33 (5) of the GDPR, including what happened, the effects of the breach and remedial actions taken. 
+  There is no requirement to notify the ICO but you should keep a note of why you came to this decision.  If new information which affects the circumstances of this breach comes to light, you should reassess the risk and determine whether it becomes reportable at that point.
+  
+  % endif
+section: Conclusion
+action buttons:
+  - label: Continue
+    action: https://ca.barplaybook.com

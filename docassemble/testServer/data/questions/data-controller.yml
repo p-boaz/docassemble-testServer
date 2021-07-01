@@ -1,0 +1,44 @@
+question: |
+  Answer these questions to determine if you are a controller or processor.
+fields:
+  - "Does your organisation decide...": controller_activities
+    datatype: checkboxes
+    choices:
+      -  to collect personal data in the first place
+      -  the lawful basis for doing so
+      -  what types of personal data to collect
+      -  the purpose or purposes the data are to be used for
+      -  which individuals to collect data about
+      -  whether to disclose the data, and if so, to whom
+      -  what to tell individuals about the processing
+      -  how to respond to requests made in line with individuals’ rights
+  - "Does your organisation decide...": processor_activities
+    datatype: checkboxes
+    choices:
+      -  what IT systems or other methods to use to collect personal data
+      -  how to store the personal data;
+      -  the details of the security measures to protect the personal data
+      -  how it will transfer the personal data from one organisation to another
+      -  how it will retrieve personal data about certain individuals
+      -  how it will ensure it adheres to a retention schedule; and
+      -  how it will delete or dispose of the data
+---
+mandatory: True
+question: |
+  Summary of your answer
+subquestion: |
+  It is
+  % if controller_activities.any_true():
+  true
+  % else:
+  not true
+  % endif
+  that you are a data controller.
+  
+  It is
+  % if processor_activities.any_true():
+  true
+  % else:
+  not true
+  % endif
+  that you are a data processor.

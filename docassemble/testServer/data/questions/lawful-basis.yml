@@ -1,0 +1,71 @@
+mandatory: true
+question: |
+  #What is lawfulness?
+subquestion: |
+  For processing of personal data to be lawful, you need to identify specific grounds for the processing. 
+  
+  This is called a **‘lawful basis’** for processing, and there are six options which depend on your purpose and your relationship with the individual.
+  
+  There are also specific additional conditions for processing some especially sensitive types of data.
+field: splash_screen
+---
+mandatory: True
+question: |
+  All done
+subquestion: |
+  The data processing activities are ${ activity }.
+  Your favorite is ${ favorite }.
+  
+  ${ activity.table }
+  
+  ${ activity.add_action() }
+---
+objects:
+  - activity: |
+      DAList.using(
+        object_type=Person,
+        minimum_number=1,)
+---
+code: |
+  activity[i].name.text
+  activity[i].legal_basis
+---
+table: activity.table
+rows: activity
+columns:
+  - Activity: |
+      row_item.name.text
+  - Legal Basis: |
+      row_item.legal_basis
+edit:
+  - name.text
+  - legal_basis
+---
+question: |
+  What is the ${ ordinal(i) } activity?
+fields:
+  - Name: activity[i].name.text
+---
+question: |
+  What is ${ activity[i].possessive('legal basis') }?
+fields:
+  - Legal Basis: activity[i].legal_basis
+    input type: radio
+    choices:
+      - Consent: 'consent'
+      - Contract: 'contract'
+      - Legal obligation: 'legal obligation'
+      - Vital interests: 'vital interests'
+      - Public task: 'public task'
+      - Legitimate interests: 'legitimate interests'
+---
+question: |
+  Are there any more activities
+  you would like to mention?
+yesno: activity.there_is_another
+---
+question: |
+  Who is your favorite activity?
+fields:
+  - Favorite: favorite
+    code: activity

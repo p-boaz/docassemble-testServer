@@ -1,0 +1,185 @@
+metadata:
+  interview_identifier: "DPIA Prelim"
+  title: |
+    DPIA Preliminary Assessment
+  short title: |
+    Initial DPIA Survey
+  description: |
+    This is a survey to see if a DPIA is necessary
+  authors:
+    - name: Peter
+      organization: Fora Legal
+---
+event: review_answers
+question: |
+  Review your answers
+review:
+  - note: |
+      Welcome to the review of answers.
+  - note: |
+      #### The features of your data processing activity
+    show if: new_tech
+  - Revisit Answer: new_tech
+    button: |
+      You said the processing will involve a new technology/system.
+  - Revisit Answer: old_system
+    button: |
+      You said you liked ${ old_system }.
+  - Revisit Answer: data_collected
+    button: |
+      You said you liked ${ data_collected }.
+  - note: |
+      We suspect you prefer
+      ${ new_tech } to ${ old_system }.
+continue button field: answers_reviewed
+---
+question: |
+  When do you need a DPIA?
+subquestion: |
+  A Data Protection Impact Assessment (DPIA) is a process to help you identify
+  and minimize the data protection risks of a project.
+  
+  You must do a DPIA for processing that is **likely to result in a high risk**
+  to individuals.
+  
+  To assess the level of risk, a DPIA must consider both the likelihood and the
+  severity of any impact on individuals. A DPIA does not have to eradicate the
+  risks altogether, but should help to minimise risks and assess whether or not
+  remaining risks are justified. DPIAs are a legal requirement for processing
+  that is likely to be high risk. But an effective DPIA can also bring broader
+  compliance, financial and reputational benefits, helping you demonstrate
+  accountability and building trust and engagement with individuals.
+  
+  As mentioned, a DPIA must be done before beginning any type of processing which
+  is “likely to result in a high risk”. This means that although the actual level
+  of risk has not been assessed, screening for factors that point to the
+  potential for a widespread or serious impact on individuals must take place.
+  
+  Answer the following screening questions to determine your need for a DPIA. 
+  
+field: splash_screen
+---
+question: |
+  DPIA Risk Assessment
+  
+fields:    
+  - Will the processing involve a new technology/system? : new_tech
+    datatype: yesnoradio
+    
+  - Please provide details : new_tech_details
+    datatype: area
+    show if:
+      variable: new_tech
+      is: True
+      
+  - Will the processing involve using an old system for new processing purposes? : old_system
+    datatype: yesnoradio
+    
+  - Please provide details : old_system_details
+    datatype: area
+    show if:
+      variable: old_system
+      is: True
+      
+  - Will you collect any of the following data? : data_collected
+    datatype: checkboxes
+    choices:
+      - Name: 'name'
+      - Address: 'address'
+      - Email: 'email'
+      - Telephone number: 'telephone number'
+      - Date of birth or age: 'date of birth or age'
+      - Gender: 'gender'
+      - Nationality: 'nationality'
+      
+  - Will you be collecting special categories of data? : special_categories_data
+    datatype: checkboxes
+    choices:
+      - Race
+      - Ethnic origin
+      - Religious or philosophical beliefs
+      - Political opinions
+      - Trade union memberships
+      - Biometric data used to identify an individual
+      - Genetic data
+      - Health data
+      - Data related to sexual preferences, sex life, and/or sexual orientation.
+
+  - Will you be collecting criminal offense data? : crim_data
+    datatype: yesnoradio
+    
+  - Will you be collecting data related to vulnerable groups or individuals/from vulnerable groups or individuals? : vulnerable_groups
+    datatype: yesnoradio
+    
+  - Will you be collecting location data? : location_data
+    datatype: yesnoradio
+      
+  - Is there any other information that you will process (e.g., frequency of processing, volume of subjects)? : other_info
+    datatype: yesnoradio
+
+  - Will the system/processing involve monitoring of data subjects? : monitoring_subjects
+    datatype: yesnoradio
+  
+  - Please provide details: monitoring_subjects_details
+    show if: monitoring_subjects
+      
+  - Will any profiling be undertaken on the personal data processed? : profiling_data
+    datatype: yesnoradio
+      
+  - Will any automated decision-making be undertaken in relation to the personal data? : auto_decisionmaking
+    datatype: yesnoradio
+    
+  - Will the system involve any aggregation of data? : data_aggregation
+    datatype: yesnoradio
+      
+  - Indicate the number of data subjects that the personal data processing affects : number_of_data_subjects
+    datatype: radio
+    choices:
+      - Less than 10
+      - 50 to 100
+      - 100 to 500
+      - 500 to 1000
+      - More than 1000
+      - More than 5000
+      
+continue button field: survey_questions
+---
+question: |
+  In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. 
+subquestion: |
+  % if new_tech:
+  You like apples.
+  % endif
+  % if new_tech:
+  You like apples.
+  % endif
+  % if crim_data:
+  You like pears.
+  % endif
+continue button field: final_screen
+---
+mandatory: True
+code: |
+  splash_screen
+  survey_questions
+  answers_reviewed
+  final_screen
+---
+auto terms:
+  special categories: |
+    This includes data that can be used to infer something about an individual, either on its own, or in combination with other data.
+  systematic monitoring: |
+    'systematic' means that the processing:
+     
+    * Occurs according to a system;
+    * Is pre-arranged, organised or methodical;
+    * Takes place as part of a general plan for data collection; or
+    * Is carried out as part of a strategy.
+  new technology/system: |
+    * Innovative technology that involves new developments in technological knowledge in the world at large, rather than technology that is new to you. 
+    * Using such technology can involve novel forms of data collection and use, possibly with a high risk to individuals’ rights and freedoms. The personal and social consequences of deploying a new technology may be unknown.
+    * In such cases, a DPIA can help the controller understand a control such risks.
+  invisible processing: |
+    * Controller processes personal data that it has not obtained directly from the data subject; and
+    * Controller asserts that giving notice to data subjects would prove impossible or involve disproportionate effort. 
+    * A DPIA is required where this processing is combined with any of the criteria from the European guidelines.

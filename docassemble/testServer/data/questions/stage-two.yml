@@ -1,0 +1,12 @@
+question: |
+  ${ user }, I know you like
+  ${ favorite_fruit },
+  but what is your favorite
+  vegetable?
+fields:
+  - Vegetable: favorite_vegetable
+---
+mandatory: True
+question: |
+  You like ${ favorite_fruit } and
+  ${ favorite_vegetable }.

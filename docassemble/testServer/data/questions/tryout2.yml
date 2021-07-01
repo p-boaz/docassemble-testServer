@@ -1,0 +1,13 @@
+mandatory: True
+question: Want email?
+fields:
+  - Want us to send you an email?: want_email
+    datatype: yesnoradio
+script: |
+  <script>
+    $('input[name="${ encode_name('want_email')}"]').change(function(){
+      if ($(this).val() == 'False'){
+        flash("But then you won't get the important email!");
+      }
+    });
+  </script>

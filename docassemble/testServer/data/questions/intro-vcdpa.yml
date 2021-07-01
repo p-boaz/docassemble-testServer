@@ -1,0 +1,146 @@
+---
+sections:
+  - Introduction
+  - Applies to you? 
+  - Preferences
+  - Conclusion
+---
+features:
+  navigation: True
+  progress bar: True
+---
+mandatory: True
+code: |
+  menu_items = [ action_menu_item('Roadmap', 'road_map') ]
+---
+initial: True
+code: |
+  if returning_user(minutes=0.5):
+    welcome_back
+---
+mandatory: True
+question: |
+  Virginia Consumer Data Protection Act (VCDPA)
+subquestion: |
+  Find out if VCDPA applies to you or your data. 
+field: sees_nav_bar
+---
+mandatory: True
+question: |
+  Are you covered by VCDPA?
+fields:
+  - "Does your organization control or process personal information from residents of 100,000 Virginians per year?": over_100k
+    datatype: noyesradio
+  - "Does your organization control or process personal information from 25,000 Virginians and derive more than half of revenue from the sale of personal information?": over_half_revenue
+    datatype: noyesradio
+    show if: over_100k
+field: intro_to_about_you
+section: Applies to you? 
+---
+mandatory: True
+note: |
+  2. Some organizations meet the coverage criteria but are still exempt from VCDPA. To determine if you are exempt, you must answer the following questions:
+question: |
+  Is your organization a:
+field: org_type
+choices:
+  - state agency, board, commission, or political subdivision?
+  - financial institution subject to GLBA (Graham-Leach-Bliley Act)?
+  - covered by HIPPA (Health Insurance Portability and Accountability Act)?
+  - nonprofit?
+  - institution of higher education?
+section: Contact info
+---
+mandatory: True
+question: |
+  What is your e-mail address?
+fields:
+  - E-mail: email_address
+    datatype: email
+---
+mandatory: True
+question: |
+  What is your gender?
+field: gender
+choices:
+  - Male
+  - Female
+  - Something else
+section: Demographics
+---
+mandatory: True
+question: |
+  What kind of belly button
+  do you have?
+subquestion: |
+  To see what a user would
+  see after returning to
+  the interview after a period
+  of absence, try waiting
+  thirty seconds, then
+  [click into the
+  interview](${ interview_url(local=True) }).
+
+  In addition, there is a similar
+  screen available on the Menu in the
+  upper-right, under "Roadmap."
+field: belly_button
+choices:
+  - Innie
+  - Outie
+---
+mandatory: True
+question: |
+  What is your favorite fruit?
+fields:
+  - Favorite fruit: favorite_fruit
+section: Preferences
+---
+mandatory: True
+question: |
+  What is your favorite vegetable?
+fields:
+  - Favorite vegetable: favorite_vegetable
+---
+progress: 100
+mandatory: True
+question: Thank you.
+subquestion: |
+  ${ first_name },
+
+  Your answers mean a lot to me.
+  
+  I am going to go eat some
+  ${ favorite_vegetable }
+  now.
+section: Conclusion
+---
+event: welcome_back
+question: |
+  Welcome back!
+subquestion: |
+  You are currently in the
+  **${ nav.get_section(display=True) }**
+  section.
+
+  ${ nav }
+
+  Press "Continue" to pick up
+  where you left off.
+buttons:
+  Continue: continue
+---
+event: road_map
+question: |
+  Roadmap
+subquestion: |
+  You are currently in the
+  **${ nav.get_section(display=True) }**
+  section.
+
+  ${ nav }
+
+  Press "Continue" to resume the
+  interview.
+buttons:
+  Continue: continue

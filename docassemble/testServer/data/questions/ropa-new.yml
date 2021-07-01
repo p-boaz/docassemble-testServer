@@ -1,0 +1,166 @@
+objects:
+  - user: Individual
+  - user.activity: DAList.using(object_type=Individual, minimum_number=1,)
+  - activity[i].data_processed: |
+      DADict.using(object_type=Organization,
+                   auto_gather=False,
+                   complete_attribute='complete')
+---
+code: |
+  user.activity[i].data_processed.new(user.activity[i].categories_of_data.true_values())
+  user.activity[i].data_processed.gathered = True
+---
+code: |
+  user.activity[i].data_processed[j].name.text
+  user.activity[i].data_processed[j].indiv
+  user.activity[i].data_processed[j].recipients
+  user.activity[i].data_processed[j].complete = True
+---
+question: |
+  Do you process personal data? 
+yesno: user.activity.there_are_any
+---
+question: |
+  Which business functions process data?
+subquestion: |
+  A reference to the team within your company that will be using the data
+fields:
+  - Business Function: user.activity[i].name.first
+    choices:
+      - Finance
+      - Human Resources
+      - Sales
+      - Marketing
+      - Sales
+      - Engineering
+      - Other
+  - Please Specify: user.activity[i].name.first
+    js show if: |
+      val("user.activity[i].name.first") == "Other"
+---
+question: |
+  Do you want to add other offices besides ${ user.activity } right now?
+yesno: user.activity.there_is_another
+---
+question: |
+  Which of the following categories of data does 
+  ${ user.activity[i] } process?
+subquestion: |
+  References to the teams within your company that will be using the data
+fields:
+  - no label: user.activity[i].categories_of_data
+    datatype: checkboxes
+    choices:
+      - Identification data (name, address, telephone, ...)
+      - Family & household (spouse, children, …)
+      - Electronic location data (GPS position,…)
+      - Housing characteristics (house type, …)
+      - Racial or ethnic data
+      - Physical health
+      - Criminal offences and sentences
+      - Psychological data (personality, character, …)
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
+      - Education and training
+      - Consumption habits
+      - Financial characteristics (bank account, credit card details, …)
+      - Religious or philosophical convictions 
+      - National register number / social security identification number
+      - Genetic data 
+      - Biometric identification data (fingerprints, iris scans, …)
+      - Personal characteristics (age, gender, civil status,
+      - Pictures & video (e.g. in directories, on websites, …)
+      - Lifestyle data (hobbies, …)
+      - Mental health 
+      - Political opinions
+      - Sound recordings (call (centre) recordings)
+      - Physical data (height, weight, …)
+      - Leisure activities and interests
+      - Profession and job
+      - Data concerning sexual life
+      - Trade union membership
+      - Memberships (sports clubs, …)
+---
+question: |
+  What is the purpose of **${ user.activity[i] }** processing 
+  this data?
+fields:
+  - Purpose: user.activity[i].data_processed[j].name.text
+    choices:
+      - Payroll 
+      - Personnel File
+      - Recruitment
+      - Direct Marketing
+      - Other
+  - Please Specify: user.activity[i].data_processed[j].name.text
+    js show if: |
+      val("user.activity[i].data_processed[j].name.text") == "Other"
+---
+question: |
+  Whose ${ user.activity[i].possessive(j) } does ${ user.activity[i] } process?
+fields:
+  - no label: user.activity[i].data_processed[j].indiv
+    choices:
+      - Employees
+      - Successful Candidates
+      - Unsuccessful Candidates
+      - Existing Customers
+      - Potential Customers
+      - Other
+  - Please Specify: user.activity[i].data_processed[j].indiv
+    js show if: |
+      val("user.activity[i].indiv") == "Other"
+---
+question: |
+  What entities receive the personal data?
+subquestion: |
+  This is a reference to the person or organization that will be processing the personally identifiable information e.g. your company’s customer support team, marketing team, financial controller, third party SaaS provider, etc.
+fields:
+  - no label: user.activity[i].data_processed[j].recipients
+    choices:
+      - Internal department that processes the concerned data
+      - Processor
+      - Recipients in third countries or international organisations
+      - Institutional or commercial partners
+      - Other
+---
+table: activity_table
+rows: user.activity[i].data_processed
+columns:
+  - Data Category: |
+      row_item
+  - Purpose: |
+      row_item.name.text
+  - Individuals: |
+      row_item.indiv
+  - Recipients: |
+      row_item.recipients
+edit:
+  - data_processed
+  - data_processed.name.text
+  - data_processed.indiv
+  - data_processed.recipients
+---
+mandatory: True
+question: All done
+subquestion: |
+  % for activity in user.activity:
+  You process data for ${ activity }.
+ 
+  % for data_category in activity.data_processed.keys():
+  ${ activity } processes the ${ data_category } data of 
+  ${ activity.data_processed[data_category].indiv } for the 
+  purpose of ${ activity.data_processed[data_category].name.text },
+  which is sent to
+  ${ activity.data_processed[data_category].recipients }.
+ 
+  % endfor
+  
+  % endfor
+  
+  ${ activity_table }
+
+  You can also [download this information].
+
+  [download this information]: ${ activity_table.export('ROPA.csv', title='ROPA').url_for() }
+  
+  ${ user.activity.add_action() }

@@ -1,0 +1,75 @@
+mandatory: true
+question: |
+  Awesome!
+  You like ${ apple_plum_dish } but your special is ${ fruit } followed by ${ cuisine } and ${ watches_tv }
+---
+question: |
+  Privacy Audit Checklist
+subquestion: | 
+  Try setting "Favorite fruit" to 
+  "apple" or "mango" (and unfocus the 
+  field) to see what happens.
+fields:
+  - Favorite fruit: fruit
+  - Favorite vegetable: vegetable
+  - Favorite fungus: mushroom
+    js show if: |
+      val("fruit") == "apple"
+  - Favorite spice: spice
+    js hide if: |
+      val("fruit") == "mango"
+---
+question: |
+  Please fill in the following information.
+subquestion: |
+  See what happens when you set 
+  "Favorite cuisine" to "Chinese food."
+fields:
+  - Favorite cuisine: cuisine
+    choices:
+      - Chinese food
+      - French food
+      - Belgian food
+  - Favorite dish: dish
+    js show if: |
+      val('cuisine') == "Chinese food"
+---
+question: |
+  Please fill in the following information.
+fields:
+  - "Do you watch TV?": watches_tv
+    datatype: yesnoradio
+  - Favorite TV show: tv_show
+    js show if: |
+      val('watches_tv') == true
+  - "I listen to the radio": listens_to_radio
+    datatype: yesno
+  - Favorite radio station: radio_station
+    js show if: |
+      val('listens_to_radio') == true
+  - Favorite modulation type: favorite_modulation
+    datatype: radio
+    choices:
+      - FM
+      - AM
+    js show if: |
+      val('listens_to_radio') == true      
+  - Favorite antenna style: favorite_antenna
+    js show if: |
+      val('favorite_modulation') == 'FM'
+---
+question: |
+  Privacy Audit Checklist
+subquestion: |
+  The following checklist is intended to provide general guidance for organizations interested in assessing their information handling practices.  Specifically, this exercise will help you assess your current level of privacy-related exposure, from both a legal and a public relations perspective.  This document is set up in a checklist and outline format and is modelled off the Privacy Audit Checklist found here: https://cyber.harvard.edu/ecommerce/privacyaudit.html
+fields:
+  - Select the fruits you like: liked_fruits
+    datatype: checkboxes
+    choices:
+      - Apple
+      - Peach
+      - Pear
+      - Plum
+  - Favorite way to eat apples and plums: apple_plum_dish
+    js show if: |
+      val("liked_fruits['Apple']") && val("liked_fruits['Plum']")

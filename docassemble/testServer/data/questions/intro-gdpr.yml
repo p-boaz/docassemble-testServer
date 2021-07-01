@@ -1,0 +1,104 @@
+---
+metadata:
+  interview_identifier: "GDPR Basics"
+  title: |
+    GDPR Introduction
+  description: |
+    Learn the basics of GDPR and whether it applies to you
+  authors:
+    - name: Peter
+      organization: Fora Legal
+---
+features:
+  question help button: True
+---
+mandatory: True
+code: |
+  splash_screen
+  if outside_EU:
+    if goods_or_services_not_offered and EU_language_or_currency_not_used and does_not_monitor_EU_users:
+      no_gdpr
+    elif over_250_employees:
+      yes_gdpr_yes_ropa
+    else:
+      yes_gdpr_no_ropa
+  elif over_250_employees:
+    yes_gdpr_yes_ropa
+---
+question: |
+  What you need to know about the GDPR
+subquestion: |
+  GDPR stands for General Data Protection Regulation.
+  
+  It’s a regulation designed to unify data protection laws across all member states of the European Union (EU), plus Ireland, Lichtenstein, Norway, and Switzerland, and gives protected users and EU residents more rights and control over how their data is processed. 
+  
+  The GDPR applies to businesses that target EU data subjects.
+  
+  This means that the new privacy law is applicable not only to organizations operating within the EU, but also to those worldwide that target individuals in the EU.
+  
+  Any European citizen that has their data collected by a company is a data subject under the GDPR, and the company that processes their data is known as the data controller. If a third-party is employed to handle data processing (such as a payroll company), they are the data processor.
+  
+  Complying with this European regulation on data protection means ensuring data is collected legally, informing users of how it is treated, and keeping data secure (i.e., protected from breaches).
+  
+  Let's get started on the most basic questions to determine if you need to follow the GDPR and how you can become compliant. 
+  
+field: splash_screen
+---
+question: Is your company based in the European Union (EU) or does it have any offices in the EU?
+noyes: outside_EU
+---
+question: Answer these questions to determine if you 'target' or 'monitor' EU citizens
+fields: 
+  - Do you offer goods or services to EU citizens?: goods_or_services_not_offered
+    datatype: noyesradio
+    help: this is confusing, surely. 
+  - Does your website advertise in European languages (other than English) or accept payment in Euros?: EU_language_or_currency_not_used
+    datatype: noyesradio
+  - Do you use web tools that allow you to track cookies or the IP addresses of people who visit your website from EU countries?: does_not_monitor_EU_users
+    datatype: noyesradio
+---
+question: |
+  GDPR does not apply to you.
+field: no_gdpr
+---
+question: |
+  GDPR applies
+subquestion: |
+  Since your company meets the GDPR's definition of targeting or monitoring EU citizens, the GDPR does apply. However, the extent of your obligations is determined by how many employees you have worldwide. 
+fields: 
+  - Do you have over 250 employees?: over_250_employees
+    datatype: yesnoradio
+---
+question: |
+  Your GDPR obligations are reduced
+subquestion: |
+  Since you have less than 250 employees, your obligations are less significant. Choose another interview to learn more. 
+
+  * [Determine if your processing is likely to result in a risk to the rights and freedoms of data subjects]
+  * [Determine if your processing involves special categories of data subject]
+  * [Determine if your processing involves criminal data]
+
+  [Learn more about Records of Processing Activities (RoPAs)]: ${ interview_url(i='docassemble.ROPAs:data/questions/1_lawful_basis.yml') }
+  [Vegetables]: ${ interview_url(i='docassemble.demo:data/questions/interview-about-vegetables.yml') }
+  [Flowers]: ${ interview_url(i='docassemble.demo:data/questions/interview-about-flowers.yml') }
+field: yes_gdpr_no_ropa
+help:
+  label: |
+    More info
+  content: |
+    Paragraph 5 of GDPR Article 30 states that a company or organisation employing less than 250 persons may be exempt from maintaining records under Article 30. This exemption would only apply where processing is not likely to result in a risk to the rights and freedoms of data subjects or not involving special categories of data subject or criminal data.
+---
+question: |
+  All GDPR obligations apply to your company. 
+
+subquestion: |
+  GDPR applies to you, and since you have over 250 employees, you also have certain recordkeeping obligations. Choose another interview to learn more. 
+
+  * [Learn more about Records of Processing Activities (RoPAs)]
+  * [Vegetables]
+  * [Flowers]
+
+  [Learn more about Records of Processing Activities (RoPAs)]: ${ interview_url(i='docassemble.ROPAs:data/questions/1_lawful_basis.yml') }
+  [Vegetables]: ${ interview_url(i='docassemble.demo:data/questions/interview-about-vegetables.yml') }
+  [Flowers]: ${ interview_url(i='docassemble.demo:data/questions/interview-about-flowers.yml') }
+field: yes_gdpr_yes_ropa
