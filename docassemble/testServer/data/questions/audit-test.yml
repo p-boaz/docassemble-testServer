@@ -1,5 +1,5 @@
 metadata:
-  title: Management
+  title: Audit Checklist - Management module
 ---
 objects:
   - criteria: DADict.using(object_type=DAList.using(minimum_number=1, there_is_another=False, object_type=Thing), keys=('Privacy Policies', 'Communication to Internal Personnel', 'Responsibility and Accountability for Policies', 'Review and Approval', 'Consistency of Privacy Policies and Procedures with Laws and Regulations', 'Personal Information Identification and classification', 'Risk Assessment', 'Consistency of Commitments with Privacy Policies and Procedures', 'Infrastructure and Systems Management', 'Privacy Incident and breach Management', 'Supporting Resources', 'Qualifications of Internal Personnel', 'Privacy Awareness and training', 'Changes in Regulatory and Business Requirements'),there_is_another=False, complete_attribute='complete')

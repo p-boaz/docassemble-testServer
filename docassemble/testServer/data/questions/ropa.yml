@@ -1,3 +1,7 @@
+metadata:
+  title: Record of Processing Activities
+  short title: RoPA
+---
 mandatory: True
 question: |
   All done
@@ -53,6 +57,9 @@ subquestion: |
   % endfor
 
   % endif
+
+buttons:
+  - Exit: exit
 
 ---
 objects:

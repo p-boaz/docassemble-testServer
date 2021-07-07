@@ -1,3 +1,6 @@
+metadata:
+  title: Standard Contractual Clauses
+---
 objects:
   - user: DAObject
   - user.module: DAObject

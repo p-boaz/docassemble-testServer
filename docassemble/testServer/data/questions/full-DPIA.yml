@@ -1,3 +1,6 @@
+metadata:
+  title: Full Data Protection Impact Assessment
+---
 objects:
   - project: |
       DAList.using(

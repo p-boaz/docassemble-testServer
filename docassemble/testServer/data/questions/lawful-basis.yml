@@ -1,3 +1,6 @@
+metadata:
+  title: Determine Lawful Basis for Processing Data
+---
 mandatory: true
 question: |
   #What is lawfulness?
@@ -10,6 +13,8 @@ subquestion: |
 field: splash_screen
 ---
 mandatory: True
+id: end_results
+event: end_results
 question: |
   All done
 subquestion: |
@@ -19,6 +24,9 @@ subquestion: |
   ${ activity.table }
   
   ${ activity.add_action() }
+buttons:
+  - Exit: exit
+    url: https://ny.barplaybook.com
 ---
 objects:
   - activity: |
