@@ -1,4 +1,14 @@
 ---
+metadata:
+  interview_identifier: "Virginia CDPA Basics"
+  title: |
+    Virginia CDPA Introduction
+  description: |
+    Learn the basics of VCDPA and whether it applies to you
+  authors:
+    - name: Peter
+      organization: Fora Legal
+---
 sections:
   - Introduction
   - Applies to you? 
