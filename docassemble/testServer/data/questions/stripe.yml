@@ -20,48 +20,28 @@ objects:
 mandatory: True
 code: |
   # Payor information may be required for some payment methods.
-  client.name.first
-  # client.billing_address.address
-  # client.phone_number
-  # client.email
   if not payment.paid:
     payment_screen
   favorite_fruit
   final_screen
 ---
 question: |
-  What is your name?
+  Thank you for your interest
 fields:
-  - First: client.name.first
-  - Last: client.name.last
----
-question: |
-  What is your phone number?
-fields:
-  - Phone: client.phone_number
----
-question: |
-  What is your e-mail address?
-fields:
-  - Phone: client.email
----
-question: |
-  What is your billing address?
-fields:
-  - Address: client.billing_address.address
-    address autocomplete: True
-  - Unit: client.billing_address.unit
-    required: False
-  - City: client.billing_address.city
-  - State: client.billing_address.state
-    code: states_list()
-  - Zip: client.billing_address.zip
+  - no label: payment.amount
+    datatype: integer
+    default: |
+      10
+    show if:
+      variable: villain
+      is: null
+continue button field: user_saw_intro   
 ---
 event: payment.demand
 question: |
-  Payment
+  Proceed to payment
 subquestion: |
-  You need to pay up.  Enter your credit card information here.
+  A monthly subscription is blah blah...
 
   ${ payment.html }
 script: |
