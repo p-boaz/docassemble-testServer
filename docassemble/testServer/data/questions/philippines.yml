@@ -1,0 +1,251 @@
+metadata:
+  title: Register with Philippines National Privacy Commission
+---
+question: |
+  Register with Philippines National Privacy Commission
+subquestion: |
+  DPO Registration is the process by which a Personal Information Controller (PIC) or Personal Information Processor (PIP) provides the National Privacy Commission (NPC) with relevant information regarding its data protection officer.
+
+  A PIC or PIP shall register if it is processing personal data and operating in the country under any of the following conditions:
+
+  - the PIC or PIP employs at least two hundred fifty (250) employees;
+  - the processing includes sensitive personal information of at least one thousand (1,000) individuals;
+  - the processing is likely to pose a risk to the rights and freedoms of data subjects. Processing operations that pose a risk to data subjects include those that involve:
+    - Information that would likely affect national security, public safety, public order, or public health;
+    - Information required by applicable laws or rules to be confidential;
+    - Vulnerable data subjects like minors, the mentally ill, asylum seekers, the elderly, patients, those involving criminal offenses, or in any other case where an imbalance exists in the relationship between a data subject and a PIC or PIP;
+    - Automated decision-making; or
+    - Profiling;
+  - the processing is not occasional and constitutes a core activity of a PIC or PIP, or is integral thereto. Data processing systems that involve automated decision-making shall, in all instances, be registered with the Commission. For all other data processing systems operating under the conditions set out in letter C and D, the Commission determined the specific sectors, industries, or entities that shall be covered by mandatory registration.
+field: splash_screen
+---
+mandatory: true
+question: Here is your document.
+event: some_event
+attachment:
+  - name: DPOforma
+    filename: DPOforma
+    pdf template file: DPOforma.pdf
+    fields:
+      - "Text5": ${org_name}
+      - "Text6": something
+      - "Text7": something
+      - "Text9": something
+      - "Text10": something
+      - "Text11": something
+      - "Text25": something
+      - "Text26": something
+      - "Text12": something
+      - "Text14": something
+      - "Text18": something
+      - "Text19": something
+      - "Text27": something
+      - "Text20": something
+      - "Text28": something
+      - "Text21": something
+      - "Text29": something
+      - "Text24": something
+      - "Text30": something
+      - "Government": ${ is_govt }
+      - "International Organizations": No
+      - "Executive Department": No
+      - "United Nations Agencies": No
+      - "Departments": No
+      - "Foreign Embassies in the Philippines": No
+      - "Bureaus": No
+      - "International Organizations Others": No
+      - "International Organizations answer": something
+      - "Agencies": No
+      - "Offices": No
+      - "Banks": No
+      - "Legislative Department": No
+      - "Universal Bank": No
+      - "Judicial Department": No
+      - "Commercial Bank": No
+      - "Supreme Court": No
+      - "Thrift Bank": No
+      - "Court of Appeals": No
+      - "Rural Bank": No
+      - "Regional Trial Court": No
+      - "Cooperative Bank": No
+      - "MTC, MeTC, MTCC, MCTC": No
+      - "Banks others": No
+      - "Banks answer": something
+      - "Constitutional Office": No
+      - "Non-Banks": No
+      - "Local Government Units": No
+      - "Non-Bank with Quasi-Banking Function": No
+      - "Provincial": No
+      - "Non-Stock Savings & Loans Association": No
+      - "City/Municipality": No
+      - "Offshore Banking Unit in the Philippines": No
+      - "Barangay": No
+      - "Representatives Offices in the Philippines": No
+      - "Pawnshop": No
+      - "Government-Owned and Controlled Corporations": No
+      - "Remittance Center": No
+      - "Commercial Loan Provider": No
+      - "Government Financial Institution": No
+      - "Credit Unions": No
+      - "Trade, Area Development & Tourism": something
+      - "Social and Community Lending": No
+      - "Educational & Cultural": something
+      - "Leasing Company": No
+      - "Gaming": something
+      - "Currency Exchange": No
+      - "Energy and Materials": something
+      - "Other Non-Bank Financial Institution": No
+      - "Agricultural, Fisheries, & Food": something
+      - "Non-Banks others": No
+      - "Utilities & Communications": something
+      - "Non-Banks answer": something
+      - "Healthcare Services": something
+      - "Government-Owned and Controlled Corporations others": something
+      - "Government-Owned and Controlled Corporations answer": something
+      - "Education": No
+      - "Insurance and Pre-need Providers": No
+      - "State Universities and Colleges": No
+      - "Life Insurance": No
+      - "Non-Life Insurance": No
+      - "Private Universities, Colleges and/or Other Institutions of Higher Learning": No
+      - "Professional Reinsurer": No
+      - "Private Secondary Educational Institution": No
+      - "Insurance Broker": No
+      - "Public Secondary Educational Institution": No
+      - "Reinsurance Broker": No
+      - "Private Elementary Educational Institution": No
+      - "Mutual Benefit Associations": No
+      - "Public Elementary Educational Institution": No
+      - "Acredited Actuaries": No
+      - "Private Primary Educational Institution": No
+      - "Services Insurance Company": No
+      - "Public Primary Educational Institution": No
+      - "Pre-Need & Servicing Company": No
+      - "Other Schools and Training Institution": No
+      - "Insurance and Pre-need Providers others": No
+      - "Insurance and Pre-need Providers answer": something
+      - "Education others": No
+      - "Education answer": something
+      - "Health Maintenance Organization": No
+      - "Telecommunications": No
+      - "Telecommunications Network": No
+      - "Health Facilities": No
+      - "Internet Service Provider": No
+      - "Media Service Provider": No
+      - "Cable TV Operator": No
+      - "Telecommunications others": No
+      - "Telecommunications answer": something
+      - "Business Process Outsourcing": No
+      - "Knowledge Process Outsourcing and Back Offices": No
+      - "Animation": No
+      - "Call Centers": No
+      - "Software Development": No
+      - "Game Development": No
+      - "Engineering Design": No
+      - "Health Facilities others": No
+      - "Health Facilities answer": something
+      - "Medical Transcription": No
+      - "Business Process Outsourcing others": No
+      - "Business Process Outsourcing answer": something
+      - "Pharmaceutical": something
+      - "Mainline/Brand Developer": No
+      - "Retail/Direct Marketing": No
+      - "Research & Development": No
+      - "Direct Marketing": No
+      - "Generic": No
+      - "Retail": No
+      - "Pharmaceutical asnwer": something
+      - "Telemarketing": No
+      - "Supermarket": No
+      - "Media and Social Media": No
+      - "Convenience Store": No
+      - "Non-Shop Retail (E-Commerce)": No
+      - "Television Network": No
+      - "General Merchandise": No
+      - "Radio Broadcasting Station": No
+      - "Warehouse Store": No
+      - "Publishing House": No
+      - "Service-Related Establishments (e.g. salon)": No
+      - "Social Networking Site": No
+      - "Rental Place (e.g. sing-along spots)": No
+      - "Mobile Application": No
+      - "Other Establishments Enganged in Retail/Direct Marketing": No
+      - "Media and Social Media others": No
+      - "Media and Social Media answer": something
+      - "Retail/Direct Marketing others": No
+      - "Retail/Direct Marketing answer": something
+      - "Tourism": No
+      - "Manufacturing/Production": No
+      - "Hotels and Accomodations": No
+      - "Casino Hotel": No
+      - "Utilities": No
+      - "Resort & Spa Resort Hotel": No
+      - "Electric Power Company": No
+      - "Bed & Breakfast Homestay": No
+      - "Water and Wastewater Services Company": No
+      - "Budget Hotel": No
+      - "Oil & Gas Company": No
+      - "Luxury Hotel": No
+      - "Steam and Airconditioning Supply": No
+      - "Dorm Hotel": No
+      - "Integrated Service Provider (e.g. maintenance, repair, operations)": No
+      - "Pension Houses": No
+      - "Utilities others": No
+      - "Food and Beverage (e.g. restaurants, cafes, fastfood centers)": No
+      - "Utilities answer": something
+      - "Travel Agency, Tour Operator and other Tourist Guide Services": No
+      - "Adventure and Recreation (e.g. camping)": No
+      - "Manpower Agencies": No
+      - "Attraction (e.g. historical sites, cultural centers)": No
+      - "Landbased": No
+      - "Events & Conference (e.g. Film/Music Festival Promoter, Cultural Events Promoter)": No
+      - "Seabased/Maritime Manning": No
+      - "Manpower Agencies others": No
+      - "Manpower Agencies answer": something
+      - "Tourism others": No
+      - "Tourism answer": something
+      - "Transportation, Storage and Logistics": No
+      - "Others": No
+      - "Public Utility Vehicles Operator (e.g. bus, jeepney, taxi)": No
+      - "Ride-Hailing Operator (e.g. Grab, Angkas)": No
+      - "Cargo Trucking": No
+      - "Service Vehicle Operator (e.g. rent-a-car, tourist vehicle, limousines)": No
+      - "Storage": No
+      - "Transportation, Storage and Logistics others": No
+      - "Transportation, Storage and Logistics answer": something
+      - "Real Estate": No
+      - "Agricultural": No
+      - "Commercial (e.g. office, shopping center)": No
+      - "Residential (e.g. condominium, townhouse)": No
+      - "Industrial (e.g. manufacturing building, warehouse)": No
+      - "Cemetery and Columbarium Devt., Selling, Renting, Leasing and Operating": No
+      - "Construction Industry": No
+      - "Real Estate others": No
+      - "Real Estate answer": something
+      - "Others answer": something
+---
+question: |
+  PERSONAL INFORMATION CONTROLLER / PERSONAL INFORMATION PROCESSOR
+subquestion: |
+  Please be specific.
+fields:
+  - Name of Organization: org_name
+  - Fruit: other_target_variable
+---
+question: |
+  Government
+fields:
+  - note: Check which foods you like.
+  - Peaches: is_govt
+    datatype: yesnowide
+  - Pears: dislikes_pears
+    datatype: noyeswide
+---
+question: |
+  Please provide the following information.
+fields:
+  - note: Check which foods you like.
+  - Peaches: likes_peaches
+    datatype: yesnowide
+  - Pears: dislikes_pears
+    datatype: noyeswide
