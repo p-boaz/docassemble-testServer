@@ -41,6 +41,23 @@ modules:
 features:
   css: progressivedisclosure.css
 ---
+question: |
+  Standard Contractual Clauses
+subquestion: |
+  The SCCs represent the most common safeguard for securing third-country transfers in order to be permissible under the GDPR and are widely used by hundreds of thousands of organisations. As the existing standard contractual clauses (the Old SCCs) were issued based on the European Data Protection Directive, they did not fully comply with the provisions of the GDPR. The Commission has now adopted and published final versions of two sets of SCCs:
+
+  One set for the transfer of personal data from the EEA to third countries under Articles 28(7) and 46(2)(c) GDPR
+  One set for use between controllers and processors under Article 28 GDPR
+  The clauses largely follow the draft version published by the Commission in November 2020, with a few significant updates.
+
+  In summary, the New SCCs
+    - update the transfer agreements in line with the GDPR;
+    - allow one single entry-point covering a broad range of transfer scenarios, instead of separate sets of clauses;
+    - allow more flexibility for complex processing chains, through a “modular approach” and by offering the possibility for more than two parties to join and use the clauses; and
+    - provide a practical toolbox to comply with the Schrems II judgment with an overview of the different steps companies have to take to comply with the Schrems II judgment as well as examples of possible “supplementary measures,” such as encryption, that companies may take if necessary to protect the personal data.
+
+field: splash_screen
+---
 template: option_clause
 subject: |
   Show optional clause

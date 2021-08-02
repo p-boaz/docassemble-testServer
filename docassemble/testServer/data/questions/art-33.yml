@@ -1,11 +1,20 @@
-features:
-  go full screen: True
-  centered: False
----
 metadata:
   interview_identifier: "Notification of a personal data breach to the DPA (art. 33 GDPR)"
   title: |
     Notification of a personal data breach to the DPA (art. 33 GDPR)
+---
+features:
+  go full screen: True
+  centered: False
+---
+question: |
+  Notification of a personal data breach to the DPA (art. 33 GDPR)
+subquestion: |
+  Under the GPDR, when does a company or data controller have to report a personal data breach to the local supervising authority – what we used to call the local data protection authority or DPA in the old Directive?
+
+  This is spelled out in article 33, but it’s a little confusing if you don’t know the full context. In essence, a data controller reports a personal data breach — exposure, destruction, or loss of access—if this breach poses a risk to EU citizens “rights and freedoms”.
+
+field: splash_screen
 ---
 question: |
   A personal data breach (PDB) can be broadly defined as a security incident that has affected the confidentiality, integrity or availability of personal data. 

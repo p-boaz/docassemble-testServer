@@ -1,3 +1,10 @@
+metadata:
+  interview_identifier: "Subscribe"
+  title: |
+    Subscribe
+  description: |
+    Start your subscription to Graphletter
+---
 modules:
   - .stripe2
 ---
