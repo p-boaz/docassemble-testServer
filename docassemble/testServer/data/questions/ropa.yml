@@ -117,6 +117,27 @@ edit:
   - location
   - retention
 ---
+mandatory: true
+question: |
+  What is a Record of Processing Activities (ROPA)?
+subquestion: |
+  A Record of Processing Activities (ROPA) is a record of an organization’s processing activities involving personal data. Some businesses may think of “processing” as being limited to active events, but a ROPA must also cover data that sits on a server or a shelf.
+
+  A ROPA includes the following information for each processing activity:
+
+  - Names and contact details of the data controller, data processor, data controller's representative, joint controller, and data protection officer (DPO), if applicable
+  - Purpose (i.e., lawful basis) of processing personal data
+  - Categories of data subjects and categories of personal data being processed
+  - Categories of recipients to whom the personal data has been or will be disclosed
+  - Third parties in other countries or international organizations who receive the personal data
+  - Retention schedule for each category of personal data
+  - General description of technical and organizational security measures related to each processing activity
+
+  A completed ROPA lists each processing activity involving personal data and provides detailed information about each of the items listed above. While this may sound like a simple task, even building a complete list of processing activities is often a complex and time-consuming endeavor, involving detailed documentation reviews and multiple rounds of interviews with business users and IT. Larger organizations may want to create individual ROPAs for each department or line of business, and then roll up into a master enterprise-level record.
+
+  Due to the high volume of their processing activities involving personal data, midsize-to-large companies will likely need a data discovery tool to begin pulling together and organizing the various elements of the ROPA. Smaller organizations may want to start with a spreadsheet containing one row per processing activity (e.g. “Candidate offer of employment”) and one column for each of the fields listed above. 
+field: splash_screen
+---
 question: |
   Name of business function processing the data
 subquestion: |

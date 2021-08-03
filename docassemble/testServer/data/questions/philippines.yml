@@ -1,6 +1,7 @@
 metadata:
   title: Register with Philippines National Privacy Commission
 ---
+mandatory: true
 question: |
   Register with Philippines National Privacy Commission
 subquestion: |

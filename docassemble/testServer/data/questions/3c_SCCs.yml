@@ -41,6 +41,7 @@ modules:
 features:
   css: progressivedisclosure.css
 ---
+mandatory: true
 question: |
   Standard Contractual Clauses
 subquestion: |
@@ -89,7 +90,7 @@ content: |
       - Measures for ensuring accountability 
       - Measures for allowing data portability and ensuring erasure
 ---
-mandatory: true
+mandatory: True
 question: |
   Here is your document.
 subquestion: |

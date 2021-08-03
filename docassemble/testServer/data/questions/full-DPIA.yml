@@ -23,6 +23,20 @@ code: |
   project[i].data[j].pdtype.gather()
   project[i].data[j].complete = True
 ---
+mandatory: true
+question: |
+  What is a DPIA?
+subquestion: |
+  A DPIA is a process designed to help you systematically analyse, identify and minimise the data protection risks of a project or plan. It is a key part of your accountability obligations under the UK GDPR, and when done properly helps you assess and demonstrate how you comply with all of your data protection obligations.
+
+  It does not have to eradicate all risk, but should help you minimise and determine whether or not the level of risk is acceptable in the circumstances, taking into account the benefits of what you want to achieve.
+
+  DPIAs are designed to be a flexible and scalable tool that you can apply to a wide range of sectors and projects. Conducting a DPIA does not have to be complex or time-consuming in every case, but there must be a level of rigour in proportion to the privacy risks arising.
+
+  There is no definitive DPIA template that you must follow. You can use our suggested template if you wish, or you may want to develop your own template and process to suit your particular needs, using this guidance as a starting point.
+
+field: splash_screen
+---
 question: |
   What is the name of the
   ${ ordinal(i) }

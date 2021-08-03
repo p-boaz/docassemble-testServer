@@ -9,6 +9,7 @@ code: |
     score.gather()
   criteria[i].complete = True
 ---
+mandatory: true
 question: |
   Generally Accepted Privacy Principles (GAPP)
 subquestion: |
