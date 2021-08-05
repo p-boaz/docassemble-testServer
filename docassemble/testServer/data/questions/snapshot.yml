@@ -1,0 +1,52 @@
+modules:
+  - .read_snapshot
+---
+mandatory: True
+code: |
+  favorite_fruit
+  data_category
+  store_variables_snapshot()
+  final_screen
+---
+question: |
+  What is your favorite fruit?
+fields:
+  - Fruit: favorite_fruit
+---
+question: |
+  What is type of data do you process?
+fields:
+  - no label: data_category
+    input type: object_checkboxes
+    choices:
+      - Emails
+      - Racial Data
+      - Finances
+---
+event: final_screen
+question: |
+  Your favorite fruit is
+  ${ favorite_fruit } and you process ${ data_category }.
+subquestion: |
+  Here is a summary of fruits
+  and how many people like them.
+
+  % for fruit, count in sorted(analyze().items(), key=lambda y: y[1], reverse=True):
+  * **${ fruit }**:
+    % if count == 1:
+    1 person
+    % else:
+    ${ count } people
+    % endif
+  % endfor
+  
+  Here's what other ppl in your org are processing:
+
+  % for data, count in sorted(datamap().items(), key=lambda y: y[1], reverse=True):
+  * **${ data }**:
+    % if count == 1:
+    1 person
+    % else:
+    ${ count } people
+    % endif
+  % endfor

@@ -81,6 +81,7 @@ code: |
   activity.categories_of_data[i].location
   activity.categories_of_data[i].retention
   activity.categories_of_data[i].complete = True
+  store_variables_snapshot()
 ---
 table: activity_table
 rows: activity.categories_of_data

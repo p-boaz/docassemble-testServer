@@ -4,8 +4,10 @@ metadata:
     Notification of a personal data breach to the DPA (art. 33 GDPR)
 ---
 features:
-  go full screen: True
   centered: False
+---
+code: 
+  store_variables_snapshot()
 ---
 mandatory: true
 question: |
