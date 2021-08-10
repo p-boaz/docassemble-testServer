@@ -1,0 +1,33 @@
+metadata:
+  title: DAStore
+---
+objects:
+  - userdata: DAStore
+---
+question: |
+  What office do you work in?
+fields:
+  - Locations: preferences.office
+    choices:
+      - Berlin
+      - London
+      - New York
+      - Paris
+---
+code: |
+  preferences = userdata.get("prefs") or DAObject('preferences')
+---
+mandatory: True
+code: |
+  preferences.office
+  if not userdata.defined("prefs"):
+    userdata.set("prefs", preferences)
+---
+mandatory: True
+code: |
+  final_screen
+---
+event: final_screen
+question: All done
+subquestion: |
+  ${ userdata.get("prefs").office }

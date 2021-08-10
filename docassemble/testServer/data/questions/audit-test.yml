@@ -68,15 +68,15 @@ fields:
     code: |
       [
         {'1': "Some aspects of privacy policies exist informally.",
-                 'help': "Apples are good in pies."},
-        {'2': "Privacy policies exist but may not be complete, and are not                   fully documented.",
-          'help': "Oranges are a type of citrus fruit."},
-        {'3': "Policies are defined for: notice, choice and consent;                         collection; use, retention and disposal; access; disclosure;                       security for privacy; quality; and monitoring and enforcement.",
-         'help': "Pears are an acquired taste."},
-        {'4': "Compliance with privacy policies is monitored and the                         results of such monitoring are used to reinforce key privacy                       messages.",
-         'help': "Pears are an acquired taste."},
-        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion.",
-         'help': "Pears are an acquired taste."}
+                 'help': "tbd"},
+        {'2': "Privacy policies exist but may not be complete, and are not fully documented.",
+          'help': "tbd"},
+        {'3': "Policies are defined for: notice, choice and consent; collection; use, retention and disposal; access; disclosure;                       security for privacy; quality; and monitoring and enforcement.",
+         'help': "tbd"},
+        {'4': "Compliance with privacy policies is monitored and the results of such monitoring are used to reinforce key privacy                       messages.",
+         'help': "tbd"},
+        {'5': "Management monitors compliance with policies and procedures concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion.",
+         'help': "tbd"}
        ]
 ---
 question: |
@@ -91,10 +91,10 @@ fields:
     code: |
        [
         {'1': "Some aspects of privacy policies exist informally."},
-        {'2': "Privacy policies exist but may not be complete, and are not                    fully documented."},
-        {'3': "Policies are defined for: notice, choice and consent;                          collection; use, retention and disposal; access; disclosure;                      security for privacy; quality; and monitoring and enforcement."},
-        {'4': "Compliance with privacy policies is monitored and the                           results of such monitoring are used to reinforce key privacy                       messages."},
-        {'5': "Management monitors compliance with policies and procedures                   concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion."},
+        {'2': "Privacy policies exist but may not be complete, and are not fully documented."},
+        {'3': "Policies are defined for: notice, choice and consent; collection; use, retention and disposal; access; disclosure;                      security for privacy; quality; and monitoring and enforcement."},
+        {'4': "Compliance with privacy policies is monitored and the results of such monitoring are used to reinforce key privacy                       messages."},
+        {'5': "Management monitors compliance with policies and procedures concerning personal information. Issues of non-compliance are                     identified and remedial action taken to ensure compliance in a                     timely fashion."},
        ]
 ---
 question: |

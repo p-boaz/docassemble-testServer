@@ -85,9 +85,27 @@ objects:
       DAList.using(
         object_type=Person,
         complete_attribute='complete')
+  - userdata: DAStore
+---
+question: |
+  What office do you work in?
+fields:
+  - Locations: preferences.office
+    choices:
+      - Berlin
+      - London
+      - New York
+      - Paris
+---
+mandatory: True
+code: |
+  preferences.office
+  if not userdata.defined("prefs"):
+    userdata.set("prefs", preferences)
 ---
 code: |
   activity.categories_of_data[i].name.text
+  preferences = userdata.get("prefs") or DAObject('preferences')
   activity.categories_of_data[i].purpose
   activity.categories_of_data[i].indiv
   activity.categories_of_data[i].format
@@ -159,6 +177,9 @@ question: |
   Name of business function processing the data
 subquestion: |
   A reference to the team within your company that will be using the data
+  
+  You are in the **${ userdata.get("prefs").office }** office. 
+  
 fields:
   - Business Function: activity.name.text
     choices:
