@@ -1,3 +1,20 @@
+initial: true
+code: |
+  if not user_logged_in():
+    kick_out_user
+---
+event: kick_out_user
+question: |
+  User access only
+subquestion: |
+  Sorry, Graphletter is invite-only at this time. Please sign up [here] if you'd like to know when we're adding new members. 
+  
+  [here]: https://graphletter.com/signup
+buttons:
+  - Return: exit
+    url: |
+      ${ referring_url() }
+---
 metadata:
   title: Standard Contractual Clauses
 ---
@@ -21,14 +38,12 @@ code: |
   user.subprocessor[i].name
   user.subprocessor[i].country
   user.subprocessor[i].complete = True
-  store_variables_snapshot()
 ---
 code: |
   user.importer[i].name
   user.importer[i].country
   user.importer[i].technical_measures
   user.importer[i].complete = True
-  store_variables_snapshot()
 ---
 code: |
   user.exporter[i].name
@@ -36,7 +51,6 @@ code: |
   user.exporter[i].within_art3
   user.exporter[i].has_art27_rep
   user.exporter[i].complete = True
-  store_variables_snapshot()
 ---
 modules:
   - .progressivedisclosure

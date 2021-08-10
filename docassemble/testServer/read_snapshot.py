@@ -1,6 +1,6 @@
 from docassemble.base.util import variables_snapshot_connection, user_info
 
-__all__ = ['analyze', 'datamap', 'datacats']
+__all__ = ['analyze', 'datamap',]
 
 def analyze():
   conn = variables_snapshot_connection()
@@ -27,13 +27,3 @@ def datamap():
     counts[data] += 1
   conn.close()
   return counts
-
-def datacats():
-    conn = variables_snapshot_connection()
-    cur = conn.cursor()
-    cur.execute("select data from jsonstorage where filename='" + user_info().filename + "'")
-    records = list()
-    for record in cur.fetchall():
-        records.append(record)
-    conn.close()
-    return records

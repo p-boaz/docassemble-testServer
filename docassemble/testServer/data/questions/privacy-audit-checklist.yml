@@ -1,3 +1,20 @@
+initial: true
+code: |
+  if not user_logged_in():
+    kick_out_user
+---
+event: kick_out_user
+question: |
+  User access only
+subquestion: |
+  Sorry, Graphletter is invite-only at this time. Please sign up [here] if you'd like to know when we're adding new members. 
+  
+  [here]: https://graphletter.com/signup
+buttons:
+  - Return: exit
+    url: |
+      ${ referring_url() }
+---
 mandatory: true
 question: |
   Awesome!
