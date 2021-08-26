@@ -1,53 +1,42 @@
-metadata:
-  title: Default playground interview
-  short title: Test
-  comment: This is a learning tool.  Feel free to write over it.
 ---
 objects:
-  - client: Individual
+ - clientlist: DAList.using(there_are_any=True)
+
 ---
 question: |
-  What is your name?
+ What kind of client is it?
 fields:
-  - First Name: client.name.first
-  - Middle Name: client.name.middle
-    required: False
-  - Last Name: client.name.last
-  - Suffix: client.name.suffix
-    required: False
-    code: name_suffix()
+ - Type of client: clientlist[i].clienttype
+   input type: radio
+   choices:
+    - an Individual: individual
+    - a legal person: legal
+
 ---
+reconsider: True
+code: |
+ if clientlist[i].clienttype == 'individual':
+   clientlist.appendObject(Individual)
+ else: 
+  clientlist.appendObject(Person)
+ 
+---
+generic object: Person
 question: |
-  What is your date of birth?
+ What is the name of the company?
 fields:
-  - Date of Birth: client.birthdate
-    datatype: date
+ - Name: x.name.text
+
+---
+generic object: Individual
+question: |
+  What is the name of the Individual?
+fields:
+ - First Name: x.name.first
+ - Last Name: x.name.last
+
 ---
 mandatory: True
 question: |
-  Here is your document, ${ client }.
-subquestion: |
-  In order ${ quest }, you will need this.
-attachments:
-  - name: Information Sheet
-    filename: info_sheet
-    content: |
-      Your name is ${ client }.
-
-      % if client.age_in_years() > 60:
-      You are a senior.
-      % endif
-      Your quest is ${ quest }.  You
-      are eligible for ${ benefits }.
----
-question: |
-  What is your quest?
-fields:
-  - Your quest: quest
-    hint: to find the Loch Ness Monster
----
-code: |
-  if client.age_in_years() < 18:
-    benefits = "CHIP"
-  else:
-    benefits = "Medicaid"
+ So far, on the list are ${clientlist}. is there another?
+yesno: clientlist.there_is_another

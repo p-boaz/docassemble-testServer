@@ -97,6 +97,9 @@ fields:
       - New York
       - Paris
 ---
+code: |
+  preferences = userdata.get("prefs") or DAObject('preferences')
+---
 mandatory: True
 code: |
   preferences.office
@@ -105,7 +108,6 @@ code: |
 ---
 code: |
   activity.categories_of_data[i].name.text
-  preferences = userdata.get("prefs") or DAObject('preferences')
   activity.categories_of_data[i].purpose
   activity.categories_of_data[i].indiv
   activity.categories_of_data[i].format
@@ -428,7 +430,7 @@ fields:
       is: Legitimate interests
 ---
 question: |
-  Retention schedule	
+  Retention schedule  
 subquestion: |
   The length of time a company stores personally identifiable information for before it is erased. Is your company storing personally identifiable information on a permanent or semi-permanent basis? Ideally, data should be kept for no longer than is necessary for the purposes for which it is being processed in line with GDPR’s recommendation on data minimization.
 fields:
