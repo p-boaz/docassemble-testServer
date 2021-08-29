@@ -1,3 +1,14 @@
+metadata:
+  interview_identifier: "Pets"
+  title: |
+    Pets
+---
+features:
+  centered: False
+---
+code: |
+  multi_user = True
+---
 objects:
   - pet: DADict.using(object_type=DAObject)
 ---
