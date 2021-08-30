@@ -6,6 +6,9 @@ metadata:
 features:
   centered: False
 ---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+---
 code: |
   multi_user = True
 ---
@@ -14,8 +17,7 @@ objects:
 ---
 mandatory: True
 question: |
-  You have ${ pet.number_as_word() }
-  pets.
+  You have some pets.
 subquestion: |
   % for item in pet:
   Your pet ${ item } named

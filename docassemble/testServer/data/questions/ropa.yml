@@ -19,6 +19,9 @@ metadata:
   title: Record of Processing Activities
   short title: RoPA
 ---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+---
 mandatory: True
 question: |
   All done
