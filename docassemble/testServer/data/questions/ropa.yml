@@ -20,7 +20,8 @@ metadata:
   short title: RoPA
 ---
 include:
-  - docassemble.AssemblyLine:al_package.yml
+  - docassemble.AssemblyLine:ql_baseline.yml
+  - docassemble.AssemblyLine:al_settings.yml
 ---
 mandatory: True
 question: |

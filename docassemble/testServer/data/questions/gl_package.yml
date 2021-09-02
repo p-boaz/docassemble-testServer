@@ -1,0 +1,19 @@
+---
+include:
+  - gl_settings.yml
+  - gl_code.yml
+  - gl_visual.yml
+  - gl_document.yml
+  - gl_baseline.yml
+---
+modules:
+  - docassemble.ALToolbox.misc
+  - docassemble.ALToolbox.copy_button
+  - .al_general
+  - .al_document
+  - .al_courts
+#############################
+# Variables used in most interviews:
+# * trial_court
+# * all_courts
+# * allowed_courts
