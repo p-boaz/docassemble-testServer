@@ -1,0 +1,36 @@
+modules:
+  - .google_sheets
+---
+objects:
+  - office: DAList.using(object_type=Person, auto_gather=False)
+---
+code: |
+  office.clear()
+  for row in read_sheet('da.test'):
+    item = office.appendObject()
+    item.name.text = row['Name']
+    item.fruit = row['Fruit']
+    item.vegetable = row['Vegetable']
+    del item
+  office.gathered = True
+---
+attachment:
+  name: |
+    ${ office[i].name.text }
+  filename: |
+    ${ space_to_underscore(office[i].vegetable) }
+  variable name: office[i].info_sheet
+  content: |
+    [BOLDCENTER] ${ office[i] }
+    
+    [NOINDENT] Your friendly office fruit is
+    ${ office[i].fruit }
+---
+mandatory: True
+question: |
+  Court information
+subquestion: |
+  Here are information sheets
+  for each court in your state.
+attachment code: |
+  [item.info_sheet for item in office]

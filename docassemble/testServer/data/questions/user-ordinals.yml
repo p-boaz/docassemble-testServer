@@ -1,70 +1,71 @@
 objects:
   - user: Individual
-  - user.sibling: DAList.using(object_type=Individual)
-  - user.sibling[i].company_hired: |
+  - user.office: |
+      DAList.using(
+      object_type=OfficeList,
+      there_are_any=True)
+  - user.office[i].business_function: |
       DADict.using(object_type=Organization,
                    auto_gather=False,
                    complete_attribute='complete')
-  - user.sibling[i].company_hired[j].place_of_business: City
+  - user.office[i].business_function[j].software: DAObject
 ---
 code: |
-  user.sibling[i].company_hired.new(user.sibling[i].types_of_companies.true_values())
-  user.sibling[i].company_hired.gathered = True
+  user.office[i].business_function.new(compuserany.office[i].types_of_functions.true_values())
+  user.office[i].business_function.gathered = True
 ---
 code: |
-  user.sibling[i].company_hired[j].name.text
-  user.sibling[i].company_hired[j].place_of_business.city
-  user.sibling[i].company_hired[j].complete = True
+  user.office[i].business_function[j].name.text
+  user.office[i].business_function[j].software
+  user.office[i].business_function[j].complete = True
 ---
 question: |
-  Do you have any siblings?
-yesno: user.sibling.there_are_any
+  Do you have any offices?
+yesno: user.office.there_are_any
 ---
 question: |
-  What is the name of your ${ ordinal(i) } sibling?
+  What is the name of your ${ ordinal(i) } office?
 fields:
-  - First Name: user.sibling[i].name.first
+  - Name: user.office[i].name.first
 ---
 question: |
-  Do you have any other siblings besides ${ user.sibling }?
-yesno: user.sibling.there_is_another
+  Do you have any other offices besides ${ user.office }?
+yesno: user.office.there_is_another
 ---
 question: |
-  Which of the following types of companies has ${ user.sibling[i] }
-  hired?
+  Which of the following business functions does ${ user.office[i] }
+  perform?
 fields:
-  - no label: user.sibling[i].types_of_companies
+  - no label: user.office[i].types_of_functions
     datatype: checkboxes
     choices:
-      - Bank
-      - Law Firm
-      - Exterminator
-      - Financial Advisor
+      - HR
+      - Sales
+      - Finance
+      - Recruiting
 ---
 question: |
-  What is the name of ${ user.sibling[i].possessive(j) }?
+  What is the purpose of ${ user.office[i].possessive(j) }?
 fields:
-  - Company name: user.sibling[i].company_hired[j].name.text
+  - name: user.office[i].business_function[j].name.text
 ---
 question: |
-  In what city does ${ user.sibling[i].company_hired[j] }
-  do business?
+  What software does ${ user.office[i].business_function[j] }
+  use?
 fields:
-  - City: user.sibling[i].company_hired[j].place_of_business.city
-  - State: user.sibling[i].company_hired[j].place_of_business.state
-    code: states_list()
+  - tool: user.office[i].business_function[j].software
 ---
 mandatory: True
 question: All done
 subquestion: |
-  % for sibling in user.sibling:
-  You have a sibling named ${ sibling }.
+  % for office in user.office:
+  You have an office named ${ office }.
  
-  % for company_type in sibling.company_hired.keys():
-  ${ sibling } has hired a ${ company_type }
-  called ${ sibling.company_hired[company_type] },
-  which has a principal place of business in
-  ${ sibling.company_hired[company_type].place_of_business }.
+  % for function_type in office.business_function.keys():
+  ${ office } has hired a ${ business_function }
+  called ${ office.business_function[function_type] },
+  which uses
+  ${ office.business_function[function_type].software }.
  
   % endfor
   

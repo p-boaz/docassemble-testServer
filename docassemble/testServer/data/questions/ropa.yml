@@ -18,6 +18,8 @@ buttons:
 metadata:
   title: Record of Processing Activities
   short title: RoPA
+  tags: 
+    - Sales
 ---
 include:
   - docassemble.AssemblyLine:ql_baseline.yml
@@ -29,20 +31,12 @@ question: |
 subquestion: |
   You have recorded the following processing activities for **${ activity }**
   
-  ${ activity_table }
-  
   ${ activity.categories_of_data.add_action() }
-
-  You can also [download this information].
-
-  [download this information]: ${ activity_table.export('ROPA.csv', title='ROPA').url_for() }
-  
-  % if there_are_third_countries:
   
   ### Some important information about your cross-border data transfers 
   
   % for categories_of_data in activity.categories_of_data:
-  Seding `${ categories_of_data }` to `${ categories_of_data.importing_country }`
+  Sending `${ categories_of_data }` to `${ categories_of_data.importing_country }`
   
    % if categories_of_data.importing_country.level_of_protection == 'Member country of the EU or the EEA':
   ${ categories_of_data.importing_country } belongs to the European Economic Area.
@@ -77,18 +71,15 @@ subquestion: |
 
   % endfor
 
-  % endif
-
 buttons:
   - Exit: exit
-
 ---
 objects:
   - activity: Person
   - activity.categories_of_data: |
       DAList.using(
-        object_type=Person,
-        complete_attribute='complete')
+        object_type=Thing,
+        there_are_any=True)
   - userdata: DAStore
 ---
 question: |
@@ -109,54 +100,6 @@ code: |
   preferences.office
   if not userdata.defined("prefs"):
     userdata.set("prefs", preferences)
----
-code: |
-  activity.categories_of_data[i].name.text
-  activity.categories_of_data[i].purpose
-  activity.categories_of_data[i].indiv
-  activity.categories_of_data[i].format
-  activity.categories_of_data[i].importing_country
-  activity.categories_of_data[i].method
-  activity.categories_of_data[i].security
-  activity.categories_of_data[i].lawful_basis
-  activity.categories_of_data[i].location
-  activity.categories_of_data[i].retention
-  activity.categories_of_data[i].complete = True
----
-table: activity_table
-rows: activity.categories_of_data
-columns:
-  - Category of Data: |
-      row_item.name.text
-  - Purpose of Processing: |
-      row_item.purpose
-  - Individuals: |
-      row_item.indiv
-  - Format: |
-      row_item.format
-  - Method: |
-      row_item.method
-  - Security: |
-      row_item.security
-  - Importing Country: |
-      row_item.importing_country
-  - Lawful Basis: |
-      row_item.lawful_basis
-  - Location: |
-      row_item.location
-  - Retention: |
-      row_item.retention
-edit:
-  - name.text
-  - purpose
-  - indiv
-  - format
-  - method
-  - security
-  - third_countries
-  - lawful_basis
-  - location
-  - retention
 ---
 mandatory: true
 question: |
@@ -185,7 +128,6 @@ subquestion: |
   A reference to the team within your company that will be using the data
   
   You are in the **${ userdata.get("prefs").office }** office. 
-  
 fields:
   - Business Function: activity.name.text
     choices:
@@ -218,47 +160,49 @@ fields:
     required: false
 ---
 question: |
-  Does **${ activity }** processes personal data?
-yesno: activity.categories_of_data.there_are_any
----
-question: |
   What personal data does **${ activity }** process? 
 fields:
   - no label: activity.categories_of_data[i].name.text
-    datatype: radio
     choices:
-      - Identification data (name, address, telephone, ...)
-      - Family & household (spouse, children, …)
-      - Electronic location data (GPS position,…)
-      - Housing characteristics (house type, …)
-      - Racial or ethnic data
-      - Physical health
-      - Criminal offences and sentences
-      - Psychological data (personality, character, …)
-      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
-      - Education and training
-      - Consumption habits
-      - Financial characteristics (bank account, credit card details, …)
-      - Religious or philosophical convictions 
-      - National register number / social security identification number
-      - Genetic data 
-      - Biometric identification data (fingerprints, iris scans, …)
-      - Personal characteristics (age, gender, civil status,
-      - Pictures & video (e.g. in directories, on websites, …)
-      - Lifestyle data (hobbies, …)
-      - Mental health 
-      - Political opinions
-      - Sound recordings (call (centre) recordings
-      - Physical data (height, weight, …)
-      - Leisure activities and interests
-      - Profession and job
-      - Data concerning sexual life
-      - Trade union membership
-      - Memberships (sports clubs, …)
-      - Other
+      - Identification data (name, address, telephone, ...): id
+      - Family & household (spouse, children, …): family
+      - Electronic location data (GPS position,…): location
+      - Housing characteristics (house type, …): housing
+      - Racial or ethnic data: race
+      - Physical health: phys_health
+      - Criminal offences and sentences: crim
+      - Psychological data (personality, character, …): psych
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...): e_id
+      - Education and training: edu
+      - Consumption habits: consumption
+      - Financial characteristics (bank account, credit card details, …): finance
+      - Religious or philosophical convictions: religious
+      - National register number / social security identification number: ssn
+      - Genetic data: genetic
+      - Biometric identification data (fingerprints, iris scans, …): bio
+      - Personal characteristics (age, gender, civil status, ...): char
+      - Pictures & video (e.g. in directories, on websites, …): pics
+      - Lifestyle data (hobbies, …): hobbies
+      - Mental health: mental_health
+      - Political opinions: pol
+      - Sound recordings (call (centre) recordings: sound
+      - Physical data (height, weight, …): phys
+      - Leisure activities and interests: leisure
+      - Profession and job: job
+      - Data concerning sexual life: sex_life
+      - Trade union membership: union
+      - Memberships (sports clubs, …): memberships
+      - Other: other
   - Please Specify: activity.categories_of_data[i].name.text
     js show if: |
       val("activity.categories_of_data[i].name.text") == "Other"
+  - Purpose: activity.categories_of_data[i].purpose
+list collect:
+  is final: False
+  allow delete: False
+  add another label: Add more
+  label: |
+    ${ activity.categories_of_data[i].name.text }.
 ---
 question: |
   Does ${ activity } process any additional personal data?
@@ -268,6 +212,7 @@ question: |
   Whose **${ activity.categories_of_data[i].name.text }** does **${ activity }** process?
 fields:
   - Categories of Individuals: activity.categories_of_data[i].indiv
+    datatype: checkboxes
     choices:
       - Employees
       - Successful Candidates
@@ -342,7 +287,7 @@ code: |
 question: |
   Is **${ activity.categories_of_data[i].name.text }** transfered to any third country?
 fields:
-  - no label: there_are_third_countries
+  - no label: activity.categories_of_data[i].there_are_third_countries
     datatype: yesnoradio
     
   - Exporting Country: activity.categories_of_data[i].exporting_country

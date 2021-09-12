@@ -1,0 +1,93 @@
+metadata:
+  title: Gather Offices
+---
+modules:
+  - .google_sheets
+---
+objects:
+  - office: |
+      DAList.using(
+        object_type=Person,
+        minimum_number=1,
+        complete_attribute='complete')
+  - office[i].function: |
+      DAList.using(
+        object_type=Person,
+        complete_attribute='complete')
+---
+code: |
+  office[i].name.text
+  office[i].function.gather()
+  office[i].complete = True
+---
+code: |
+  office[i].function[j].name.text
+  office[i].function[j].software.gather()
+  office[i].function[j].complete = True
+---
+question: |
+  What do you want to call the
+  ${ ordinal(i) }
+  office?
+fields:
+  - Name: office[i].name.text
+---
+question: |
+  Do you want to add anohter office?
+yesno: office.there_is_another
+---
+question: |
+  Does ${ office[i] } have any business functions?
+yesno: office[i].function.there_are_any
+---
+question: |
+  What is the name of
+  ${ office[i].possessive(ordinal(j) + ' function') }?
+fields:
+  - First: office[i].function[j].name.text
+---
+question: |
+  Does ${ office[i] } have any
+  functions other than ${ office[i].function }?
+yesno: office[i].function.there_is_another
+---
+generic object: Person
+objects:
+  - x.software: DAList
+---
+generic object: Person
+question: |
+  Does ${ x } use any software?
+yesno: x.software.there_are_any
+---
+generic object: Person
+question: |
+  What software does ${ x } have?
+fields:
+  - software: x.software[i]
+---
+generic object: Person
+question: |
+  Does ${ x } use any software
+  other than ${ x.software }?
+yesno: x.software.there_is_another
+---
+mandatory: True
+event: final_screen_shown
+question: |
+  Information retrieved
+subquestion: |
+  You told me about
+  ${ office.quantity_noun('office') },
+  its business functions,
+  and each function's software.
+  % for o in office:
+  You told me about ${ o }.
+    % for f in o.function:
+  ${ o } has a function named ${ f }.
+    % if f.software.number() > 0:
+  ${ f } uses ${ f.software }.
+    % endif
+    % endfor
+ 
+  % endfor

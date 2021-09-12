@@ -1,0 +1,51 @@
+metadata:
+  title: Checkbox method
+---
+question: |
+  What personal data does ** activity ** process? 
+fields:
+  - no label: data_types
+    datatype: checkboxes
+    choices:
+      - Identification data (name, address, telephone, ...)
+      - Family & household (spouse, children, …)
+      - Electronic location data (GPS position, …)
+      - Housing characteristics (house type, …)
+      - Racial or ethnic data
+      - Physical health
+      - Criminal offences and sentences
+      - Psychological data (personality, character, …)
+      - Electronic identification data (e-mail, IP-addresses, cookies, ...)
+      - Education and training
+      - Consumption habits
+      - Financial characteristics (bank account, credit card details, …)
+      - Religious or philosophical convictions 
+      - National register number / social security identification number
+      - Genetic data 
+      - Biometric identification data (fingerprints, iris scans, …)
+      - Personal characteristics (age, gender, civil status,
+      - Pictures & video (e.g. in directories, on websites, …)
+      - Lifestyle data (hobbies, …)
+      - Mental health 
+      - Political opinions
+      - Sound recordings (call (centre) recordings ...)
+      - Physical data (height, weight, …)
+      - Leisure activities and interests
+      - Profession and job
+      - Data concerning sexual life
+      - Trade union membership
+      - Memberships (sports clubs, …)
+      - Other
+---
+mandatory: True
+question: |
+  Summary of your answer
+subquestion: |
+  % for data in data_types.true_values():
+  by ${ data } 
+  % if data in ['Profession and job','Trade union membership'] :
+  you're looking at professions
+  % elif data == 'Mental health' :
+  you're doing mental health
+  % endif
+  % endfor
