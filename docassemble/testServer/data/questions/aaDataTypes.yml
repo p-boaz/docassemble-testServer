@@ -102,8 +102,6 @@ code: |
     update_sections_with_selected_documents  
   if screen_data_is_transferred and document_choice['get_report']:
     nav.set_section(sub_documents['get_report'].get('section_link'))
-    other_parties.gather()
-    other_parties[0].address.address
     transfer_details.importing_country
   if screen_data_is_transferred and document_choice['tell_landlord']:
     nav.set_section(sub_documents['tell_landlord'].get('section_link'))
@@ -510,7 +508,6 @@ fields:
     js show if: |
       val("screen_data_is_transferred") && !val("screen_knows_transfer_details")
     choices:
-      - Add details about the data transfer: get_report
       - Tell my landlord about the problems: tell_landlord
       - Organize with my neighbors or other tenants in my city: organize_tenants
       - Let other tenants know about my bad landlord: share_with_tenants
@@ -611,7 +608,7 @@ subquestion: |
   % endif
 
 buttons:
-  - Exit: exit
+  - Exit: leave
     url: |
       ${ referring_url() }
 ---
