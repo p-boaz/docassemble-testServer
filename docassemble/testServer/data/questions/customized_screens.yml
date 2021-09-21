@@ -1,0 +1,380 @@
+#########################################################
+# Screens for included templates that override default screens
+#########################################################
+---
+###############
+# Used in multiple templates
+###############
+# ---
+# id: your name
+# question:  |
+#   Your name
+# fields:
+#   - First Name: users[0].name.first
+#   - Middle Name: users[0].name.middle
+#     required: False
+#   - Last Name: users[0].name.last
+#   - Suffix: users[0].name.suffix
+#     code: |
+#       name_suffix()
+#     required: False
+---
+id: move in date
+question: |
+  When did you move in to ${ users[0].address.on_one_line() }?
+fields:
+  - no label: users[0].move_in_date
+    datatype: date
+---
+code: |
+  if len(bad_conditions[i].details.elements):
+    bad_conditions[i].min_date = min([c.start_date if not c.condition_existed_at_start else users[0].move_in_date for c in bad_conditions[i].details.elements.values()])
+  else:
+    bad_conditions[i].min_date = today()
+---
+code: |
+  tenant_repair_default_date = min([c.min_date for c in bad_conditions.elements.values()])                                  
+---
+template: tenant_repair_issue_description_default
+content: |
+  % for category in bad_conditions:
+  % for index, row in bad_conditions[category].df.iterrows():
+  % if bad_conditions[category].details[index].description:
+  * ${ bad_conditions[category].details[index].description }; C.M.R. ${ row['Sanitary Code Section'] }
+  % else:
+  * ${ row['Interview description'] }; C.M.R. ${ row['Sanitary Code Section'] }
+  % endif
+  % endfor  
+  % endfor
+---
+###############
+# Repair request letter
+###############
+---
+code: |
+  tenant_repair_issue_date 
+---
+id: tenant_repair_issue_date
+question: |
+  When did you first experience the problems that you want to tell
+  ${ other_parties } about?
+subquestion: |
+  The date below will be the date of any problems in your apartment when you first moved in.
+  
+  Make a change if you need to.
+fields:
+  - Earliest date: tenant_repair_issue_date
+    datatype: date
+    default: ${ tenant_repair_default_date }
+---
+id: issue description
+question: |
+  Describe the problems that you want your landlord to fix
+subquestion: |
+  We used the problems that you selected to start a draft.
+  
+  We also included a link to the sanitary code section that applies.
+fields:
+  - no label: tenant_repair_issue_description
+    datatype: area
+    rows: 6
+    default: ${ tenant_repair_issue_description_default }
+---
+#################################################################
+# Withholding rent
+#################################################################
+---
+code: |
+  repairs_request_date = tenant_repair_issue_date # From 
+---
+id: Issue s Description
+question: |
+  What problems do you need your landlord to fix?
+subquestion: |
+  Use your own words to describe the problems that you told your landlord about
+  on or before ${ repairs_request_date }.
+fields:
+  - no label: rent_withholding_conditions
+    input type: area
+    rows: 5
+    default: ${ tenant_repair_issue_description_default }
+---
+##################################################################
+# Organizing tenants
+##########################
+---
+continue button field: organizing_interstitial
+id: organizing
+question: |
+  Work together with your neighbors
+subquestion: |
+  You are stronger together!
+  A tenant's union is a group of tenants working together. Your local tenant's
+  union may have:
+  
+  1. Regular meetings to talk about problems with neighbors.
+  1. Organizers who will negotiate with your landlord.
+  1. Protests to help defend tenant's rights.
+    
+  % if hasattr(users[0].address, 'norm_long'):
+  % if users[0].address.norm_long.city in ['Saugus', 'Revere', 'Everett', 'Chelsea', 'Winthrop', 'Boston', 'Milton', 'Quincy', 'Braintree', 'Hingham', 'Weymouth', 'Somerville', 'Cambridge', 'Watertown', 'Arlington', 'Medford', 'Newton', 'Framingham', 'Lynn', 'East Boston', 'Springfield']:
+  Here are some tenant unions that cover the city you live in:
+  
+  % endif
+  % if users[0].address.norm_long.city in ['Saugus', 'Revere', 'Everett', 'Chelsea', 'Winthrop', 'Boston', 'Milton', 'Quincy', 'Braintree', 'Hingham', 'Weymouth', 'Somerville', 'Cambridge', 'Watertown', 'Arlington', 'Medford', 'Newton', 'Framingham']:
+  #### [City Life/Vida Urbana](https://www.clvu.org/)
+  
+  284 Amory Street, First Floor, Jamaica Plain, MA 02130
+  
+  ${ tel("(617) 524-3541") }
+  
+  % endif
+  % if users[0].address.norm_long.city in ['Chelsea','Revere','Everett','Lynn','East Boston']:
+  #### [La Colaborativa / Chelsea Collaborative](https://www.la-colaborativa.org/)
+  
+  318 Broadway, Chelsea, MA 02150
+  
+  ${ tel("(617) 889-6080") }
+  % endif
+  % if users[0].address.norm_long.city  == 'Lynn':  
+  
+  #### [Lynn United for Change](http://www.lynnunited.org/housing)
+  112 Exchange St, Lynn, MA 01901
+  
+  ${ tel("(781) 346-9199") }
+  % endif
+  % if users[0].address.norm_long.city == 'Boston':
+  #### Boston Tenant's Union
+  ${ tel("617-209-9263") }
+  % endif
+  % if users[0].address.norm_long.city  == 'Springfield':
+  #### [Springfield No one Leaves](http://www.springfieldnooneleaves.org/)
+  
+  ${ tel("413-342-1804") }
+  % endif
+  % endif
+  
+  Tenant groups in Massachusetts:
+  
+  * [City Life/Vida Urbana](https://www.clvu.org) (metro Boston)
+  * [La Colaborativa](https://www.la-colaborativa.org/) (Chelsea and neighboring cities)
+  * [Lynn United](http://www.lynnunited.org/housing) (Greater Lynn)
+  * [Springfield No One Leaves](http://www.springfieldnooneleaves.org/) (Greater Springfield)
+  * [Boston Tenant's Union](https://bostontenantsunion.org/)
+---
+######################################################
+# Generic topic templates
+######################################################
+---
+template: how_to_document_template
+subject: |
+  Document the problem
+content: |
+  Keeping good records is important. Before you can get a problem fixed,
+  you need to be able to tell your landlord and the court where the problem
+  is.
+  
+  You can use this website to record problems and upload pictures.
+  
+  You could also:
+  
+  * Use your phone or a camera to take pictures of the problems.
+  * Use a thermometer or a photo of your thermostat and write down the
+    time and date of each recording.
+  
+  The best records come from a housing inspector. See the information below
+  about calling an inspector.
+---
+template: how_to_notify_landlord_template
+subject: |
+  Notify your landlord
+content: |
+  Your landlord is only responsible to fix problems that they know about.
+  Make sure your landlord knows about problems in your house by telling them,
+  even if you think that they should already know.
+  
+  Use a way to tell your landlord that you can track and prove.
+  
+  * Write your landlord a text message.
+  * Write a letter on paper, and keep a copy for yourself. Make sure the date
+    is on the letter.
+  * Write an email.
+  
+  You can use this website to tell your landlord about the problems in your
+  home.
+---
+template: get_inspection_template
+subject: |
+  Call a housing inspector
+content: |
+  A housing inspector is someone who works for the city or the housing 
+  authority.
+  
+  If you live in public housing or have a Section 8 voucher, the Housing
+  Authority will inspect your home at least once a year. But you can call if 
+  you need them to come sooner.
+  
+  All tenants, including tenants who live in public housing, can call a city
+  inspector. The city inspector should come within 1 day to inspect emergency
+  problems.
+  
+  In Boston, Cambridge, Chelsea, and Worcester you can call the Inspectional
+  Services Division.
+  
+  In other cities and towns, call the Board of Health.
+  
+  Before calling the inspector, use this website to create and print a list of 
+  the problems that you have identified. This will help make sure that the
+  inspector does not miss any problems.
+
+  [Learn more](https://www.masslegalhelp.org/housing/lt1-chapter-8-getting-inspection).
+---
+template: get_injunction_template
+subject: |
+  Get emergency help from a judge
+content: |
+  You can get emergency help from a judge in two different ways:
+  
+  1. Ask a judge to enforce an order from a housing inspector.
+  1. Get a temporary restraining order.
+  
+  [Learn more](https://www.masslegalhelp.org/housing/lt1-chapter-8-landlord-refusing-repairs).
+---
+template: how_to_defend_eviction_template
+subject: |
+  Stop your eviction
+content: |
+  Sometimes a landlord will file an eviction case against a tenant if they
+  complain about problems in their house.
+  
+  This is illegal. In Massachusetts, evicting a tenant because they complained
+  about bad housing conditions or other housing problems is called
+  "retaliation". [Law about retaliation](https://www.masslegalhelp.org/housing/lt1-chapter-12-illegal-eviction).
+  
+  Even if your landlord is not evicting you **because** you complained about
+  problems in your house, the problems may be a defense to your eviction.
+  [239 &sect; 
+  8A](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleIII/Chapter239/Section8A) 
+  makes bad housing conditions a defense to an eviction if:
+  
+  1. The eviction is for nonpayment of rent or for no reason.
+  1. The problems threaten the health and safety of someone who lives in the
+    apartment.
+  1. The landlord knew about the problems at a time that the tenant did not
+  owe any rent.
+  1. The problems were not caused by the tenant.
+  1. The problems can be fixed without the tenant moving out permanently.
+  
+  You can defend against your eviction with MADE, Massachusetts Defense
+  Against Eviction.
+  
+  ${ action_button_html('https://interviews.gbls.org/start/eviction', label='Launch MADE') }
+---
+template: sue_your_landlord_template
+subject: |
+  Sue your landlord for money
+content: |
+  You have a right to sue your landlord for money if you have problems in
+  your home that your landlord is responsible to fix.
+  
+  You may be able to sue as part of an existing eviction case. Or you can
+  file your own case against your landlord.
+  
+  It is a good idea to [talk to a lawyer](https://masslrf.org/en/triage/start/housing). You may be able to get a lawyer who will help you for free.
+  
+  You can sue for:
+  
+  * Breach of Quiet Enjoyment, which may entitle you to up to 3 months of rent,
+    at the market rent for your apartment.
+  * Breach of the Warranty of Habitability, which may entitle you to a
+    percentage of your rent for every month that the problem existed.
+    
+  [Learn more about suing your landlord](https://www.masslegalhelp.org/housing/lt1-pullout-13-taking-landlord-to-court).
+---
+############################################
+# Housing TRO
+############################################
+---
+id: landlords actions
+question: |
+  Your landlord's actions
+subquestion: |
+  This form allows you to ask for emergency help for something your landlord did
+  or failed to do. Please give us some information about what happened.
+fields:
+  - 'When did the issue start?': incident_date
+    datatype: date
+    default: ${ tenant_repair_default_date }
+  - 'My landlord illegally locked me out of the apartment': incident_locked_out
+    datatype: yesno
+  - 'My utilities were shut off': incident_utility
+    datatype: yesno
+  - 'Explain what utility was shut off, and when': incident_utility_description
+    show if: incident_utility
+  - Did not repair problems in my house, or other breach of quiet enjoyment: incident_other
+    datatype: yesno
+    default: True
+  - 'Describe the other thing your landlord did wrong': incident_other_description
+    maxlength: 990
+    datatype: area
+    default: ${ tenant_repair_issue_description_default }
+    show if: incident_other
+    help: |
+      You can include anything here that is a breach of your right to
+      "quiet enjoyment" of your home. For example: an unsafe living condition;
+      an odor or noise that makes your home unlivable; or anything that 
+      makes you unable to use your home safely and peacefully.
+validation code: |
+  if not incident_locked_out and not incident_utility and not incident_other:
+    validation_error("You must select at least one incident.")
+help: |
+  #### What is a breach of quiet enjoyment?
+  A breach of quiet enjoyment is something that your landlord did or should
+  have done that makes your home unlivable. This can cover a lot of different
+  issues. The problem needs to be serious and you can get help for issues
+  that the court agrees are emergencies with this form.
+  
+  Examples might include:
+  
+  * A sewage backup in your basement
+  * A strong unpleasant odor
+  * Constant noise at unreasonable times of day (remember, even if you are
+  working from home, permitted construction may still be allowed)
+  * Unsafe living conditions that your landlord isn't fixing
+  
+  [Read more](https://www.masslegalhelp.org/housing/lt1-chapter-8-rights-decent-place-live)
+---
+########################################
+# Petition to enforce sanitary code
+########################################
+---
+id: no inspection kickout
+question: |
+  You need to have an inspection in order to enforce the inspection
+subquestion: |
+  In order to file the Petition properly you need to have an inspection report or an inspection scheduled at least 24 hours before the filing of this petition.
+
+  Contact your town offices to find out how to schedule an inspection.
+  
+  We will leave this form out of your final packet.
+continue button field: kick_out
+---
+event: review_request_housing_inspection
+question: |
+  Review your request for a housing inspection
+review:
+  - Edit: users[0].name.first
+    button: |
+      Your name: ${ users[0] }
+  - Edit: review_conditions
+    button: |
+      ${ review_conditions_template }
+  - Edit: users[0].address.address
+    button: |
+      Your address: ${ users[0].address_block() }      
+  - Edit: other_parties[0].name.first
+    button: |
+      Your landlord's name: ${ other_parties[0] }
+  - Edit: other_parties[0].address.address
+    button: |
+      Your landlord's address: ${ other_parties[0].address.address }      
