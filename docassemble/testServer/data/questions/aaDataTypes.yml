@@ -2,9 +2,6 @@
 translations:
   - housing_code_interview_es.xlsx
 ---
-objects:
-  - transfer_details: DAList.using(object_type=Thing, there_are_any=True, complete_attribute='complete')
----
 include:
   - docassemble.AssemblyLine:ql_baseline.yml
   - docassemble.AssemblyLine:al_settings.yml
@@ -107,10 +104,10 @@ code: |
     nav.set_section(sub_documents['get_report'].get('section_link'))
     other_parties.gather()
     other_parties[0].address.address
-    transfer_details.name
+    transfer_details.importing_country
   if screen_data_is_transferred and document_choice['tell_landlord']:
     nav.set_section(sub_documents['tell_landlord'].get('section_link'))
-    transfer_details.name
+    transfer_details.importing_country
   if screen_data_is_transferred and document_choice['share_with_tenants']:
     nav.set_section(sub_documents['share_with_tenants'].get('section_link'))
     explain_sharing
@@ -458,6 +455,9 @@ subquestion: |
   ${ data_types.add_action() }
   % endif
 ---
+objects:
+  - transfer_details: DAList.using(there_are_any=True, complete_attribute='complete')
+---
 id: triage
 question: |
   Deciding on your next steps
@@ -488,8 +488,6 @@ fields:
       **What would you like to do?**    
       Remember, you can come back and fill this out later.
     show if: screen_data_is_transferred
-  - Continue to transfer details?: transfer_details.there_are_any
-    datatype: yesnoradio
   - no label: document_choice
     required: False
     datatype: checkboxes
@@ -683,9 +681,7 @@ code: |
 id: names of opposing parties
 question: |
   Data transfer details
-
 fields:
-  - Name: transfer_details.name
   - Exporting Country : transfer_details.exporting_country
     datatype: object
     choices: countries
