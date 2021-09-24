@@ -1,6 +1,7 @@
 ---
 include:
   - gl_baseline.yml
+  - gl_settings.yml
 ---
 metadata:
   title: |
