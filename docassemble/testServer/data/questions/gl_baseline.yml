@@ -4,7 +4,7 @@
 ---
 objects:
   - interview_metadata: DADict.using(object_type=DADict.using(auto_gather=False, gathered=True), auto_gather=False, gathered=True)
-  - users: DAList.using(there_are_any=True)
+  - users: GLPeopleList.using(there_are_any=True)
   - data_subjects: DAList.using(there_are_any=True)
   - subprocessors: DAleList.using(ask_number=True)
   - user: DAIndividual
@@ -19,4 +19,34 @@ question:  |
 fields:
   - code: |
       users[0].name_fields()
----    
+---
+id: who will be on this form
+generic object: GLPeopleList
+question: |
+  Will this form include any ${noun_plural(x.object_name())}?
+yesno: x.there_are_any
+--- 
+generic object: GLPeopleList
+id: any other people
+question: |
+  Do you have any other ${ noun_plural(x.object_name()) } to tell us about?
+yesno: x.there_is_another  
+---
+generic object: GLPeopleList
+question: |
+  % if hasattr(x, 'ask_number') and x.ask_number and x.target_number == 1:
+  Name of ${ noun_plural(x.object_name(),1) }
+  % else:
+  Name of your first ${ noun_plural(x.object_name(),1) }
+  % endif
+fields:
+  - code: |
+      x[0].name_fields()
+---
+generic object: ALPeopleList
+question: |
+  Name of the ${ ordinal(i) } ${ noun_plural(x.object_name(), 1) }
+fields:
+  - code: |
+      x[i].name_fields()
+---

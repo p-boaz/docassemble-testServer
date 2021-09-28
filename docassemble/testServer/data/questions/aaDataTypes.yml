@@ -5,7 +5,7 @@ include:
 ---
 metadata:
   title: |
-    data types
+    Record a Data Processing Activity
   tags:
     - Sales
 ---
@@ -22,10 +22,10 @@ comment: |
   questions
 variable name: sub_documents
 data: !!omap
-  - get_report:
+  - describe_transfer:
       section_link: review_checklist
       section_label: My checklist
-      name: Housing Code Checklist and Condition Report
+      name: Transfer Details
       count: 2
   - tell_landlord: 
       section_link: review_checklist
@@ -50,14 +50,14 @@ mandatory: True
 id: interview order
 code: |
   intro
-  starting_task
-  nav.set_section('review_data')        
+  nav.set_section('review_data')
+  product
   data_types.gather()
   if data_types.count_datacats() > 0:
     # This is a bit of a workaround
     for funnel in data_types:
       for datacat in data_types[funnel].entries.true_values():
-        data_types[funnel].details[datacat].processing_is_ongoing  
+        data_types[funnel].details[datacat].is_controller
     review_datacats
   else:
     warn_add_datacats
@@ -74,8 +74,8 @@ code: |
   else:
     explain_documents
     update_sections_with_selected_documents  
-  if screen_data_is_transferred and document_choice['get_report']:
-    nav.set_section(sub_documents['get_report'].get('section_link'))
+  if screen_data_is_transferred and document_choice['describe_transfer']:
+    nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
   if screen_data_is_transferred and document_choice['tell_landlord']:
     nav.set_section(sub_documents['tell_landlord'].get('section_link'))
@@ -138,55 +138,49 @@ code: |
   data_types[i].entries
   data_types[i].df
   for datacat in data_types[i].entries.true_values():
-    data_types[i].details[datacat].processing_is_ongoing
+    data_types[i].details[datacat].is_controller
   data_types[i].complete = True
 ---
 code: |  
-  data_types[i].details[j].processing_is_ongoing
+  data_types[i].details[j].is_controller
   data_types[i].details[j].complete = True
 ---
-#features:
-#  question back button: False
+features:
+  question back button: True   
 ---
-id: intro
-question: |
-  Add a data processing activity
-subquestion: |  
-  Be prepared to answer some questions about the products and tools you use. 
-continue button field: intro      
----
-template: what_problems_can_be_solved
+template: what_is_a_RoPA
 subject: |-
-  What can I do?
-content: |-
-  You can choose what to do. We can help you:
+  What is a Record of Processing Activities (RoPA)?
+content: |
+  A completed ROPA lists each processing activity involving personal data and provides detailed information about each of the items listed above. While this may sound like a simple task, even building a complete list of processing activities is often a complex and time-consuming endeavor, involving detailed documentation reviews and multiple rounds of interviews with business users and IT. Larger organizations may want to create individual ROPAs for each department or line of business, and then roll up into a master enterprise-level record.
 
-  * Let your landlord know about the problem.
-  * Call a housing inspector.
-  * Ask a judge to order your landlord to fix the problems.
-  * Sue your landlord in court.
+  Due to the high volume of their processing activities involving personal data, midsize-to-large companies will likely need a data discovery tool to begin pulling together and organizing the various elements of the ROPA. Smaller organizations may want to start with a spreadsheet containing one row per processing activity (e.g. “Candidate offer of employment”) and one column for each of the fields listed above.
   
   ${ action_button_html(url_action('learn_more'), label="Read more first") }  
 ---
-id: intro affirmation
+id: intro
 question: |
   You can do this!
 subquestion: |  
   #### How this works
   
-  This website will help you solve problems with bad conditions in your home.
-  <div class="custom-counter">
-  <ol class="custom-counter">
-  <li>Read about your landlord's responsibilities.</li>
-  <li>Track the problems you have in each room of your home.</li>
-  <li>Upload photos or add other information about each problem.</li>
-  <li>Choose a next step to get your landlord to fix the problems.</li>
-  </ol>
-  </div>
+  You answer what you know. We do the rest. 
   
-  ${ collapse_template(what_problems_can_be_solved) }
+  A Record of Processing Activities (RoPA) is a record of an organization’s processing activities involving personal data. Some businesses may think of “processing” as being limited to active events, but a RoPA must also cover data that sits on a server or a shelf.
+
+  A RoPA includes the following information for each processing activity:
+
+  - Names and contact details of the data controller, data processor, data controller's representative, joint controller, and data protection officer (DPO), if applicable
+  - Purpose (i.e., lawful basis) of processing personal data
+  - Categories of data subjects and categories of personal data being processed
+  - Categories of recipients to whom the personal data has been or will be disclosed
+  - Third parties in other countries or international organizations who receive the personal data
+  - Retention schedule for each category of personal data
+  - General description of technical and organizational security measures related to each processing activity
   
-continue button field: starting_task  
+  ${ collapse_template(what_is_a_RoPA) }
+  
+continue button field: intro
 continue button label: Get started
 css: |
   <style>
@@ -212,27 +206,15 @@ css: |
     border-radius: 50%;
     }
   </style>  
-
----
-id: track datacats intro
-question: |
-  Track your housing problems
-subquestion: |
-  This website will help you track.
-continue button field: track_datacats_intro  
----
-id: learn more
-question: |
-  Solve your housing problems
-subquestion: | 
-  ${ collapse_template(how_to_defend_eviction_template) }
-  ${ collapse_template(how_to_document_template) }
-  ${ collapse_template(how_to_notify_landlord_template) }
-  ${ collapse_template(get_inspection_template) }
-#  ${ collapse_template(get_injunction_template) }
-#  ${ collapse_template(sue_your_landlord_template) } 
-continue button field: learn_more
 ---  
+id: product
+question: |
+  Add a product you use at work
+subquestion: |  
+  Next, be prepared to answer some questions about how you use it.
+fields:
+  - Product: product
+---
 id: funnel chooser
 question: |
   The data you process
@@ -244,7 +226,7 @@ subquestion: |
   * [:pencil-alt: ${ str(button).capitalize() }](${ url_action('data_types["' + button + '"].entries') } )
   % endfor
   % else:
-  Data processing is governed by the [General Data Privacy Regulation](https://www.mass.gov/doc/105-cmr-410-state-sanitary-code-chapter-ii-minimum-standards-of-fitness-for-human-habitation/download). 
+  Data processing in the EU is governed by the [General Data Privacy Regulation](https://gdpr.eu/what-is-gdpr/), and many laws around the world have similar rules.
   Click the buttons below to learn what compliance means in different categories.
   % endif
 field: data_types.new_item_name
@@ -302,15 +284,15 @@ fields:
         data_types[i].entries.true_values() if defined('data_types[i].entries') else []
 help: 
   label: |
-    Sanitary Code
+    GDPR Reference
   content: |
-    The problems listed above are cited in the following sections of the
-    [sanitary code](https://www.mass.gov/doc/105-cmr-410-state-sanitary-code-chapter-ii-minimum-standards-of-fitness-for-human-habitation/download):
+    The activities listed above are cited in the following sections of the
+    [GDPR](https://gdpr.eu/what-is-gdpr/):
         
-    Problem | Sanitary Code
-    --------|------------------
+    Activity | GDPR
+    ---------|-----------------
     % for row in dataloader.get_rows(allowed_types=["Yes"], filter_column="Special").iterrows():
-    ${ row[1]['Interview description'] } | ${ row[1]['Sanitary Code Section'] }
+    ${ row[1]['Interview description'] } | ${ row[1]['GDPR Citation'] }
     % endfor
 ---
 if:
@@ -332,24 +314,24 @@ fields:
         data_types[i].entries.true_values() if defined('data_types[i].entries') else []
 help: 
   label: |
-    Sanitary Code
+    GDPR Reference
   content: |
-    The problems listed above are cited in the following sections of the
-    [sanitary code](https://www.mass.gov/doc/105-cmr-410-state-sanitary-code-chapter-ii-minimum-standards-of-fitness-for-human-habitation/download):
+    The processing activities listed above are cited in the following sections of the
+    [GDPR](https://gdpr.eu/what-is-gdpr/):
         
-    Problem | Sanitary Code
-    --------|------------------
+    Activity | GDPR
+    ---------|-----------------
     % for row in dataloader.get_rows(allowed_types=[i], filter_column="Category").iterrows():
-    ${ row[1]['Interview description'] } | ${ row[1]['Sanitary Code Section'] }
+    ${ row[1]['Interview description'] } | ${ row[1]['GDPR Citation'] }
     % endfor        
 ---
 id: there is another datacat
 question: |
-  Do you want to list data in another category?
+  Do you want to record another category?
 subquestion: |
-  So far you have reviewed problems in ${ comma_and_list([f'"{str(key).capitalize()}"' for key in data_types.keys()]) }.
+  So far you have reviewed `${ comma_and_list([f'"{str(key).capitalize()}"' for key in data_types.keys()]) }` data.
   
-  Tap "yes" if you want to look at problems in another category.
+  Tap "yes" if you want to look at processing activities in another category.
 yesno: data_types.there_is_another
 ---
 code: |
@@ -364,22 +346,20 @@ code: |
 continue button field: review_datacats
 id: review datacats
 question: |
-  Here is what you told us so far
+  Here is what you've added so far
 subquestion: |  
   ${ review_datacats_template }
 ---
 template: review_datacats_template
 content: |
   % if len(data_types.elements): 
-  Click a category below to revisit your choices.
-  Click a category to edit the time the problem started, upload evidence,
-  and make other changes.
+  Click a category below to revisit your answers.
   
   % for category in data_types.elements:
   #### [:pencil-alt: ${ category.title() if not category is None else 'None' }](${ url_action('data_types["' + str(category) + '"].entries') })
   
   % for index, row in data_types[category].df.iterrows():
-  * [:pencil-alt: ${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].processing_is_ongoing')})
+  * [:pencil-alt: ${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].is_controller')})
   % endfor
   % endfor
   % endif
@@ -423,18 +403,11 @@ fields:
     show if:
       variable: screen_data_is_transferred
       is: False
-  - Are other tenants in your building also having housing problems?: screen_other_tenants_with_problem
+  - Do you want to fill out details of the transfer now?: screen_knows_transfer_details 
     datatype: yesnoradio
     show if: screen_data_is_transferred
   - note: |
-      you and your neighbors are stronger together**. You have the right to **organize**
-      with other tenants to fight the bad housing conditions.
-    show if: screen_other_tenants_with_problem
-  - Do you know the details of the data transfer?: screen_knows_transfer_details 
-    datatype: yesnoradio
-    show if: screen_data_is_transferred
-  - note: |
-      **You may want to get an IT person involved** Even if you know generally what the transfer is about, you may not have all the details on hand right now. 
+      No worries. If someone in your organization has more knowledge of the transfer, you can send this interview to them for input.
     show if:
       variable: screen_knows_transfer_details
       is: False
@@ -448,10 +421,10 @@ fields:
     js show if: |
       val("screen_data_is_transferred") && val("screen_knows_transfer_details")
     choices:
-      - Add details about the data transfer: get_report
+      - Add details about the data transfer: describe_transfer
       - Save and close: tell_landlord
     default:
-      - get_report
+      - describe_transfer
   - no label: document_choice
     required: False
     datatype: checkboxes
@@ -461,16 +434,11 @@ fields:
       - Save and close: tell_landlord
     none of the above: False
     default:
-      - get_report
+      - describe_transfer
 
 validation code: |
   if screen_data_is_transferred and len(document_choice.true_values()) < 1:
     validation_error("Select at least one.", field="document_choice")
-terms:
-  retaliated: |
-    Retaliation could include evicting you or raising your rent because you
-    complained about housing problems. Retaliation is illegal and you have
-    protections in a court.
 ---
 id: interview_order_request_housing_inspection
 code: |
@@ -498,16 +466,6 @@ event: download_datacats_checklist_docs
 question: |
   Your documents are ready
 subquestion: |
-  
-  1. Download and print your documents below. You can also send yourself
-  or someone else a copy of the documents in an email.
-  1. Read the instructions to learn how to file and deliver your
-  documents.
-  % if defined('trial_court'):
-  1. Deliver the court forms to the ${ trial_court } at ${ trial_court.address.on_one_line() }. You can call for instructions at ${ tel(trial_court.phone_number) }.
-  % endif
-  1. You can come back to this website later to take additional steps.
-
   % if screen_data_is_transferred:
   ### Some important information about your cross-border data transfers 
   
@@ -556,9 +514,13 @@ buttons:
 ---
 id: details for this entry
 question: |
-  More information about "${ data_types[i].df.loc[j]['Interview description'].lower().lstrip() }"
+  More information about the `${ data_types[i].df.loc[j]['Interview description'].lstrip() }` data you process
 fields:
-  - This processing activity is ongoing: data_types[i].details[j].processing_is_ongoing
+  - Name: data_types[i].details[j].name
+    default: |
+      ${ data_types[i].df.loc[j]['Interview description'].lstrip() }
+    hide if: intro
+  - Are you the processor or controller?: data_types[i].details[j].is_controller
     datatype: yesno
   - Whose data do you process?: data_types[i].details[j].data_subjects
     choices:
@@ -610,14 +572,14 @@ fields:
     image upload type: jpeg        
     accept: |
       "image/*,image/png,image/jpeg,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,.pdf"   
-  - Any additional note you want to add: data_types[i].details[j].description
+  - Any additional notes you want to add: data_types[i].details[j].description
     datatype: area
     required: False
 ---
 code: |
   countries = objects_from_file("countries_list.yml")
 ---    
-id: names of opposing parties
+id: basic data transfer details
 question: |
   Data transfer details
 fields:
@@ -756,7 +718,7 @@ subquestion: |
 ---
 event: review_checklist
 question: |
-  Edit answers on your housing code checklist
+  Edit answers you've provided so far
 review:
   - Edit: users[0].name.first
     button: |
@@ -778,19 +740,10 @@ review:
       Importing Country Details: ${ other_parties[0].address.address }
 ---
 code: |
-  checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['get_report']
+  checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
 ---
 code: |
-  datacats_report_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['get_report']
----
-code: |
-  request_housing_inspection_attachment.enabled = screen_data_is_transferred and document_choice['get_inspection']
----
-code: |
-  sanitary_code_template_attachment.enabled = screen_data_is_transferred and screen_contacted_housing_inspector and document_choice.get('enforce_inspection') and inspection
----
-code: |
-  Housing_Temporary_Restraining_Order0002_attachment.enabled = screen_data_is_transferred and document_choice['get_injunction']
+  datacats_report_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
 ---
 objects:
   - checklist_attachment: ALDocument.using(title="Data Map Checklist", filename="Data_Map_Checklist")
@@ -799,3 +752,8 @@ attachment:
   variable name: checklist_attachment[i]
   docx template file: Data_Map_Checklist.docx
 ---
+terms:
+  retaliated: |
+    Retaliation could include evicting you or raising your rent because you
+    complained about housing problems. Retaliation is illegal and you have
+    protections in a court.
