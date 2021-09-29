@@ -30,10 +30,10 @@ data: !!omap
       section_label: My checklist
       name: Transfer Details
       count: 2
-  - tell_landlord: 
+  - determine_pre_DPIA: 
       section_link: review_checklist
-      section_label: Tell my landlord
-      name: Letter to landlord to report bad conditions
+      section_label: Determine_pre_DPIA
+      name: Do a pre-DPIA assessment
       count: 2
 ---
 sections:
@@ -70,7 +70,10 @@ code: |
   nav.set_section('provide_details')  
   if not screen_data_is_transferred:
     update_sections_with_selected_documents
-    nav.set_section(sub_documents['tell_landlord'].get('section_link'))
+    nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
+    for funnel in data_types:
+      for datacat in data_types[funnel].entries.true_values():
+        data_types[funnel].details[datacat].new_tech
     users[0].address.address
     users[0].address.geocode()
   else:
@@ -79,9 +82,11 @@ code: |
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
-  if screen_data_is_transferred and document_choice['tell_landlord']:
-    nav.set_section(sub_documents['tell_landlord'].get('section_link'))
-    transfer_details.importing_country
+  if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
+    nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
+    for funnel in data_types:
+      for datacat in data_types[funnel].entries.true_values():
+        data_types[funnel].details[datacat].new_tech
   nav.set_section('download_datacats_checklist_docs')
   download_datacats_checklist_docs
 ---
@@ -97,7 +102,7 @@ code: |
           sub_documents[document].get('section_link'):  sub_documents[document].get('section_label')
         })
   else:
-    new_sections.append({sub_documents['tell_landlord'].get('section_link'): sub_documents['tell_landlord'].get('section_label')})
+    new_sections.append({sub_documents['determine_pre_DPIA'].get('section_link'): sub_documents['determine_pre_DPIA'].get('section_label')})
   old_nav = nav.get_sections()
   
   position = 3 # Current, hardcoded position in the list
@@ -414,7 +419,7 @@ fields:
       val("screen_data_is_transferred") && val("screen_knows_transfer_details")
     choices:
       - Add details about the data transfer: describe_transfer
-      - Save and close: tell_landlord
+      - Do a pre-DPIA Assessment: determine_pre_DPIA
     default:
       - describe_transfer
   - no label: document_choice
@@ -423,7 +428,7 @@ fields:
     js show if: |
       val("screen_data_is_transferred") && !val("screen_knows_transfer_details")
     choices:
-      - Save and close: tell_landlord
+      - Do a pre-DPIA assessment: determine_pre_DPIA
     none of the above: False
     default:
       - describe_transfer
@@ -456,8 +461,20 @@ subquestion: |
 id: download_datacats_checklist_docs
 event: download_datacats_checklist_docs
 question: |
-  Your documents are ready
-subquestion: |
+  Done! Here's what we can tell you
+subquestion: | 
+  % for category in data_types.elements:
+  % for index, row in data_types[category].df.iterrows():
+    % if data_types[category].details[datacat].is_controller:
+  You were right that Topeka is the capital of Kansas.
+    % elif data_types[category].details[datacat].is_controller is None:
+  You should know your state capitals!
+    % else:
+  Actually, Topeka is the capital of Kansas.
+    % endif
+  % endfor
+  % endfor
+
   % if screen_data_is_transferred:
   ### Some important information about your cross-border data transfers 
   
@@ -506,14 +523,14 @@ buttons:
 ---
 id: details for this entry
 question: |
-  More information about the `${ data_types[i].df.loc[j]['Interview description'].lstrip() }` data you process
+  More information about the `${ data_types[i].df.loc[j]['Interview description'].lstrip() } data` you process
 fields:
   - Name: data_types[i].details[j].name
     default: |
       ${ data_types[i].df.loc[j]['Interview description'].lstrip() }
     hide if: intro
-  - Are you the processor or controller?: data_types[i].details[j].is_controller
-    datatype: yesno
+  - Are you the controller?: data_types[i].details[j].is_controller
+    datatype: yesnomaybe
   - Whose data do you process?: data_types[i].details[j].data_subjects
     choices:
       - Employees
@@ -564,6 +581,15 @@ fields:
     image upload type: jpeg        
     accept: |
       "image/*,image/png,image/jpeg,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,.pdf"   
+  - Legal Basis: data_types[i].details[j].legal_basis
+    input type: radio
+    choices:
+      - Consent: 'consent'
+      - Contract: 'contract'
+      - Legal obligation: 'legal obligation'
+      - Vital interests: 'vital interests'
+      - Public task: 'public task'
+      - Legitimate interests: 'legitimate interests'
   - Any additional notes you want to add: data_types[i].details[j].description
     datatype: area
     required: False
@@ -733,6 +759,140 @@ review:
     button: |
       Importing Country Details: ${ other_parties[0].address.address }
 ---
+id: pre_DPIA
+question: |
+  When do you need a DPIA?
+subquestion: |
+  A Data Protection Impact Assessment (DPIA) is a process to help you identify
+  and minimize the data protection risks of a project.
+  
+  You must do a DPIA for processing that is **likely to result in a high risk**
+  to individuals.
+  
+  To assess the level of risk, a DPIA must consider both the likelihood and the
+  severity of any impact on individuals. A DPIA does not have to eradicate the
+  risks altogether, but should help to minimise risks and assess whether or not
+  remaining risks are justified. DPIAs are a legal requirement for processing
+  that is likely to be high risk. But an effective DPIA can also bring broader
+  compliance, financial and reputational benefits, helping you demonstrate
+  accountability and building trust and engagement with individuals.
+  
+  As mentioned, a DPIA must be done before beginning any type of processing which
+  is “likely to result in a high risk”. This means that although the actual level
+  of risk has not been assessed, screening for factors that point to the
+  potential for a widespread or serious impact on individuals must take place.
+  
+  Answer the following screening questions to determine your need for a DPIA. 
+field: splash_screen
+---
+question: |
+  DPIA Risk Assessment
+fields:    
+  - Will the processing involve a new technology/system? : data_types[funnel].details[datacat].new_tech
+    datatype: yesnoradio
+    
+  - Please provide details : data_types[funnel].details[datacat].new_tech_details
+    datatype: area
+    show if:
+      variable: new_tech
+      is: True
+      
+  - Will the processing involve using an old system for new processing purposes? : data_types[funnel].details[datacat].old_system
+    datatype: yesnoradio
+    
+  - Please provide details : data_types[funnel].details[datacat].old_system_details
+    datatype: area
+    show if:
+      variable: old_system
+      is: True
+      
+  - Will you collect any of the following data? : data_types[funnel].details[datacat].data_collected
+    datatype: checkboxes
+    choices:
+      - Name: 'name'
+      - Address: 'address'
+      - Email: 'email'
+      - Telephone number: 'telephone number'
+      - Date of birth or age: 'date of birth or age'
+      - Gender: 'gender'
+      - Nationality: 'nationality'
+    
+  - Will you be collecting data related to vulnerable groups or individuals/from vulnerable groups or individuals? : data_types[funnel].details[datacat].vulnerable_groups
+    datatype: yesnoradio
+    
+  - Will you be collecting location data? : data_types[funnel].details[datacat].location_data
+    datatype: yesnoradio
+      
+  - Is there any other information that you will process (e.g., frequency of processing, volume of subjects)? : data_types[funnel].details[datacat].other_info
+    datatype: yesnoradio
+
+  - Will the system/processing involve monitoring of data subjects? : data_types[funnel].details[datacat].monitoring_subjects
+    datatype: yesnoradio
+  
+  - Please provide details: data_types[funnel].details[datacat].monitoring_subjects_details
+    show if: monitoring_subjects
+      
+  - Will any profiling be undertaken on the personal data processed? : data_types[funnel].details[datacat].profiling_data
+    datatype: yesnoradio
+      
+  - Will any automated decision-making be undertaken in relation to the personal data? : data_types[funnel].details[datacat].auto_decisionmaking
+    datatype: yesnoradio
+    
+  - Will the system involve any aggregation of data? : data_types[funnel].details[datacat].data_aggregation
+    datatype: yesnoradio
+      
+  - Indicate the number of data subjects that the personal data processing affects : data_types[funnel].details[datacat].number_of_data_subjects
+    datatype: radio
+    choices:
+      - Less than 10
+      - 50 to 100
+      - 100 to 500
+      - 500 to 1000
+      - More than 1000
+      - More than 5000
+      
+continue button field: survey_questions
+---
+question: |
+  In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. 
+subquestion: |
+  % if new_tech:
+  You like apples.
+  % endif
+  % if new_tech:
+  You like apples.
+  % endif
+  % if crim_data:
+  You like pears.
+  % endif
+continue button field: final_screen
+---
+mandatory: True
+code: |
+  splash_screen
+  survey_questions
+  answers_reviewed
+  final_screen
+---
+auto terms:
+  special categories: |
+    This includes data that can be used to infer something about an individual, either on its own, or in combination with other data.
+  systematic monitoring: |
+    'systematic' means that the processing:
+     
+    * Occurs according to a system;
+    * Is pre-arranged, organised or methodical;
+    * Takes place as part of a general plan for data collection; or
+    * Is carried out as part of a strategy.
+  new technology/system: |
+    * Innovative technology that involves new developments in technological knowledge in the world at large, rather than technology that is new to you. 
+    * Using such technology can involve novel forms of data collection and use, possibly with a high risk to individuals’ rights and freedoms. The personal and social consequences of deploying a new technology may be unknown.
+    * In such cases, a DPIA can help the controller understand a control such risks.
+  invisible processing: |
+    * Controller processes personal data that it has not obtained directly from the data subject; and
+    * Controller asserts that giving notice to data subjects would prove impossible or involve disproportionate effort. 
+    * A DPIA is required where this processing is combined with any of the criteria from the European guidelines.
+---
 code: |
   checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
 ---
@@ -746,8 +906,10 @@ attachment:
   variable name: checklist_attachment[i]
   docx template file: Data_Map_Checklist.docx
 ---
-terms:
-  retaliated: |
-    Retaliation could include evicting you or raising your rent because you
-    complained about housing problems. Retaliation is illegal and you have
-    protections in a court.
+auto terms:
+  lawful basis: |
+    #What is lawfulness?
+    
+    For processing of personal data to be lawful, you need to identify specific grounds for the processing. 
+    This is called a **‘lawful basis’** for processing, and there are six options which depend on your purpose and your relationship with the individual.
+    There are also specific additional conditions for processing some especially sensitive types of data.

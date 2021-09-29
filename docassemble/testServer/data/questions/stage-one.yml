@@ -1,3 +1,9 @@
+metadata:
+  title: Stage one
+  documentation: "https://docassemble.org/docs/recipes.html#passing"
+  example start: 1
+  example end: 7
+---
 objects:
   - user: Individual
 ---
@@ -13,7 +19,7 @@ fields:
   - Fruit: favorite_fruit
 ---
 code: |
-  part_two = user_info().package + ':data/questions/stage-two.yml'
+  part_two = user_info().package + ':data/questions/examples/stage-two.yml'
 ---
 code: |
   user.name.first
