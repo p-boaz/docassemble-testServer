@@ -13,7 +13,6 @@ __all__ = ['GLAddress',
            'PeopleList',           
            'VCIndividual',
            'AddressList',
-           'Applicant',
            'github_modified_date',
            'will_send_to_real_court',
            'safe_subdivision_type']

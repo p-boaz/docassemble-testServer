@@ -1,7 +1,6 @@
 ---
 include:
-  - gl_baseline.yml
-  - gl_settings.yml
+  - gl_package.yml
 ---
 metadata:
   title: |
@@ -16,6 +15,10 @@ code: |
     if defined('data_types') and None in data_types:
       del data_types[None]
     mark_task_as_performed('erase_none')
+---
+objects:
+  - users: GLPeopleList.using(ask_number=True, target_number=1)
+  - other_parties: GLPeopleList.using(there_are_any=True)
 ---
 comment: |
   Section labels for child interviews that have follow-up
@@ -50,6 +53,7 @@ mandatory: True
 id: interview order
 code: |
   intro
+  users[0].name.first
   nav.set_section('review_data')
   product
   data_types.gather()
@@ -69,8 +73,6 @@ code: |
     nav.set_section(sub_documents['tell_landlord'].get('section_link'))
     users[0].address.address
     users[0].address.geocode()
-    nav.set_section(sub_documents['organize_tenants'].get('section_link'))
-    organizing_interstitial
   else:
     explain_documents
     update_sections_with_selected_documents  
@@ -109,16 +111,6 @@ code: |
   nav.set_sections(old_nav)
 
   update_sections_with_selected_documents = True
----
-code: |
-  store_variables_snapshot(
-    {'landlord': other_parties[0].name.full(), 
-     'address_street': users[0].address.address,
-     'address_city': users[0].address.city,
-     'address_zip': users[0].address.zip,
-     'data_types': data_types}
-     )
-  store_for_tenant_sharing = True
 ---
 features:
   javascript:
@@ -160,7 +152,7 @@ content: |
 ---
 id: intro
 question: |
-  You can do this!
+  ${ users.familiar() }, you can do this!
 subquestion: |  
   #### How this works
   
@@ -677,13 +669,13 @@ fields:
       **Okay**. You need your landlord's address for many of the forms on
       this website. You can still finish this form but you will need to add
       your landlord's address before you deliver the form.
-    show if: ll_address_unknown       
+    show if: ll_address_unknown     
   - Street address: other_parties[0].address.address
     address autocomplete: True
-    hide if: ll_address_unknown
+    hide if: ll_address_unknown 
   - Unit: other_parties[0].address.unit
     required: False
-    hide if: ll_address_unknown    
+    hide if: ll_address_unknown  
   - City: other_parties[0].address.city
     hide if: ll_address_unknown  
   - State: other_parties[0].address.state
@@ -691,13 +683,15 @@ fields:
     code: |
       states_list()
     default: MA      
-  - Zip: other_parties[0].address.zip
+  - Country: other_parties[0].address.country
+    code: |
+      countries_list()
     required: False
     hide if: ll_address_unknown
 validation code: |
   if ll_address_unknown:
     other_parties[0].address.address = "[ Landlord's address ]"
-    other_parties[0].address.city = "[ Landlord's city ]"
+    other_parties[0].address.state = "[ Landlord's state ]"
 ---
 id: explain_documents
 continue button field: explain_documents

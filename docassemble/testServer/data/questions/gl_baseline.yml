@@ -7,7 +7,7 @@ objects:
   - users: GLPeopleList.using(there_are_any=True)
   - data_subjects: DAList.using(there_are_any=True)
   - subprocessors: DAleList.using(ask_number=True)
-  - user: DAIndividual
+  - user: GLIndividual
   - third_parties: DAList
 ---
 id: your name
@@ -43,10 +43,108 @@ fields:
   - code: |
       x[0].name_fields()
 ---
-generic object: ALPeopleList
+generic object: GLPeopleList
 question: |
   Name of the ${ ordinal(i) } ${ noun_plural(x.object_name(), 1) }
 fields:
   - code: |
       x[i].name_fields()
+--- 
+#######################################################
+# These small templates are used as labels for prompts.
+# This helps us keep questions consistent and translated just once
 ---
+generic object: GLIndividual
+template: x.first_name_label
+content: |
+  First name
+---
+generic object: GLIndividual
+template: x.middle_name_label
+content: |
+  Middle name
+---
+generic object: GLIndividual
+template: x.last_name_label
+content: |
+  Last name
+---
+generic object: GLIndividual
+template: x.suffix_label
+content: |
+  Suffix
+---
+generic object: GLIndividual
+template: x.person_type_label
+content: |
+  Is this a person, or a business?
+---
+generic object: GLIndividual
+template: x.business_name_label
+content: |
+  Name of business or organization
+---
+generic object: GLIndividual
+template: x.individual_choice_label
+content: |
+  Person
+---
+generic object: GLIndividual
+template: x.business_choice_label
+content: |
+  Business or organization
+---
+# TODO: consider removing default state
+id: your address
+sets:
+  - users[0].address.address
+  - users[0].address.unit
+  - users[0].address.city
+  - users[0].address.zip
+  - users[0].address.state
+  - users[0].address.country
+question: |
+  What is your office address?
+fields:
+  - code: |
+      users[0].address_fields()
+---
+generic object: GLAddress
+template: x.address_label
+content: |
+  Street
+---
+generic object: GLAddress
+template: x.unit_label
+content: |
+  Unit
+---
+generic object: GLAddress
+template: x.city_label
+content: |
+  City
+---
+generic object: GLAddress
+template: x.zip_label
+content: |
+  Zip or postal code
+---
+generic object: GLAddress
+template: x.postal_code_label
+content: |
+  Postal code
+---
+generic object: GLAddress
+template: x.state_label
+content: |
+  State
+---
+generic object: GLAddress
+template: x.country_label
+content: |
+  Country
+---
+
+generic object: GLAddendumField
+code: |
+  x.label = x.field_name.capitalize().replace("_", " ")
