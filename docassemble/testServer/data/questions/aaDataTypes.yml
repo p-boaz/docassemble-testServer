@@ -53,15 +53,15 @@ mandatory: True
 id: interview order
 code: |
   intro
-  users[0].name.first
   nav.set_section('review_data')
+  users[0].name.first
   product
   data_types.gather()
   if data_types.count_datacats() > 0:
     # This is a bit of a workaround
     for funnel in data_types:
       for datacat in data_types[funnel].entries.true_values():
-        data_types[funnel].details[datacat].is_controller
+        data_types[funnel].details[datacat].data_subjects
     review_datacats
   else:
     warn_add_datacats
@@ -71,9 +71,6 @@ code: |
   if not screen_data_is_transferred:
     update_sections_with_selected_documents
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
-    for funnel in data_types:
-      for datacat in data_types[funnel].entries.true_values():
-        data_types[funnel].details[datacat].new_tech
     users[0].address.address
     users[0].address.geocode()
   else:
@@ -84,9 +81,6 @@ code: |
     transfer_details.importing_country
   if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
-    for funnel in data_types:
-      for datacat in data_types[funnel].entries.true_values():
-        data_types[funnel].details[datacat].new_tech
   nav.set_section('download_datacats_checklist_docs')
   download_datacats_checklist_docs
 ---
@@ -135,11 +129,11 @@ code: |
   data_types[i].entries
   data_types[i].df
   for datacat in data_types[i].entries.true_values():
-    data_types[i].details[datacat].is_controller
+    data_types[i].details[datacat].data_subjects
   data_types[i].complete = True
 ---
 code: |  
-  data_types[i].details[j].is_controller
+  data_types[i].details[j].data_subjects
   data_types[i].details[j].complete = True
 ---
 features:
@@ -356,7 +350,7 @@ content: |
   #### [:pencil-alt: ${ category.title() if not category is None else 'None' }](${ url_action('data_types["' + str(category) + '"].entries') })
   
   % for index, row in data_types[category].df.iterrows():
-  * [:pencil-alt: ${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].is_controller')})
+  * [:pencil-alt: ${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].data_subjects')})
   % endfor
   % endfor
   % endif
@@ -463,17 +457,24 @@ event: download_datacats_checklist_docs
 question: |
   Done! Here's what we can tell you
 subquestion: | 
+  % if len(data_types.elements): 
+  
   % for category in data_types.elements:
+  
   % for index, row in data_types[category].df.iterrows():
-    % if data_types[category].details[datacat].is_controller:
-  You were right that Topeka is the capital of Kansas.
-    % elif data_types[category].details[datacat].is_controller is None:
-  You should know your state capitals!
+
+    % if data_types[category].details[index].is_controller:
+  As the controller of `this data` you have additional obligations. 
+    % elif data_types[category].details[index].is_controller is None:
+  Find out how determine whether you're a controller or processor
     % else:
-  Actually, Topeka is the capital of Kansas.
+  Since you're not a controller, you have less to worry about. 
     % endif
   % endfor
   % endfor
+  % endif
+  
+    In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. `(TODO)`
 
   % if screen_data_is_transferred:
   ### Some important information about your cross-border data transfers 
@@ -783,30 +784,30 @@ subquestion: |
   potential for a widespread or serious impact on individuals must take place.
   
   Answer the following screening questions to determine your need for a DPIA. 
-field: splash_screen
+field: DPIA_splash_screen
 ---
 question: |
   DPIA Risk Assessment
 fields:    
-  - Will the processing involve a new technology/system? : data_types[funnel].details[datacat].new_tech
+  - Will the processing involve a new technology/system? : data_types[i].details[j].new_tech
     datatype: yesnoradio
     
-  - Please provide details : data_types[funnel].details[datacat].new_tech_details
+  - Please provide details : data_types[i].details[j].new_tech_details
     datatype: area
     show if:
-      variable: new_tech
+      variable: data_types[i].details[j].new_tech
       is: True
       
-  - Will the processing involve using an old system for new processing purposes? : data_types[funnel].details[datacat].old_system
+  - Will the processing involve using an old system for new processing purposes? : data_types[i].details[j].old_system
     datatype: yesnoradio
     
-  - Please provide details : data_types[funnel].details[datacat].old_system_details
+  - Please provide details : data_types[i].details[j].old_system_details
     datatype: area
     show if:
-      variable: old_system
+      variable: data_types[i].details[j].old_system
       is: True
       
-  - Will you collect any of the following data? : data_types[funnel].details[datacat].data_collected
+  - Will you collect any of the following data? : data_types[i].details[j].data_collected
     datatype: checkboxes
     choices:
       - Name: 'name'
@@ -817,31 +818,33 @@ fields:
       - Gender: 'gender'
       - Nationality: 'nationality'
     
-  - Will you be collecting data related to vulnerable groups or individuals/from vulnerable groups or individuals? : data_types[funnel].details[datacat].vulnerable_groups
+  - Will you be collecting data related to vulnerable groups or individuals/from vulnerable groups or individuals? : data_types[i].details[j].vulnerable_groups
     datatype: yesnoradio
     
-  - Will you be collecting location data? : data_types[funnel].details[datacat].location_data
+  - Will you be collecting location data? : data_types[i].details[j].location_data
     datatype: yesnoradio
       
-  - Is there any other information that you will process (e.g., frequency of processing, volume of subjects)? : data_types[funnel].details[datacat].other_info
+  - Is there any other information that you will process (e.g., frequency of processing, volume of subjects)? : data_types[i].details[j].other_info
     datatype: yesnoradio
 
-  - Will the system/processing involve monitoring of data subjects? : data_types[funnel].details[datacat].monitoring_subjects
+  - Will the system/processing involve monitoring of data subjects? : data_types[i].details[j].monitoring_subjects
     datatype: yesnoradio
   
-  - Please provide details: data_types[funnel].details[datacat].monitoring_subjects_details
-    show if: monitoring_subjects
-      
-  - Will any profiling be undertaken on the personal data processed? : data_types[funnel].details[datacat].profiling_data
+  - Please provide details: data_types[i].details[j].monitoring_subjects_details
+    show if: 
+      variable: data_types[i].details[j].monitoring_subjects
+      is: True
+    
+  - Will any profiling be undertaken on the personal data processed? : data_types[i].details[j].profiling_data
     datatype: yesnoradio
       
-  - Will any automated decision-making be undertaken in relation to the personal data? : data_types[funnel].details[datacat].auto_decisionmaking
+  - Will any automated decision-making be undertaken in relation to the personal data? : data_types[i].details[j].auto_decisionmaking
     datatype: yesnoradio
     
-  - Will the system involve any aggregation of data? : data_types[funnel].details[datacat].data_aggregation
+  - Will the system involve any aggregation of data? : data_types[i].details[j].data_aggregation
     datatype: yesnoradio
       
-  - Indicate the number of data subjects that the personal data processing affects : data_types[funnel].details[datacat].number_of_data_subjects
+  - Indicate the number of data subjects that the personal data processing affects : data_types[i].details[j].number_of_data_subjects
     datatype: radio
     choices:
       - Less than 10
@@ -850,29 +853,6 @@ fields:
       - 500 to 1000
       - More than 1000
       - More than 5000
-      
-continue button field: survey_questions
----
-question: |
-  In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. 
-subquestion: |
-  % if new_tech:
-  You like apples.
-  % endif
-  % if new_tech:
-  You like apples.
-  % endif
-  % if crim_data:
-  You like pears.
-  % endif
-continue button field: final_screen
----
-mandatory: True
-code: |
-  splash_screen
-  survey_questions
-  answers_reviewed
-  final_screen
 ---
 auto terms:
   special categories: |
