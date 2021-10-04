@@ -32,14 +32,13 @@ data: !!omap
       count: 2
   - determine_pre_DPIA: 
       section_link: review_checklist
-      section_label: Determine_pre_DPIA
-      name: Do a pre-DPIA assessment
+      section_label: Complete pre-DPIA assessment
+      name: Complete pre-DPIA assessment
       count: 2
 ---
 sections:
-  - section_getting_started: Getting started
   - review_datacats: List data categories
-  - document_choice: Choose a solution
+  - document_choice: Data transfer details
   - provide_details: Answer questions
   - preview_and_sign: Preview and sign
   - download_conditions_checklist_docs: Download
@@ -440,23 +439,14 @@ code: |
   other_parties[0].address.address
   interview_order_request_housing_inspection = True
 ---
-id: preview_datacats_checklist_docs
-continue button field: preview_datacats_checklist_docs
-question: |
-  Review your documents before you sign
-subquestion: |
-  Tap to open the document below in a new window.
-  
-  If you need to make any changes, tap the navigation labels
-  to revisit the section you want to change.
-  
-  When you are ready, click "next" to add your signature.
----
 id: download_datacats_checklist_docs
 event: download_datacats_checklist_docs
 question: |
   Done! Here's what we can tell you
-subquestion: | 
+subquestion: |
+
+  ${ review_datacats_template }
+  
   % if len(data_types.elements): 
   
   % for category in data_types.elements:
@@ -464,14 +454,19 @@ subquestion: |
   % for index, row in data_types[category].df.iterrows():
 
     % if data_types[category].details[index].is_controller:
-  As the controller of `this data` you have additional obligations. 
+  As the controller of **${ data_types[category].details[index].name }** data you have additional obligations. 
+  
     % elif data_types[category].details[index].is_controller is None:
-  Find out how determine whether you're a controller or processor
+  Find out how determine whether you're a controller or processor of **${ data_types[category].details[index].name }** data.
+  
     % else:
-  Since you're not a controller, you have less to worry about. 
+  Since you're not a controller of **${ data_types[category].details[index].name }** data, you have less to worry about. 
     % endif
+  
   % endfor
+  
   % endfor
+  
   % endif
   
     In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. `(TODO)`
@@ -739,7 +734,7 @@ subquestion: |
 ---
 event: review_checklist
 question: |
-  Edit answers you've provided so far
+  Edit your answers
 review:
   - Edit: users[0].name.first
     button: |
@@ -854,6 +849,19 @@ fields:
       - More than 1000
       - More than 5000
 ---
+code: |
+  checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
+---
+code: |
+  datacats_report_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
+---
+objects:
+  - checklist_attachment: ALDocument.using(title="Data Map Checklist", filename="Data_Map_Checklist")
+---
+attachment:
+  variable name: checklist_attachment[i]
+  docx template file: Data_Map_Checklist.docx
+---
 auto terms:
   special categories: |
     This includes data that can be used to infer something about an individual, either on its own, or in combination with other data.
@@ -872,21 +880,6 @@ auto terms:
     * Controller processes personal data that it has not obtained directly from the data subject; and
     * Controller asserts that giving notice to data subjects would prove impossible or involve disproportionate effort. 
     * A DPIA is required where this processing is combined with any of the criteria from the European guidelines.
----
-code: |
-  checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
----
-code: |
-  datacats_report_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
----
-objects:
-  - checklist_attachment: ALDocument.using(title="Data Map Checklist", filename="Data_Map_Checklist")
----
-attachment:
-  variable name: checklist_attachment[i]
-  docx template file: Data_Map_Checklist.docx
----
-auto terms:
   lawful basis: |
     #What is lawfulness?
     
