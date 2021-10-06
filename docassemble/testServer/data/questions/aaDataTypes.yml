@@ -27,8 +27,8 @@ variable name: sub_documents
 data: !!omap
   - describe_transfer:
       section_link: review_checklist
-      section_label: My checklist
-      name: Transfer Details
+      section_label: Transfer details
+      name: Transfer details
       count: 2
   - determine_pre_DPIA: 
       section_link: review_checklist
@@ -70,6 +70,8 @@ code: |
   if not screen_data_is_transferred:
     update_sections_with_selected_documents
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
+    DPIA_splash_screen
+    data_types[funnel].details[datacat].new_tech
     users[0].address.address
     users[0].address.geocode()
   else:
@@ -80,6 +82,8 @@ code: |
     transfer_details.importing_country
   if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
+    DPIA_splash_screen
+    data_types[funnel].details[datacat].new_tech
   nav.set_section('download_datacats_checklist_docs')
   download_datacats_checklist_docs
 ---
