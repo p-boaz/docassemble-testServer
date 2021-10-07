@@ -71,7 +71,7 @@ code: |
     update_sections_with_selected_documents
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
-    data_types[funnel].details[datacat].new_tech
+    data_types[funnel].details[datacat].dpia_factors
     users[0].address.address
     users[0].address.geocode()
   else:
@@ -80,10 +80,10 @@ code: |
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
-  if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
+  if document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
-    data_types[funnel].details[datacat].new_tech
+    data_types[funnel].details[datacat].dpia_factors
   nav.set_section('download_datacats_checklist_docs')
   download_datacats_checklist_docs
 ---
@@ -217,7 +217,7 @@ subquestion: |
   You have already listed data types within these classes:
   
   % for button in data_types:
-  * [:pencil-alt: ${ str(button).capitalize() }](${ url_action('data_types["' + button + '"].entries') } )
+  * [${ str(button).capitalize() }](${ url_action('data_types["' + button + '"].entries') } )
   % endfor
   % else:
   Data processing in the EU is governed by the [General Data Privacy Regulation](https://gdpr.eu/what-is-gdpr/), and many laws around the world have similar rules.
@@ -260,13 +260,13 @@ if: |
 undefine:
   - data_types[i].df  
   - data_types[i].complete
-id: Claims
+id: Entries
 question: |
   Special Categories
 subquestion: |
-  These are special categories of data as defined by the GDPR. They require more substantive measures to ensure the data is protected. 
+  There are certain types of data that the General Data Protection Regulation (GDPR) considers to be sensitive personal data and therefore classifies them under the [special category] of personal data. 
   
-  If you do not see your problem listed below, try a different category.
+  If you do not see your processing activity listed below, try a different category.
 fields:
   - no label: data_types[i].entries
     datatype: checkboxes
@@ -296,7 +296,7 @@ undefine:
   - data_types[i].complete  
 id: Non-special entries
 question: |
-  Categories within ${ i }
+  Categories of ${ i } data
 fields:
   - no label: data_types[i].entries
     datatype: checkboxes
@@ -310,8 +310,7 @@ help:
   label: |
     GDPR Reference
   content: |
-    The processing activities listed above are cited in the following sections of the
-    [GDPR](https://gdpr.eu/what-is-gdpr/):
+    The processing activities listed above are cited in the following sections of the [GDPR](https://gdpr.eu/what-is-gdpr/):
         
     Activity | GDPR
     ---------|-----------------
@@ -350,10 +349,10 @@ content: |
   Click a category below to revisit your answers.
   
   % for category in data_types.elements:
-  #### [:pencil-alt: ${ category.title() if not category is None else 'None' }](${ url_action('data_types["' + str(category) + '"].entries') })
+  #### [${ category.title() if not category is None else 'None' }](${ url_action('data_types["' + str(category) + '"].entries') })
   
   % for index, row in data_types[category].df.iterrows():
-  * [:pencil-alt: ${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].data_subjects')})
+  * [${ row['Interview description'] }](${ url_action(f'data_types["{str(category)}"].details["{str(index)}"].data_subjects')})
   % endfor
   % endfor
   % endif
@@ -389,11 +388,13 @@ objects:
 id: triage
 question: |
   Deciding on your next steps
+subquestion: |
+  
 fields:
   - Is this data transferred to another country?: screen_data_is_transferred
     datatype: yesnoradio
   - note: |
-      **Okay.** Then you do not need to worry about transfer mechanisms. 
+      **Okay great,** then you don't need to complete a Transfer Impact Assessment. 
     show if:
       variable: screen_data_is_transferred
       is: False
@@ -425,7 +426,7 @@ fields:
     js show if: |
       val("screen_data_is_transferred") && !val("screen_knows_transfer_details")
     choices:
-      - Do a pre-DPIA assessment: determine_pre_DPIA
+      - Complete pre-DPIA assessment: determine_pre_DPIA
     none of the above: False
     default:
       - describe_transfer
@@ -454,8 +455,24 @@ subquestion: |
   % if len(data_types.elements): 
   
   % for category in data_types.elements:
+
+  % if category == 'Special':
+    The processing of special category data is prohibited by the GDPR. Of course, there are certain exemptions to the rule.
+    
+    * [Go here] to determine the exemption that applies to your processing activity. 
+
+  [Go here]: ${ interview_url(i='docassemble.testServer:data/questions/intro-gdpr.yml') }
+  % endif
   
   % for index, row in data_types[category].df.iterrows():
+  
+    % if len(data_types[category].details[index].dpia_factors.true_values()) > 2:
+    
+    In general and according to European guidelines, a data controller's processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA.
+    
+    Since you indicated that you will ${ data_types[category].details[index].dpia_factors.true_values() }, you should complete a full DPIA.
+    
+    % endif
 
     % if data_types[category].details[index].is_controller:
   As the controller of **${ data_types[category].details[index].name }** data you have additional obligations. 
@@ -464,7 +481,7 @@ subquestion: |
   Find out how determine whether you're a controller or processor of **${ data_types[category].details[index].name }** data.
   
     % else:
-  Since you're not a controller of **${ data_types[category].details[index].name }** data, you have less to worry about. 
+  As the processor of **${ data_types[category].details[index].name }** data, you have fewer requirements. 
     % endif
   
   % endfor
@@ -472,8 +489,6 @@ subquestion: |
   % endfor
   
   % endif
-  
-    In general and according to European guidelines, a data controller processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA. `(TODO)`
 
   % if screen_data_is_transferred:
   ### Some important information about your cross-border data transfers 
@@ -515,11 +530,36 @@ subquestion: |
   % endif
 
   % else: 
-  You're ALL GOOD
+  According to your responses, this data is not transferred internationally. Good news for you - there's no need to complete a Transfer Impact Assessment. 
   % endif
 
 buttons:
   - Exit: leave
+---
+template: cont_or_proc
+subject: |
+  Answer these questions to determine if you are a controller or processor.
+content: |
+  You are a **controller** if your organisation decides...
+  
+  * to collect personal data in the first place
+  * the lawful basis for doing so
+  * what types of personal data to collect
+  * the purpose or purposes the data are to be used for
+  * which individuals to collect data about
+  * whether to disclose the data, and if so, to whom
+  * what to tell individuals about the processing
+  * how to respond to requests made in line with individuals’ rights
+      
+  You are a **processor** if your organisation decides...
+  
+  * what IT systems or other methods to use to collect personal data
+  * how to store the personal data;
+  * the details of the security measures to protect the personal data
+  * how it will transfer the personal data from one organisation to another
+  * how it will retrieve personal data about certain individuals
+  * how it will ensure it adheres to a retention schedule; and
+  * how it will delete or dispose of the data
 ---
 id: details for this entry
 question: |
@@ -531,6 +571,8 @@ fields:
     hide if: intro
   - Are you the controller?: data_types[i].details[j].is_controller
     datatype: yesnomaybe
+  - note: |
+      ${ collapse_template(cont_or_proc) } 
   - Whose data do you process?: data_types[i].details[j].data_subjects
     choices:
       - Employees
@@ -604,12 +646,15 @@ fields:
   - Exporting Country : transfer_details.exporting_country
     datatype: object
     choices: countries
+    required: False
 
   - Importing Country : transfer_details.importing_country
     datatype: object
     choices: countries
+    required: False
     
   - What is the proposed legal basis for transferring the data?: transfer_details.transfer_mech
+    required: False
     choices:
       - standard contracts (SCCs) 
       - ad hoc contractual clauses
@@ -621,7 +666,7 @@ fields:
   - Art. 49 Derogation: transfer_details.derogation
     required: false
     js show if: |
-      val("transfer_details.transfer_mech['another GDPR Article 49 derogation']")
+      val("transfer_details.transfer_mech") == "another GDPR Article 49 derogation"
     choices:
       - the data subject has explicitly consented to the proposed transfer, after having been informed of the possible risks of such transfers for the data subject due to the absence of an adequacy decision and appropriate safeguards;
       - the transfer is necessary for the performance of a contract between the data subject and the controller or the implementation of pre-contractual measures taken at the data subject request;
@@ -631,6 +676,7 @@ fields:
       - the transfer is necessary in order to protect the vital interests of the data subject or of other persons, where the data subject is physically or legally incapable of giving consent;
       - the transfer is made from a register which according to Union or Member State law is intended to provide information to the public and which is open to consultation either by the public in general or by any person who can demonstrate a legitimate interest, but only to the extent that the conditions laid down in Union or Member State law for consultation are fulfilled inthe particular case.
   - Method of Transfer: transfer_details.method
+    required: False
     datatype: radio
     choices:
       - physical records in-store
@@ -643,6 +689,7 @@ fields:
       - third party communication
       - Other
   - Please Specify: transfer_details.method
+    required: False
     js show if: |
       val("transfer_details.method") == "Other"
 ---
@@ -785,27 +832,26 @@ subquestion: |
   Answer the following screening questions to determine your need for a DPIA. 
 field: DPIA_splash_screen
 ---
+objects: 
+  - data_types[i].details[j].dpia_factors: DADict
+---
 question: |
-  DPIA Risk Assessment
-fields:    
-  - Will the processing involve a new technology/system? : data_types[i].details[j].new_tech
-    datatype: yesnoradio
-    
-  - Please provide details : data_types[i].details[j].new_tech_details
-    datatype: area
-    show if:
-      variable: data_types[i].details[j].new_tech
-      is: True
-      
-  - Will the processing involve using an old system for new processing purposes? : data_types[i].details[j].old_system
-    datatype: yesnoradio
-    
-  - Please provide details : data_types[i].details[j].old_system_details
-    datatype: area
-    show if:
-      variable: data_types[i].details[j].old_system
-      is: True
-      
+  Select all that apply
+fields:
+  - "This processing activity will...": data_types[i].details[j].dpia_factors
+    datatype: checkboxes
+    code: |
+      [
+        {'new_tech': 'Involve a new technology/system'},
+        {'old_system': 'Use an old system for new processing purposes'},
+        {'vulnerable_groups': 'Collecting data related to vulnerable groups'},
+        {'location_data': 'Collect location data'},
+        {'monitoring_subjects': 'Involve monitoring data subjects'},
+        {'profiling_data': 'Involve profiling the personal data processed'},
+        {'auto_decisionmaking': 'Involve automated decision-making'},
+        {'data_aggregation': 'Involve the aggregation of data'},
+        {'large_scale': 'Process data on a large scale'}
+      ]
   - Will you collect any of the following data? : data_types[i].details[j].data_collected
     datatype: checkboxes
     choices:
@@ -816,42 +862,6 @@ fields:
       - Date of birth or age: 'date of birth or age'
       - Gender: 'gender'
       - Nationality: 'nationality'
-    
-  - Will you be collecting data related to vulnerable groups or individuals/from vulnerable groups or individuals? : data_types[i].details[j].vulnerable_groups
-    datatype: yesnoradio
-    
-  - Will you be collecting location data? : data_types[i].details[j].location_data
-    datatype: yesnoradio
-      
-  - Is there any other information that you will process (e.g., frequency of processing, volume of subjects)? : data_types[i].details[j].other_info
-    datatype: yesnoradio
-
-  - Will the system/processing involve monitoring of data subjects? : data_types[i].details[j].monitoring_subjects
-    datatype: yesnoradio
-  
-  - Please provide details: data_types[i].details[j].monitoring_subjects_details
-    show if: 
-      variable: data_types[i].details[j].monitoring_subjects
-      is: True
-    
-  - Will any profiling be undertaken on the personal data processed? : data_types[i].details[j].profiling_data
-    datatype: yesnoradio
-      
-  - Will any automated decision-making be undertaken in relation to the personal data? : data_types[i].details[j].auto_decisionmaking
-    datatype: yesnoradio
-    
-  - Will the system involve any aggregation of data? : data_types[i].details[j].data_aggregation
-    datatype: yesnoradio
-      
-  - Indicate the number of data subjects that the personal data processing affects : data_types[i].details[j].number_of_data_subjects
-    datatype: radio
-    choices:
-      - Less than 10
-      - 50 to 100
-      - 100 to 500
-      - 500 to 1000
-      - More than 1000
-      - More than 5000
 ---
 code: |
   checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
@@ -866,8 +876,8 @@ attachment:
   variable name: checklist_attachment[i]
   docx template file: Data_Map_Checklist.docx
 ---
-auto terms:
-  special categories: |
+terms:
+  special category: |
     This includes data that can be used to infer something about an individual, either on its own, or in combination with other data.
   systematic monitoring: |
     'systematic' means that the processing:
