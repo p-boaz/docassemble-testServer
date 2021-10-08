@@ -1,0 +1,38 @@
+---
+mandatory: True
+question: |
+  The ICO (Information Commissioner’s Office), the UK’s data protection authority, suggests using a three-part test.
+subquestion: |
+  The first part is the purpose test, which helps you decide whether the processing can be considered a legitimate interest. It’s comprised of the following questions:
+
+  * Why do you want to process the data? What are you trying to achieve?
+  * Who benefits from the processing? In what way?
+  * Are there any wider public benefits to the processing?
+  * If so, how significant are those benefits?
+  * What would the impact be if you couldn’t process this information?
+  * Would your use of the data be unethical or unlawful in any way?
+
+  The second part is the necessity test, which helps you decide whether legitimate interest is the most appropriate lawful basis. It’s comprised of the following questions:
+
+  * Does this processing help further your interests?
+  * Is processing this information a reasonable way of securing those interests?
+  * Is there a less intrusive way to achieve the same result?
+
+  The final part is the balancing test, which helps you decide whether the data subject’s interests override the legitimate interest. It’s comprised of the following questions:
+
+  * What is the nature of your relationship with the data subject?
+  * Is any of their personal data sensitive or private?
+  * Would people expect you to use their data in this way?
+  * Are you happy to explain it to them?
+  * Are some people likely to object or find it intrusive?
+  * What is the possible impact on the individual?
+  * How big an impact might it have on them?
+  * Are you processing children’s data?
+  * Are any of the individuals vulnerable in any way?
+  * Can you adopt safeguards to minimise the impact?
+  * Are any of the individuals vulnerable in any way?
+buttons:
+  - Return: exit
+    url: |
+      ${ referring_url() }
+--- 
