@@ -6,7 +6,7 @@ metadata:
   title: |
     Record a Data Processing Activity
   tags:
-    - Sales
+
 ---
 id: patch pre-1.4.8 bug
 mandatory: True
@@ -19,6 +19,10 @@ code: |
 objects:
   - users: GLPeopleList.using(ask_number=True, target_number=1)
   - other_parties: GLPeopleList.using(there_are_any=True)
+  - userdata: DAStore
+---
+code: |
+  preferences = userdata.get("prefs") or DAObject('preferences')  
 ---
 comment: |
   Section labels for child interviews that have follow-up
@@ -53,7 +57,10 @@ id: interview order
 code: |
   intro
   nav.set_section('review_data')
-  users[0].name.first
+  preferences.office
+  if not userdata.defined("prefs"):
+    userdata.set("prefs", preferences)
+  session_tags().add(biz_function)
   product
   data_types.gather()
   if data_types.count_datacats() > 0:
@@ -77,10 +84,9 @@ code: |
     update_sections_with_selected_documents  
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
-    transfer_details[0].importing_country
+    transfer_details.importing_country
     users[0].address.address
     users[0].address.geocode()
-    review_transfer_details
   if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
@@ -141,7 +147,8 @@ code: |
   data_types[i].details[j].complete = True
 ---
 features:
-  question back button: True   
+  question back button: True
+  question help button: True
 ---
 template: what_is_a_RoPA
 subject: |-
@@ -153,11 +160,21 @@ content: |
   
   ${ action_button_html(url_action('learn_more'), label="Read more first") }  
 ---
+question: |
+  What office do you work in?
+fields:
+  - Locations: preferences.office
+    choices:
+      - Berlin
+      - London
+      - New York
+      - Paris
+---
 id: intro
 question: |
-  ${ users.familiar() }, you can do this!
+  Hi, ${ user_info().first_name }
 subquestion: |  
-  #### How this works
+  #### Here's how this works
   
   You answer what you know. We do the rest. 
   
@@ -206,9 +223,43 @@ id: product
 question: |
   Add a product you use at work
 subquestion: |  
-  Next, be prepared to answer some questions about how you use it.
+  Ok so you're filling out an acvitity ocurring in the ${ userdata.get("prefs").office } Office for 
+  % for tag in session_tags():
+  
+  * ${ tag }
+  % endfor
 fields:
   - Product: product
+    input type: radio
+    choices: 
+      - Microsoft
+      - Workday
+      - Atlassian
+      - Stripe
+---
+id: tags
+question: Tags
+subquestion: |
+  The tags are:
+  % for tag in session_tags():
+  
+  * ${ tag }
+  % endfor
+fields: 
+  - no label: biz_function
+    input type: radio
+    choices: 
+      - Sales
+      - Human Resources
+      - Security
+      - Marketing
+      - Procurement and Supply Chain
+      - Customer Service
+      - Other
+  #- Add here: biz_function 
+   # show if:
+    #  variable: biz_function
+     # is: "Other"
 ---
 id: funnel chooser
 question: |
@@ -460,7 +511,7 @@ subquestion: |
     
     * [Go here] to determine the exemption that applies to your processing activity. 
 
-  [Go here]: ${ interview_url(i='docassemble.testServer:data/questions/intro-gdpr.yml') }
+  [Go here]: ${ interview_url(i='docassemble.testServer:data/questions/a_sensitive_data_exemptions.yml') }
   % else:  
     You indicated you're not processing sensitive data.
   % endif
@@ -474,6 +525,9 @@ subquestion: |
     
     * Take the test [here]
     [here]: ${ interview_url(i='docassemble.testServer:data/questions/legitimate_interests.yml') }
+    % else: 
+    `to do`
+    
     % endif
   
   #### Risk assessment   
@@ -592,8 +646,11 @@ fields:
   - Whose data do you process?: data_types[i].details[j].data_subjects
     choices:
       - Employees
+      - Emergency contacts
       - Successful Candidates
       - Unsuccessful Candidates
+      - Suppliers 
+      - Clients
       - Existing Customers
       - Potential Customers
       - Other
@@ -602,15 +659,18 @@ fields:
       val("data_types[i].details[j].data_subjects") == "Other"
   - What is the purpose of processing?: data_types[i].details[j].purpose
     choices:
-      - Payroll 
+      - Payroll
       - Personnel File
       - Recruitment
       - Direct Marketing
+      - Staff administration
+      - Customer orders
       - Other
   - Please Specify: data_types[i].details[j].purpose
     js show if: |
       val("data_types[i].details[j].purpose") == "Other"  
   - What format is the data stored in?: data_types[i].details[j].format
+    input type: radio
     choices:
       - Digital
       - Hardcopy
@@ -654,7 +714,7 @@ fields:
 ---
 code: |
   countries = objects_from_file("countries_list.yml")
----    
+---
 id: basic data transfer details
 question: |
   Data transfer details
@@ -691,6 +751,7 @@ fields:
       - the transfer is necessary for the establishment, exercise or defence of legal claims;
       - the transfer is necessary in order to protect the vital interests of the data subject or of other persons, where the data subject is physically or legally incapable of giving consent;
       - the transfer is made from a register which according to Union or Member State law is intended to provide information to the public and which is open to consultation either by the public in general or by any person who can demonstrate a legitimate interest, but only to the extent that the conditions laid down in Union or Member State law for consultation are fulfilled inthe particular case.
+  
   - Method of Transfer: transfer_details.method
     required: False
     datatype: radio
@@ -708,26 +769,6 @@ fields:
     required: False
     js show if: |
       val("transfer_details.method") == "Other"
----
-continue button field: review_transfer_details
-id: review transfer details
-question: |
-  Here are the transfer details
-subquestion: |  
-  ${ transfer_details.table }
-  
-  ${ transfer_details.add_action() }
----
-table: transfer_details.table
-rows: transfer_details
-columns:
-  - Exporting Country: |
-      row_item.exporting_country
-  - Importing Country: |
-      row_item.importing_country
-edit:
-  - exporting_country
-  - importing_country
 ---
 question: other parties
 fields: 
@@ -808,10 +849,7 @@ question: |
   We may have a few more questions
 subquestion: |
   On the next screens, we will ask whatever questions are needed to finish
-  creating the documents that you asked for. 
-  
-  At the end, you will have a chance to download and email the documents for
-  yourself or send them to someone else.
+  your assessment. 
 ---
 continue button field: explain_sharing
 question: |
@@ -860,10 +898,7 @@ subquestion: |
   compliance, financial and reputational benefits, helping you demonstrate
   accountability and building trust and engagement with individuals.
   
-  As mentioned, a DPIA must be done before beginning any type of processing which
-  is “likely to result in a high risk”. This means that although the actual level
-  of risk has not been assessed, screening for factors that point to the
-  potential for a widespread or serious impact on individuals must take place.
+  As mentioned, a DPIA must be done before beginning any type of processing which is “likely to result in a high risk”. This means that although the actual level of risk has not been assessed, screening for factors that point to the potential for a widespread or serious impact on individuals must take place.
   
   Answer the following screening questions to determine your need for a DPIA. 
 field: DPIA_splash_screen
@@ -878,11 +913,14 @@ fields:
     datatype: checkboxes
     code: |
       [
-        {'new_tech': 'Involve a new technology/system'},
-        {'old_system': 'Use an old system for new processing purposes'},
+        {'new_tech': 'Involve a new technology/system',
+         'help': 'Innovative technology that involves new developments in technological knowledge in the world at large, rather than technology that is new to you. Using such technology can involve novel forms of data collection and use, possibly with a high risk to individuals’ rights and freedoms. The personal and social consequences of deploying a new technology may be unknown.'},
+        {'old_system': 'Use an old system for new processing purposes',
+        },
         {'vuln_groups': 'Collect data related to vulnerable groups'},
         {'location_data': 'Collect location data'},
-        {'monitoring': 'Involve monitoring data subjects'},
+        {'monitoring': 'Involve monitoring data subjects', 
+        'help': 'Occurs according to a system; Is pre-arranged, organised or methodical; Takes place as part of a general plan for data collection; or Is carried out as part of a strategy.'},
         {'profiling': 'Involve profiling the personal data processed'},
         {'auto_decisions': 'Involve automated decision-making'},
         {'aggregation': 'Involve the aggregation of data'},
@@ -900,13 +938,10 @@ fields:
       - Nationality: 'nationality'
 ---
 code: |
-  checklist_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
----
-code: |
-  datacats_report_attachment.enabled = action_argument('enabled') or screen_data_is_transferred and document_choice['describe_transfer']
+  screen_data_is_transferred and document_choice['describe_transfer']
 ---
 objects:
-  - checklist_attachment: ALDocument.using(title="Data Map Checklist", filename="Data_Map_Checklist")
+  - checklist_attachment: GLDocument.using(title="Data Map Checklist", filename="Data_Map_Checklist")
 ---
 attachment:
   variable name: checklist_attachment[i]
@@ -915,17 +950,6 @@ attachment:
 terms:
   special category: |
     This includes data that can be used to infer something about an individual, either on its own, or in combination with other data.
-  systematic monitoring: |
-    'systematic' means that the processing:
-     
-    * Occurs according to a system;
-    * Is pre-arranged, organised or methodical;
-    * Takes place as part of a general plan for data collection; or
-    * Is carried out as part of a strategy.
-  new technology/system: |
-    * Innovative technology that involves new developments in technological knowledge in the world at large, rather than technology that is new to you. 
-    * Using such technology can involve novel forms of data collection and use, possibly with a high risk to individuals’ rights and freedoms. The personal and social consequences of deploying a new technology may be unknown.
-    * In such cases, a DPIA can help the controller understand a control such risks.
   invisible processing: |
     * Controller processes personal data that it has not obtained directly from the data subject; and
     * Controller asserts that giving notice to data subjects would prove impossible or involve disproportionate effort. 

@@ -1,0 +1,111 @@
+metadata:
+  title: Sensitive Data Exemptions
+---
+mandatory: True
+code: |
+  if sd_exemption == 'public_interest':
+    public_interest_conditions
+  elif sd_exemption == 'employment_ss_sp' or 'health_or_social' or 'public_health' or 'archiving_research_stats':
+    sched_1
+  else:
+    final_screen
+---
+question: |
+  Exemptions to processing sensitive data
+subquestion: |
+field: sd_exemption
+choices: 
+  - Explicit consent: explicit_consent
+    help: |
+      Processing of sensitive personal data is possible if the data subject has given explicit consent to the processing of those data.
+      An individual can give explicit consent for one or more specified purposes, except where the European Union or Member State decides that the prohibition can not be lifted by the data subject.
+  - Employment, social security, and social protection: employment_ss_sp
+    help: |
+      If the processing of sensitive data is authorized by law, and necessary for exercising the data controller or data subject’s rights. Or if it is necessary for carrying out the obligations related to employment, social security, and social protection law.
+      In all cases, adequate safeguards for the protection of fundamental rights and interests of the data subject have to be present.
+  - Vital interests: vital
+    help: |
+      Sensitive data may be processed, if it is crucial to protect the vital interests of the data subject or of another individual, and the data subject is physically or legally incapable of giving consent.
+  - Not-for-profit bodies: non_profit
+    help: |
+      If the processing is carried with appropriate safeguards by a foundation, association, or any other not-for-profit body with a political, philosophical, religious, or trade union aim.
+      On the condition that the processing relates only to the members, former members, or individuals who have regular contact with it regarding its purposes.
+      The non-profit body has to make sure that the personal data is not disclosed outside that body without the proper consent of the data subjects.
+  - Information made public by the data subject: info_made_public
+    help: |
+      It is permissible to process sensitive personal data of a data subject if the data subject has already made the data public and accessible
+  - Legal claims or judicial acts: legal_claims
+    help: |
+      Data processing is necessary for the establishment, exercise, or defense of legal claims or whenever courts are acting in their judicial capacity. Whether in court proceedings or in an administrative or out-of-court procedure.
+  - Public interest: public_interest
+    help: |
+      The processing of sensitive data is allowed if there is considerable public interest at stake. However, the processing should be permitted by law, and proportionate to the goal that is pursued.
+      Processing should also be conducted with respect to the right to data protection and provide safeguard measures to the fundamental rights and the interests of the data subject;
+  - Health or social care: health_or_social
+    help: |
+      Processing is necessary for the purposes of preventive or occupational medicine, for the assessment of:
+      
+      * The working capacity of the employee,
+      * Medical diagnosis,
+      * The provision of health and social care
+      * Provision of health treatment
+      * Management of health
+      * Management of social care systems and services
+
+      This processing has to be permitted by Union or Member State law or pursuant to contract with a health professional. Additional safeguards to protect sensitive data have to be provided.
+
+      The GDPR also states that the Member States can add further specific conditions and limitations for genetic, biometric, or health data.
+
+      Recital 53 deals with the processing of sensitive data in the healthcare and social sector.
+  - Public health: public_health
+    help: |
+      The processing of sensitive data is aimed at the prevention or control of contagious diseases and other health threats.
+      This kind of processing is aimed at cross-border threats to health and ensuring high standards of safety of health care, medicinal products, or medical devices.
+      Processing in the name of public health has to be based on the EU or Member State law with appropriate measures and safeguards to protect the rights and freedoms of the data subject, in particular, professional secrecy.
+  - Archiving, research, and statistics: archiving_research_stats
+    help: |
+      Processing is done for:
+      
+      * Archiving purposes in the public interest,
+      * Scientific or historical research
+      * Statistical purposes
+      
+      The processing is done in accordance with Article 89(1) and based on the law, which is proportionate to the goal that wants to be achieved, and with specific measures to safeguard the fundamental rights and the interests of the data subject.
+---
+question: |
+  If you are relying on the substantial public interest condition in Article 9(2)(g), you also need to meet one of 23 specific substantial public interest conditions set out in Part 2 of Schedule 1 of the DPA 2018.
+subquestion: |
+  The 23 substantial public interest conditions are set out in paragraphs 6 to 28 of Schedule 1 of the DPA 2018:
+field: public_interest_conditions
+choices: 
+  - Statutory and government purposes
+  - Administration of justice and parliamentary purposes
+  - Equality of opportunity or treatment
+  - Racial and ethnic diversity at senior levels
+  - Preventing or detecting unlawful acts
+  - Protecting the public
+  - Regulatory requirements
+  - Journalism, academia, art and literature
+  - Preventing fraud
+  - Suspicion of terrorist financing or money laundering
+  - Support for individuals with a particular disability or medical condition
+  - Counselling
+  - Safeguarding of children and individuals at risk
+  - Safeguarding of economic well-being of certain individuals
+  - Insurance
+  - Occupational pensions
+  - Political parties
+  - Elected representatives responding to requests
+  - Disclosure to elected representatives
+  - Informing elected representatives about prisoners
+  - Publication of legal judgments
+  - Anti-doping in sport
+  - Standards of behaviour in sport
+---
+question: |
+  If you are relying on conditions (b), (h), (i) or (j), you also need to meet the associated condition in UK law, set out in Part 1 of Schedule 1 of the DPA 2018
+field: sched_1
+---
+event: final_screen 
+question: |
+  Cool, you're good

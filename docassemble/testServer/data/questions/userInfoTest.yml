@@ -2,6 +2,18 @@
 objects:
   - pet: DADict.using(object_type=DAObject)
 ---
+question: |
+  Please upload a picture of yourself.
+fields:
+  - Picture: user_picture
+    datatype: file
+---
+question: |
+  You're so adorable, François!
+subquestion: |
+  ${ user_picture }
+mandatory: True
+---
 mandatory: True
 question: |
   % if email_is_best:
