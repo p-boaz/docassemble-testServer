@@ -45,7 +45,7 @@ sections:
   - document_choice: Data transfer details
   - provide_details: Answer questions
   - preview_and_sign: Preview and sign
-  - record_results: Results
+  - results: Results
 auto open: False  
 ---
 modules:
@@ -91,8 +91,8 @@ code: |
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
     data_types[funnel].details[datacat].dpia_factors
-  nav.set_section('record_results')
-  record_results
+  nav.set_section('results')
+  results
 ---
 depends on:
   - screen_data_is_transferred
@@ -238,13 +238,9 @@ fields:
       - Stripe
 ---
 id: tags
-question: Tags
+question: Select a Business Function
 subquestion: |
-  The tags are:
-  % for tag in session_tags():
-  
-  * ${ tag }
-  % endfor
+  I.e. what department do you work in
 fields: 
   - no label: biz_function
     input type: radio
@@ -257,9 +253,9 @@ fields:
       - Customer Service
       - Other
   #- Add here: biz_function 
-   # show if:
-    #  variable: biz_function
-     # is: "Other"
+  #  show if:
+  #    variable: biz_function
+  #    is: "Other"
 ---
 id: funnel chooser
 question: |
@@ -493,8 +489,8 @@ code: |
 include: 
   - legitimate_interests.yml
 ---
-id: record_results
-event: record_results
+id: results
+event: results
 question: |
   Done! Here are your results
 subquestion: |
@@ -534,7 +530,7 @@ subquestion: |
       
     In general and according to European guidelines, a data controller's processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA.
       
-    % if len(data_types[category].details[index].dpia_factors.true_values()) > 2:
+    % if len(data_types[category].details[index].dpia_factors.true_values()) >= 2:
     **You indicated you will meet at least two of the listed factors. Therefore, you should complete a full DPIA.**
     % else: 
     **You indicated you will meet less than two of the listed factors. Therefore, you do not need to complete a full DPIA.**
@@ -708,6 +704,11 @@ fields:
       - Vital interests: 'vital interests'
       - Public task: 'public task'
       - Legitimate interests: 'legitimate interests'
+    note: |
+      ###What is lawfulness?
+      For processing of personal data to be lawful, you need to identify specific grounds for the processing. 
+      This is called a **‘lawful basis’** for processing, and there are six options which depend on your purpose and your relationship with the individual.
+      There are also specific additional conditions for processing some especially sensitive types of data.
   - Any additional notes you want to add: data_types[i].details[j].description
     datatype: area
     required: False
@@ -953,10 +954,4 @@ terms:
   invisible processing: |
     * Controller processes personal data that it has not obtained directly from the data subject; and
     * Controller asserts that giving notice to data subjects would prove impossible or involve disproportionate effort. 
-    * A DPIA is required where this processing is combined with any of the criteria from the European guidelines.
-  lawful basis: |
-    #What is lawfulness?
-    
-    For processing of personal data to be lawful, you need to identify specific grounds for the processing. 
-    This is called a **‘lawful basis’** for processing, and there are six options which depend on your purpose and your relationship with the individual.
-    There are also specific additional conditions for processing some especially sensitive types of data.
+    * A DPIA is required where this processing is combined with any of the criteria from the European guidelines.    
