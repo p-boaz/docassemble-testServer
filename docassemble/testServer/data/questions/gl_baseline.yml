@@ -58,6 +58,8 @@ generic object: GLIndividual
 template: x.first_name_label
 content: |
   First name
+default: |
+  ${ user_info().first_name }
 ---
 generic object: GLIndividual
 template: x.middle_name_label

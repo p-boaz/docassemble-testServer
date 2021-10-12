@@ -6,7 +6,7 @@ metadata:
   title: |
     Record a Data Processing Activity
   tags:
-
+  require login: True
 ---
 id: patch pre-1.4.8 bug
 mandatory: True
@@ -17,9 +17,9 @@ code: |
     mark_task_as_performed('erase_none')
 ---
 objects:
-  - users: GLPeopleList.using(ask_number=True, target_number=1)
+  - users: DADict.using(gathered=True)
   - other_parties: GLPeopleList.using(there_are_any=True)
-  - userdata: DAStore
+  - userdata: DAStore.using(encrypted=False)
 ---
 code: |
   preferences = userdata.get("prefs") or DAObject('preferences')  
@@ -56,8 +56,14 @@ mandatory: True
 id: interview order
 code: |
   intro
+  if user_logged_in():
+    if user_info().email not in users:
+      users.initializeObject(user_info().email)
+    user = users[user_info().email]
+  else:
+    must_be_logged_in_page
   nav.set_section('review_data')
-  preferences.office
+  preferences.jurisdiction
   if not userdata.defined("prefs"):
     userdata.set("prefs", preferences)
   session_tags().add(biz_function)
@@ -85,8 +91,6 @@ code: |
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
-    users[0].address.address
-    users[0].address.geocode()
   if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
@@ -150,6 +154,14 @@ features:
   question back button: True
   question help button: True
 ---
+sets: must_be_logged_in_page
+question: Please log in
+subquestion: |
+  Please click "Sign in" to continue.  If you do not have
+  an account, you can register for one.
+buttons:
+  - Sign in: signin
+---
 template: what_is_a_RoPA
 subject: |-
   What is a Record of Processing Activities (RoPA)?
@@ -160,15 +172,24 @@ content: |
   
   ${ action_button_html(url_action('learn_more'), label="Read more first") }  
 ---
+code: |
+  countries = objects_from_file("countries_list.yml")
+---
 question: |
-  What office do you work in?
+  Your info
 fields:
-  - Locations: preferences.office
-    choices:
-      - Berlin
-      - London
-      - New York
-      - Paris
+  - First: preferences.first_name
+    default: |
+      ${ user_info().first_name }
+  - Last: preferences.last_name
+    default: |
+      ${ user_info().last_name }
+  - Email: preferences.email
+    default: |
+      ${ user_info().email }
+  - Location: preferences.jurisdiction
+    datatype: object
+    choices: countries
 ---
 id: intro
 question: |
@@ -489,6 +510,7 @@ code: |
 include: 
   - legitimate_interests.yml
 ---
+sets: final_page
 id: results
 event: results
 question: |
@@ -599,7 +621,12 @@ subquestion: |
   % endif
   
   ${ review_datacats_template }
+  
+  Share this link with others!
+
+  [${ interview_url() }](${ interview_url() })
 buttons:
+  - Check: refresh
   - Exit: leave
 ---
 template: cont_or_proc
@@ -713,15 +740,13 @@ fields:
     datatype: area
     required: False
 ---
-code: |
-  countries = objects_from_file("countries_list.yml")
----
 id: basic data transfer details
 question: |
   Data transfer details
 fields:
   - Exporting Country : transfer_details.exporting_country
     datatype: object
+    default: preferences.jurisdiction
     choices: countries
     required: False
 
