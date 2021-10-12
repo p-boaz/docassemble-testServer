@@ -17,7 +17,8 @@ code: |
     mark_task_as_performed('erase_none')
 ---
 objects:
-  - users: DADict.using(gathered=True)
+  - respondents: DADict.using(gathered=True)
+  - users: GLPeopleList.using(there_are_any=True)
   - other_parties: GLPeopleList.using(there_are_any=True)
   - userdata: DAStore.using(encrypted=False)
 ---
@@ -56,10 +57,11 @@ mandatory: True
 id: interview order
 code: |
   intro
+  users[0].name.first
   if user_logged_in():
-    if user_info().email not in users:
-      users.initializeObject(user_info().email)
-    user = users[user_info().email]
+    if user_info().email not in respondents:
+      respondents.initializeObject(user_info().email)
+    user = respondents[user_info().email]
   else:
     must_be_logged_in_page
   nav.set_section('review_data')
@@ -178,13 +180,13 @@ code: |
 question: |
   Your info
 fields:
-  - First: preferences.first_name
+  - First: users[0].name.first
     default: |
       ${ user_info().first_name }
-  - Last: preferences.last_name
+  - Last: users[0].name.last
     default: |
       ${ user_info().last_name }
-  - Email: preferences.email
+  - Email: users[0].email
     default: |
       ${ user_info().email }
   - Location: preferences.jurisdiction
