@@ -93,6 +93,8 @@ code: |
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
+    status == 'needs work'
+    labelClass == 'bg-red-500'
   if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
     nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
     DPIA_splash_screen
@@ -512,6 +514,11 @@ code: |
 include: 
   - legitimate_interests.yml
 ---
+event: query_results
+code: |
+  data = dict(users=users[0].name.first, cool=len(data_types.elements))
+  json_response(data)
+---
 sets: final_page
 id: results
 event: results
@@ -532,6 +539,7 @@ subquestion: |
     * [Go here] to determine the exemption that applies to your processing activity. 
 
   [Go here]: ${ interview_url(i='docassemble.testServer:data/questions/a_sensitive_data_exemptions.yml') }
+  
   % else:  
     You indicated you're not processing sensitive data.
   % endif
@@ -627,6 +635,14 @@ subquestion: |
   Share this link with others!
 
   [${ interview_url() }](${ interview_url() })
+  
+
+
+  Use
+  [this link](${ interview_url_action('query_result') })
+  to query the information from
+  another application.
+
 buttons:
   - Check: refresh
   - Exit: leave
@@ -660,9 +676,18 @@ id: details for this entry
 question: |
   More information about the `${ data_types[i].df.loc[j]['Interview description'].lstrip() } data` you process
 fields:
+#Next three questions are temp fix
   - Name: data_types[i].details[j].name
     default: |
       ${ data_types[i].df.loc[j]['Interview description'].lstrip() }
+    hide if: intro
+  - Name: labelClass
+    default: |
+      bg-yellow-500
+    hide if: intro
+  - no label: status
+    default: |
+      Issues pending
     hide if: intro
   - Are you the controller?: data_types[i].details[j].is_controller
     datatype: yesnomaybe
