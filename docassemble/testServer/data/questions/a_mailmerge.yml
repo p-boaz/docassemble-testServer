@@ -1,3 +1,6 @@
+code: |
+  multi_user = True
+---
 modules:
   - .google_sheets
 ---
