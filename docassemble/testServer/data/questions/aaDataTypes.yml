@@ -51,7 +51,12 @@ auto open: False
 ---
 modules:
   - .load_data
-  - docassemble.ALToolbox.misc  
+  - docassemble.ALToolbox.misc
+  - .google_sheets
+---
+code: |
+  append_to_sheet('gl.test', [preferences.jurisdiction.name, product, biz_function])
+  data_stored_in_google_sheet = True
 ---
 mandatory: True
 id: interview order
@@ -100,6 +105,7 @@ code: |
     DPIA_splash_screen
     data_types[funnel].details[datacat].dpia_factors
   nav.set_section('results')
+  data_stored_in_google_sheet
   results
 ---
 depends on:
@@ -195,6 +201,9 @@ fields:
     datatype: object
     choices: countries
 ---
+code: |
+  user_jx = preferences.jurisdiction.copy_deep('user_jx')
+---
 id: intro
 question: |
   Hi, ${ user_info().first_name }
@@ -261,6 +270,11 @@ fields:
       - Workday
       - Atlassian
       - Stripe
+      - Other
+  - Add here: product
+    show if:
+      variable: product
+      is: "Other"
 ---
 id: tags
 question: Select a Business Function
