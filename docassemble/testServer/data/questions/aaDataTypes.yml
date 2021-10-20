@@ -53,6 +53,7 @@ modules:
   - .load_data
   - docassemble.ALToolbox.misc
   - .google_sheets
+  - .progressivedisclosure
 ---
 code: |
   append_to_sheet('gl.test', [preferences.jurisdiction.name, product, biz_function])
@@ -142,6 +143,9 @@ features:
   small screen navigation: dropdown
   progress bar: False
   hide navbar: True
+  css: progressivedisclosure.css
+  question back button: True
+  question help button: True
 ---
 objects:
   - dataloader: DataLoader.using(filename="data_category_list.xlsx")
@@ -160,10 +164,6 @@ code: |
   data_types[i].details[j].data_subjects
   data_types[i].details[j].complete = True
 ---
-features:
-  question back button: True
-  question help button: True
----
 sets: must_be_logged_in_page
 question: Please log in
 subquestion: |
@@ -173,14 +173,12 @@ buttons:
   - Sign in: signin
 ---
 template: what_is_a_RoPA
-subject: |-
+subject: |
   What is a Record of Processing Activities (RoPA)?
 content: |
   A completed ROPA lists each processing activity involving personal data and provides detailed information about each of the items listed above. While this may sound like a simple task, even building a complete list of processing activities is often a complex and time-consuming endeavor, involving detailed documentation reviews and multiple rounds of interviews with business users and IT. Larger organizations may want to create individual ROPAs for each department or line of business, and then roll up into a master enterprise-level record.
 
   Due to the high volume of their processing activities involving personal data, midsize-to-large companies will likely need a data discovery tool to begin pulling together and organizing the various elements of the ROPA. Smaller organizations may want to start with a spreadsheet containing one row per processing activity (e.g. “Candidate offer of employment”) and one column for each of the fields listed above.
-  
-  ${ action_button_html(url_action('learn_more'), label="Read more first") }  
 ---
 code: |
   countries = objects_from_file("countries_list.yml")
@@ -200,6 +198,18 @@ fields:
   - Location: preferences.jurisdiction
     datatype: object
     choices: countries
+  - Office: preferences.office
+    choices:
+      - Berlin
+      - London
+      - Hong Kong
+      - Singapore
+      - New York
+      - San Francisco
+      - Other
+  - Please Specify: preferences.office
+    js show if: |
+      val("preferences.office") == "Other"  
 ---
 code: |
   user_jx = preferences.jurisdiction.copy_deep('user_jx')
@@ -224,7 +234,7 @@ subquestion: |
   - Retention schedule for each category of personal data
   - General description of technical and organizational security measures related to each processing activity
   
-  ${ collapse_template(what_is_a_RoPA) }
+  ${ prog_disclose(what_is_a_RoPA) }
   
 continue button field: intro
 continue button label: Get started
@@ -257,7 +267,7 @@ id: product
 question: |
   Add a product you use at work
 subquestion: |  
-  Ok so you're filling out an acvitity ocurring in the ${ userdata.get("prefs").office } Office for 
+  This processing acvitity occurs in the ${ userdata.get("prefs").office } Office for 
   % for tag in session_tags():
   
   * ${ tag }
