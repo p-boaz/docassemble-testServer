@@ -196,19 +196,7 @@ fields:
       ${ user_info().email }
   - Location: preferences.jurisdiction
     datatype: object
-    choices: countries
-  - Office: preferences.office
-    choices:
-      - Berlin
-      - London
-      - Hong Kong
-      - Singapore
-      - New York
-      - San Francisco
-      - Other
-  - Please Specify: preferences.office
-    js show if: |
-      val("preferences.office") == "Other"  
+    choices: countries 
 ---
 code: |
   user_jx = preferences.jurisdiction.copy_deep('user_jx')
@@ -266,7 +254,7 @@ id: product
 question: |
   Add a product you use at work
 subquestion: |  
-  This processing acvitity occurs in the ${ userdata.get("prefs").office } Office for 
+  This processing acvitity occurs in the ${ userdata.get("prefs").jurisdiction } Office for 
   % for tag in session_tags():
   
   * ${ tag }
