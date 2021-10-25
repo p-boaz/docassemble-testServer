@@ -71,7 +71,6 @@ code: |
   else:
     must_be_logged_in_page
   nav.set_section('review_data')
-  preferences.jurisdiction
   if not userdata.defined("prefs"):
     userdata.set("prefs", preferences)
   session_tags().add(biz_function)
