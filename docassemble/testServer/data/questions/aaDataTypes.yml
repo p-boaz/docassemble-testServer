@@ -71,6 +71,7 @@ code: |
   else:
     must_be_logged_in_page
   nav.set_section('review_data')
+  preferences.jurisdiction
   if not userdata.defined("prefs"):
     userdata.set("prefs", preferences)
   session_tags().add(biz_function)
@@ -141,7 +142,7 @@ features:
   #navigation: horizontal    
   small screen navigation: dropdown
   progress bar: False
-  hide navbar: True
+  hide navbar: False
   css: progressivedisclosure.css
   question back button: True
   question help button: True
@@ -184,6 +185,8 @@ code: |
 ---
 question: |
   Your info
+subquestion: |
+
 fields:
   - First: users[0].name.first
     default: |
@@ -254,7 +257,7 @@ id: product
 question: |
   Add a product you use at work
 subquestion: |  
-  This processing acvitity occurs in the ${ userdata.get("prefs").jurisdiction } Office for 
+  This processing acvitity is for 
   % for tag in session_tags():
   
   * ${ tag }
