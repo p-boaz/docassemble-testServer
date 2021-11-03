@@ -99,12 +99,6 @@ code: |
   if screen_data_is_transferred and document_choice['describe_transfer']:
     nav.set_section(sub_documents['describe_transfer'].get('section_link'))
     transfer_details.importing_country
-    status == 'needs work'
-    labelClass == 'bg-red-500'
-  if screen_data_is_transferred and document_choice['determine_pre_DPIA']:
-    nav.set_section(sub_documents['determine_pre_DPIA'].get('section_link'))
-    DPIA_splash_screen
-    data_types[funnel].details[datacat].dpia_factors
   nav.set_section('results')
   data_stored_in_google_sheet
   results
@@ -498,7 +492,7 @@ fields:
       val("screen_data_is_transferred")
     choices:
       - Add details about the data transfer: describe_transfer
-      - Complete a pre-DPIA Assessment: determine_pre_DPIA
+    none of the above: False
     default:
       - describe_transfer
   - no label: document_choice
@@ -742,7 +736,7 @@ fields:
   - Please Specify: data_types[i].details[j].format
     js show if: |
       val("data_types[i].details[j].format") == "Other"
-  - Who recieves the data?: data_types[i].details[j].recipients
+  - Who receives the data?: data_types[i].details[j].recipients
     choices:
       - Internal department that processes the concerned data
       - Processor
