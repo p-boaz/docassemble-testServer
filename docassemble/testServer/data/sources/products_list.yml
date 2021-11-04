@@ -1,0 +1,34 @@
+object: Product
+module: ".products"
+items:
+- name: Stripe
+- name: Microsoft
+- name: QuickBooks
+- name: Xero
+- name: FreshBooks
+- name: Wave
+- name: WordPress
+- name: Squarespace
+- name: HubSpot
+- name: InfusionSoft
+- name: Salesforce
+- name: Marketo
+- name: AWeber
+- name: MailChimp
+- name: Constant Contact
+- name: TweetDeck
+- name: Buffer
+- name: Hootsuite
+- name: AdWords
+- name: Bing Ads
+- name: Moz
+- name: Contently
+- name: SumoMe
+- name: Zendesk
+- name: Skype
+- name: Slack
+- name: Basecamp
+- name: Trello
+- name: Evernote
+- name: Office 365
+- name: DropBox

@@ -56,7 +56,7 @@ modules:
   - .progressivedisclosure
 ---
 code: |
-  append_to_sheet('gl.test', [preferences.jurisdiction.name, product, biz_function])
+  append_to_sheet('gl.test', [preferences.jurisdiction.name, product.name, biz_function])
   data_stored_in_google_sheet = True
 ---
 mandatory: True
@@ -177,6 +177,9 @@ content: |
 code: |
   countries = objects_from_file("countries_list.yml")
 ---
+code: |
+  products = objects_from_file("products_list.yml")
+---
 question: |
   Your info
 subquestion: |
@@ -193,6 +196,7 @@ fields:
       ${ user_info().email }
   - Location: preferences.jurisdiction
     datatype: object
+    input type: combobox
     choices: countries 
 ---
 code: |
@@ -258,17 +262,9 @@ subquestion: |
   % endfor
 fields:
   - Product: product
-    input type: radio
-    choices: 
-      - Microsoft
-      - Workday
-      - Atlassian
-      - Stripe
-      - Other
-  - Add here: product
-    show if:
-      variable: product
-      is: "Other"
+    datatype: object
+    input type: combobox
+    choices: products 
 ---
 id: tags
 question: Select a Business Function
@@ -781,12 +777,14 @@ question: |
 fields:
   - Exporting Country : transfer_details.exporting_country
     datatype: object
+    input type: combobox
     default: preferences.jurisdiction
     choices: countries
     required: False
 
   - Importing Country : transfer_details.importing_country
     datatype: object
+    input type: combobox
     choices: countries
     required: False
     
@@ -815,7 +813,7 @@ fields:
   
   - Method of Transfer: transfer_details.method
     required: False
-    datatype: radio
+    input type: combobox
     choices:
       - physical records in-store
       - physical records in the office
@@ -825,11 +823,6 @@ fields:
       - instant messenger
       - third party software
       - third party communication
-      - Other
-  - Please Specify: transfer_details.method
-    required: False
-    js show if: |
-      val("transfer_details.method") == "Other"
 ---
 question: other parties
 fields: 
