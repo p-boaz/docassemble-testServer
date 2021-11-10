@@ -56,7 +56,7 @@ modules:
   - .progressivedisclosure
 ---
 code: |
-  append_to_sheet('gl.test', [preferences.jurisdiction.name, product.name, biz_function])
+  append_to_sheet('gl.test', [preferences.jurisdiction.name, product.name, biz_function, data_types[funnel].details[datacat].data_subjects])
   data_stored_in_google_sheet = True
 ---
 mandatory: True
