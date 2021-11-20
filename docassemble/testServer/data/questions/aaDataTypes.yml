@@ -837,7 +837,7 @@ fields:
       - certification mechanisms
       - another GDPR Article 49 derogation
       
-  - Art. 49 Derogation: transfer_details.derogation
+  - Art. 49 Derogation: transfer_details.derogation      
     required: false
     js show if: |
       val("transfer_details.transfer_mech") == "another GDPR Article 49 derogation"
@@ -849,6 +849,8 @@ fields:
       - the transfer is necessary for the establishment, exercise or defence of legal claims;
       - the transfer is necessary in order to protect the vital interests of the data subject or of other persons, where the data subject is physically or legally incapable of giving consent;
       - the transfer is made from a register which according to Union or Member State law is intended to provide information to the public and which is open to consultation either by the public in general or by any person who can demonstrate a legitimate interest, but only to the extent that the conditions laid down in Union or Member State law for consultation are fulfilled inthe particular case.
+    note: |
+      In the absence of an adequacy decision pursuant to Article 45(3), or of appropriate safeguards pursuant to Article 46, including binding corporate rules, a transfer or a set of transfers of personal data to a third country or an international organisation shall take place only on one of the following conditions  
   
   - Method of Transfer: transfer_details.method
     required: False
