@@ -56,7 +56,7 @@ modules:
   - .progressivedisclosure
 ---
 code: |
-  append_to_sheet('gl.test', [preferences.jurisdiction.name, product.name, biz_function, data_types[funnel].details[datacat].data_subjects])
+  append_to_sheet('gl.demo', [preferences.jurisdiction.name, product.name, biz_function, data_types[funnel].details[datacat].data_subjects])
   data_stored_in_google_sheet = True
 ---
 mandatory: True
@@ -538,33 +538,72 @@ subquestion: |
   #### Special category data
 
   % if category == 'Special':
-    The processing of special category data is prohibited by the GDPR. Of course, there are certain exemptions to the rule.
+    Since you are processing special category data, you need to identify both a lawful basis for processing and a special category condition for processing in compliance with Article 9 of the GDPR. You should document both your lawful basis for processing and your special category condition so that you can demonstrate compliance and accountability.
     
     * [Go here] to determine the exemption that applies to your processing activity. 
 
   [Go here]: ${ interview_url(i='docassemble.testServer:data/questions/a_sensitive_data_exemptions.yml') }
   
   % else:  
-    You indicated you're not processing sensitive data.
+    Great, you indicated you're not processing sensitive data. If you are processing special category data, you need to identify both a lawful basis for processing and a special category condition for processing in compliance with Article 9 of the GDPR. You should document both your lawful basis for processing and your special category condition so that you can demonstrate compliance and accountability.
   % endif
   
   % for index, row in data_types[category].df.iterrows():
   
-  #### Legal Basis
-
     % if data_types[category].details[index].legal_basis == 'legitimate interests':
-    The latest indications from data protection authorities suggest that they'll start scrutinising the Legitimate Interests basis more. We suggest utilising a three-part test to ensure you are confident in claiming this legal basis. 
+  #### Legal Basis: `Legitimate Interests`
+    
+    The latest indications from data protection authorities suggest that they will start scrutinising the Legitimate Interests basis more. We suggest utilising a three-part test to ensure you are confident in claiming this legal basis. 
     
     * Take the test [here]
     [here]: ${ interview_url(i='docassemble.testServer:data/questions/legitimate_interests.yml') }
-    % else: 
-    `to do`
     
+    % elif data_types[category].details[index].legal_basis == 'public task':
+  #### Legal Basis: `Public Task`
+    
+      Public task refers to the need to collect data in the public interest, such as during a task by a public authority.
+      
+      It usually doesn't apply to private companies, but it also doesn't require statutory power to process the data.
+      
+      Like other lawful bases, the processing must be necessary. You can't claim this basis if you can get away without processing the data.
+
+    % elif data_types[category].details[index].legal_basis == 'consent':
+  #### Legal Basis: `Consent`
+    
+    Consent is perhaps the strongest of the lawful bases because it speaks to the mission of the GDPR: to put the data subject back in control of their own data.
+
+    In essence, it requires you to ask the data subject for permission to process their data before you collect it. Consent can't be implied. You can't assume that they agree to your data processing just because they use your site.
+
+    % elif data_types[category].details[index].legal_basis == 'contract':
+  #### Legal Basis: `Contract`
+    
+    The contractual basis exists to protect processors who require data to fulfill a contract.
+    
+    In most cases, the data you need to fulfill a contract comes from the basis of your legitimate interests. However, for data that doesn't apply to every customer or when you need to meet a contract that differs from the norm, you can add the contractual basis.
+
+    % elif data_types[category].details[index].legal_basis == 'legal obligation':
+  #### Legal Basis: `Legal Obligation`
+    
+    The legal obligation basis states that you need to process personal data to comply with the law. For example, a bank may need to process passport numbers or Social Security numbers to meet federal standards for proof of identification as well as anti-money laundering statutes.
+    
+    However, if you run a social media platform, you don't require these sensitive pieces of data because there's no law saying so. As a result, you'd need to rely on a different basis.
+
+     When you quote your legal obligation, it's a good idea to also state what statutes or agencies you report to.
+
+    % elif data_types[category].details[index].legal_basis == 'vital interests':
+  #### Legal Basis: `Vital Interests`
+    
+    The vital interests basis refers to processing that is absolutely necessary but also a case where consent won't apply.
+    
+    The given interpretation of the basis says that you rely on it if you need it to protect someone's life but you can't otherwise get consent for the processing (either they can't or won't provide it).
+    
+    Most businesses won't rely on vital interest at all. Healthcare organizations (namely emergency medical care providers) and public bodies may be the only ones who use this basis.
+
     % endif
   
   #### Risk assessment   
       
-    In general and according to European guidelines, a data controller's processing activities that meet two of the listed factors below would require a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA.
+    A processing activity that meets two pre-DPIA factors requires a DPIA. If multiple criteria are met by the processing it will more likely present a high risk to the rights and freedoms of individuals, and would trigger the need for a DPIA.
       
     % if len(data_types[category].details[index].dpia_factors.true_values()) >= 2:
     **You indicated you will meet at least two of the listed factors. Therefore, you should complete a full DPIA.**
