@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.testServer',
-      version='0.0.2',
+      version='0.0.3',
       description=('docassemble test server'),
       long_description='# docassemble.testServer\r\n\r\ndocassemble test server\r\n\r\n## Author\r\n\r\nSystem Administrator, admin@admin.com\r\n\r\n',
       long_description_content_type='text/markdown',

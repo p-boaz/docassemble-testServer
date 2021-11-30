@@ -226,30 +226,6 @@ subquestion: |
   
 continue button field: intro
 continue button label: Get started
-css: |
-  <style>
-    .custom-counter ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    }
-
-    .custom-counter li {
-    counter-increment: step-counter;
-    margin-bottom: 10px;
-    }
-
-    .custom-counter li::before {
-    content: counter(step-counter);
-    margin-right: 5px;
-    font-size: 80%;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 50%;
-    }
-  </style>  
 ---  
 id: product
 question: |
@@ -269,7 +245,7 @@ fields:
 id: tags
 question: Select a Business Function
 subquestion: |
-  I.e. what department do you work in
+  
 fields: 
   - no label: biz_function
     input type: radio
@@ -288,7 +264,7 @@ fields:
 ---
 id: funnel chooser
 question: |
-  The data you process
+  What kind of data you process
 subquestion: |
   % if len(data_types):
   You have already listed data types within these classes:
@@ -527,7 +503,7 @@ sets: final_page
 id: results
 event: results
 question: |
-  Done! Here are your results
+  Done! Here are your recommendations
 subquestion: |
   
   % if len(data_types.elements): 
