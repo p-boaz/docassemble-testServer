@@ -243,7 +243,7 @@ fields:
     choices: products 
 ---
 id: tags
-question: Select a Business Function
+question: Select a Business Function for this processing activity
 subquestion: |
   
 fields: 
@@ -264,7 +264,7 @@ fields:
 ---
 id: funnel chooser
 question: |
-  What kind of data you process
+  Select what kinds of data you process
 subquestion: |
   % if len(data_types):
   You have already listed data types within these classes:
@@ -648,22 +648,7 @@ subquestion: |
   % else: 
   According to your responses, this data is not transferred internationally. Good news for you - there's no need to complete a Transfer Impact Assessment. 
   % endif
-  
-  ${ review_datacats_template }
-  
-  Share this link with others!
-
-  [${ interview_url() }](${ interview_url() })
-  
-
-
-  Use
-  [this link](${ interview_url_action('query_result') })
-  to query the information from
-  another application.
-
 buttons:
-  - Check: refresh
   - Exit: leave
 ---
 template: cont_or_proc
